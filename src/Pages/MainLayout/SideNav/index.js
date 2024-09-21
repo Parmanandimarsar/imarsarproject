@@ -37,10 +37,10 @@ const SideNave = () => {
       ],
     },
     {
-      text: "Starred",
+      text: "Ledger Master",
       icon:<InboxIcon /> ,
       subItems: [
-        { text: "Letter-Details", link: "/letter-details", icon: <MailIcon /> },
+        { text: "Ledger-Master", link: "/ledger-master", icon: <MailIcon /> },
        
         { text: "Company-Master", link: "/company-master", icon: <MailIcon /> },
       ],

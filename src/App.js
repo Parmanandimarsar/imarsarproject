@@ -3,14 +3,13 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Login from "./Pages/Login";
 import SignUp from "./Components/Form/StaffMaster";
 import Home from "./Pages/Header";
-import Header from "./Pages/Header";
 import Footer from "./Pages/Footer";
 import CompanyMaster from "./Components/Form/CompanyMaster";
 import VehicaleMaster from "./Components/Form/VehicaleMaster";
-import MainLayout from "./Pages/MainLayout"
 import LetterDetails from "./Components/Form/LetterDetails";
 import Navbar from "./Pages/MainLayout/Navbar"
 import OpeningStocks from "./Components/Form/OpeningStocks";
+import LedgerMaster from "./Components/Form/LedgerMaster";
 const Layout = () => (
   <div>
  
@@ -41,7 +40,10 @@ const router = createBrowserRouter([
         path: "/opening-stocks",
         element: <OpeningStocks />,
       },
-     
+      {
+        path: "/ledger-master",
+        element: <LedgerMaster/>,
+      },
     ],
   },
  

@@ -71,3 +71,13 @@ overflow: hidden !important;
   padding: 3px 5px !important;
   font-size: 12px !important;
 }
+
+/* ledger-details-form */
+.ledger-details-form .css-1sh6wjw-MuiInputBase-input-MuiOutlinedInput-input,
+.css-bgvwm1-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 3px 5px !important;
+  font-size: 12px !important;
+}
+.css-s6km2v-MuiFormLabel-root{
+  font-size: 12px !important;
+}

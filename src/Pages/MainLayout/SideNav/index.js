@@ -42,7 +42,7 @@ const SideNave = () => {
       subItems: [
         { text: "Ledger-Master", link: "/ledger-master", icon: <MailIcon /> },
        
-        { text: "Company-Master", link: "/company-master", icon: <MailIcon /> },
+        { text: "Temp-Addresh", link: "/ledger-temp-addresh", icon: <MailIcon /> },
       ],
     },
     {

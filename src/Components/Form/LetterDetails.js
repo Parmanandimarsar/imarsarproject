@@ -20,7 +20,6 @@ import {
 import Grid from "@mui/material/Grid";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-
 import { useState } from "react";
 import SideNave from "../../Pages/MainLayout/SideNav";
 const LetterDetails = () => {
@@ -97,20 +96,20 @@ const LetterDetails = () => {
           <SideNave />
         </div>
 
-        <div className="w-[85%] sm:w-[94%] mt-[25px] mb-[50px]">
-          <Box className="bg-white p-6 rounded-lg shadow-lg" autoComplete="off">
-            <Box className=" flex justify-between items-center mb-4">
+        <div className="w-[80%] sm:w-[90%] lg:w-[94%] mt-[25px] mb-[50px] mx-auto">
+          <Box className="bg-white p-3 rounded-lg shadow-lg" autoComplete="off">
+            <Box className=" flex justify-between items-center ">
               <Typography
                 variant="h5"
                 component="h1"
-                className="text-center mb-6"
+                className="text-center "
               >
                 Letter Details
               </Typography>
               <Box className="flex gap-2"></Box>
             </Box>
             <Divider
-              sx={{ marginBottom: "20px", border: "2px solid #027b81" }}
+              sx={{ marginBottom: "10px", border: "0.5px solid #027b81" }}
             />
             <Formik
               initialValues={initialValues}
@@ -546,123 +545,133 @@ const LetterDetails = () => {
                     {/* Row 6*/}
                   </Grid>
 
-                  <Box
-                    sx={{ width: "100%", mt: 4 }}
-                    className="border p-3 rounded-md shadow-md"
-                  >
-                    {/* Form */}
-                    <Grid
-                      container
-                      gap={2}
-                      alignItems="center"
-                      className="border pb-3 border-t-0 border-l-0 border-r-0 "
-                    >
-                      {/* Dropdown */}
-                      <Grid item xs={12} sm={3}>
-                        <FormControl fullWidth>
-                          <Grid container alignItems="center">
-                            <Grid item sm={3}>
-                              <FormLabel>Name</FormLabel>
-                            </Grid>
-                            <Grid item sm={8}>
-                              <TextField
-                                select
-                                name="dropdown"
-                                value={formData.dropdown}
-                                onChange={handleChange}
-                                fullWidth
-                                size="small"
-                              >
-                                {dropdownOptions.map((option) => (
-                                  <MenuItem
-                                    key={option.value}
-                                    value={option.value}
-                                  >
-                                    {option.label}
-                                  </MenuItem>
-                                ))}
-                              </TextField>
-                            </Grid>
-                          </Grid>
-                        </FormControl>
-                      </Grid>
+                  <Divider
+                  sx={{
+                    marginBottom: "10px",
+                    marginTop: "10px",
+                    border: "0.5px solid #027b81",
+                  }}
+                />
 
-                      {/* Description */}
-                      <Grid item xs={12} sm={3}>
-                        <FormControl fullWidth>
-                          <Grid container alignItems="center">
-                            <Grid item sm={4}>
-                              <FormLabel>Description</FormLabel>
-                            </Grid>
-                            <Grid item sm={8}>
-                              <TextField
-                                name="description"
-                                value={formData.description}
-                                onChange={handleChange}
-                                fullWidth
-                                size="small"
-                              />
-                            </Grid>
-                          </Grid>
-                        </FormControl>
-                      </Grid>
-
-                      {/* Seq No */}
-                      <Grid item xs={12} sm={3}>
-                        <FormControl fullWidth>
-                          <Grid container alignItems="center">
-                            <Grid item sm={4}>
-                              <FormLabel>Seq. No</FormLabel>
-                            </Grid>
-                            <Grid item sm={8}>
-                              <TextField
-                                name="seqNo"
-                                value={formData.seqNo}
-                                onChange={handleChange}
-                                size="small"
-                              />
-                            </Grid>
-                          </Grid>
-                        </FormControl>
-                      </Grid>
-
-                      {/* Add Button */}
-                      <Grid item xs={12} sm={2}>
-                        <Button
-                          className="project-thim"
-                          variant="contained"
-                          onClick={handleAdd}
-                          fullWidth
-                        >
-                          Add
-                        </Button>
-                      </Grid>
-                    </Grid>
-
-                    {/* Table */}
-                    {tableData.length > 0 && (
-                      <TableContainer component={Paper} sx={{ mt: 4 }}>
-                        <Table>
-                          <TableHead>
-                            <TableRow>
-                              <TableCell>Dropdown</TableCell>
-                              <TableCell>Description</TableCell>
-                              <TableCell>Seq. No</TableCell>
-                            </TableRow>
-                          </TableHead>
-                          <TableBody>
-                            {tableData.map((row, index) => (
-                              <TableRow key={index}>
-                                <TableCell>{row.dropdown}</TableCell>
-                                <TableCell>{row.description}</TableCell>
-                                <TableCell>{row.seqNo}</TableCell>
-                              </TableRow>
+                {/* Form */}
+                <Grid container spacing={2}>
+                  {/* Dropdown */}
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid item xs={4}>
+                          <FormLabel>Name</FormLabel>
+                        </Grid>
+                        <Grid item xs={8}>
+                          <TextField
+                            select
+                            name="dropdown"
+                            value={formData.dropdown}
+                            onChange={handleChange}
+                            fullWidth
+                            size="small"
+                          >
+                            {dropdownOptions.map((option) => (
+                              <MenuItem key={option.value} value={option.value}>
+                                {option.label}
+                              </MenuItem>
                             ))}
-                          </TableBody>
-                        </Table>
-                      </TableContainer>
-                    )}
-                  </Box>
+                          </TextField>
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+
+                  {/* Description */}
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid item xs={4}>
+                          <FormLabel>Description</FormLabel>
+                        </Grid>
+                        <Grid item xs={8}>
+                          <TextField
+                            name="description"
+                            value={formData.description}
+                            onChange={handleChange}
+                            fullWidth
+                            size="small"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+
+                  {/* Seq No */}
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid item xs={4}>
+                          <FormLabel>Seq. No</FormLabel>
+                        </Grid>
+                        <Grid item xs={8}>
+                          <TextField
+                            name="seqNo"
+                            fullWidth
+                            value={formData.seqNo}
+                            onChange={handleChange}
+                            size="small"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+
+                  {/* Add Button */}
+                  <Grid item xs={12} sm={6} md={4} lg={2}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid item xs={4}></Grid>
+                        <Grid item xs={8}>
+                          <Button
+                            className="project-thim"
+                            variant="contained"
+                            onClick={handleAdd}
+                            fullWidth
+                          >
+                            Add
+                          </Button>
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+                </Grid>
+
+                {/* Table */}
+                {tableData.length > 0 && (
+                  <TableContainer component={Paper} sx={{ mt: 1 }}>
+                    <Table>
+                      <TableHead>
+                        <TableRow>
+                          <TableCell>Dropdown</TableCell>
+                          <TableCell>Description</TableCell>
+                          <TableCell>Seq. No</TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {tableData.map((row, index) => (
+                          <TableRow key={index}>
+                            <TableCell>{row.dropdown}</TableCell>
+                            <TableCell>{row.description}</TableCell>
+                            <TableCell>{row.seqNo}</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                )}
+                <Divider
+                  sx={{
+                    marginBottom: "10px",
+                    marginTop: "10px",
+                    border: "0.5px solid #027b81",
+                  }}
+                />
 
                   <Typography variant="h6" sx={{ marginTop: "20px" }}>
                     Letter Details Table

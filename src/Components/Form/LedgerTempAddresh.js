@@ -15,7 +15,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import SideNave from "../../Pages/MainLayout/SideNav";
 
-const TempAddresh = () => {
+const LedgerTempAddresh = () => {
 
     const validationSchema = Yup.object().shape({
         title: Yup.string().required("Title is required"),
@@ -96,7 +96,7 @@ const TempAddresh = () => {
           <SideNave />
         </div>
 
-        <div className="w-[85%] sm:w-[94%] mt-[25px] mb-[50px]">
+        <div className="w-[80%] sm:w-[90%] lg:w-[94%] mt-[25px] mb-[50px] mx-auto">
           <Box className="bg-white p-6 rounded-lg shadow-lg" autoComplete="off">
             <Box className=" flex justify-between items-center mb-4">
               <Typography
@@ -104,11 +104,11 @@ const TempAddresh = () => {
                 component="h1"
                 className="text-center mb-6"
               >
-                Ledger Master Details
+              Temporary Addresh
               </Typography>
             </Box>
             <Divider
-              sx={{ marginBottom: "20px", border: "2px solid #027b81" }}
+              sx={{ marginBottom: "20px", border: "1px solid #027b81" }}
             />
             <Formik
               initialValues={initialValues}
@@ -897,4 +897,4 @@ const TempAddresh = () => {
   )
 }
 
-export default TempAddresh
+export default LedgerTempAddresh

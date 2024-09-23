@@ -78,11 +78,11 @@ const StaffMaster = () => {
 
   return (
     <div className="bg-gray-100 w-full flex">
-      <div className="w-[15%] md:w-[5%]">
+      <div className="w-[15%] sm:w-[5%]">
         <SideNave />
       </div>
 
-      <div className=" w-[85%] sm:w-[94%] mt-[25px] mb-[50px]">
+      <div className=" w-[80%] sm:w-[90%] lg:w-[94%] mt-[25px] mb-[50px] mx-auto">
         <Box className="bg-white p-6 rounded-lg shadow-lg" autoComplete="off">
           <Box className="flex justify-between items-center mb-4">
             <Typography

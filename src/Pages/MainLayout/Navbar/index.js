@@ -25,12 +25,12 @@ const Navbar = () => {
     <>
       <AppBar className="headerNav project-thim">
         <Toolbar className="headerNav-child">
-          <div className="flex justify-between ml-[10%] w-[100%]  items-center">
+          <div className="flex justify-around sm:justify-between  ml-[10%] w-[100%]  items-center">
             <div className="flex items-center gap-5">
             <div>
               <img src="" alt="img" />
             </div>
-            <div className="relative ">
+            <div className="relative hidden sm:block ">
               <input className="p-2 px-16 justify-start rounded-lg outline-none text-gray-500 " 
               placeholder="Search"
               />
@@ -66,7 +66,7 @@ const Navbar = () => {
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>LogOut</MenuItem>
               </Menu>
-              <p className="text-[14px]">Parmanand Maurya</p>
+              <p className="text-[14px] hidden sm:block ">Parmanand Maurya</p>
             </div>
           </div>
         </Toolbar>

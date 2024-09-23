@@ -7,15 +7,15 @@ import Footer from "./Pages/Footer";
 import CompanyMaster from "./Components/Form/CompanyMaster";
 import VehicaleMaster from "./Components/Form/VehicaleMaster";
 import LetterDetails from "./Components/Form/LetterDetails";
-import Navbar from "./Pages/MainLayout/Navbar"
+import Navbar from "./Pages/MainLayout/Navbar";
 import OpeningStocks from "./Components/Form/OpeningStocks";
 import LedgerMaster from "./Components/Form/LedgerMaster";
+import LedgerTempAddresh from "./Components/Form/LedgerTempAddresh";
 const Layout = () => (
   <div>
- 
-  <Navbar/>
-  <Outlet />
-  <Footer />
+    <Navbar />
+    <Outlet />
+    <Footer />
   </div>
 );
 
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <CompanyMaster/>,
+        element: <CompanyMaster />,
       },
       {
         path: "/letter-details",
@@ -42,16 +42,22 @@ const router = createBrowserRouter([
       },
       {
         path: "/ledger-master",
-        element: <LedgerMaster/>,
+        element: <LedgerMaster />,
       },
+      {
+        path: "/ledger-temp-addresh",
+        element: <LedgerTempAddresh />,
+      },
+
+      
     ],
   },
- 
+
   {
     path: "/login",
     element: <Login />,
   },
-  
+
   {
     path: "/vehicale-master",
     element: <VehicaleMaster />,

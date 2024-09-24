@@ -46,10 +46,10 @@ const SideNave = () => {
       ],
     },
     {
-      text: "Starred",
+      text: "Labour Master",
       icon: <MailIcon />,
       subItems: [
-        { text: "Letter-Details", link: "/letter-details", icon: <MailIcon /> },
+        { text: "Labour-Master", link: "/labour-master", icon: <MailIcon /> },
         { text: "Vehical-Master", link: "/vehical-master", icon: <MailIcon /> },
         { text: "Company-Master", link: "/company-master", icon: <MailIcon /> },
       ],
@@ -123,7 +123,7 @@ const SideNave = () => {
             
             
             (
-            <React.Fragment key={item.text}>
+            <React.Fragment key={index}>
               <ListItem disablePadding>
                 <ListItemButton
                   onClick={() => handleDropdownClick(index)}

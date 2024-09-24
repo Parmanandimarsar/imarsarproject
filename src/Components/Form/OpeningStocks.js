@@ -709,6 +709,7 @@ const OpeningStocks = () => {
                             variant="contained"
                             onClick={handleAdd}
                             fullWidth
+                            size="small"
                           >
                             Add
                           </Button>

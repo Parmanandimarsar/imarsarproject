@@ -11,6 +11,7 @@ import Navbar from "./Pages/MainLayout/Navbar";
 import OpeningStocks from "./Components/Form/OpeningStocks";
 import LedgerMaster from "./Components/Form/LedgerMaster";
 import LedgerTempAddresh from "./Components/Form/LedgerTempAddresh";
+import LabourMaster from "./Components/Form/LabourMaster";
 const Layout = () => (
   <div>
     <Navbar />
@@ -48,7 +49,10 @@ const router = createBrowserRouter([
         path: "/ledger-temp-addresh",
         element: <LedgerTempAddresh />,
       },
-
+      {
+        path: "/labour-master",
+        element: <LabourMaster/>,
+      },
       
     ],
   },

@@ -1,17 +1,18 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Login from "./Pages/Login";
-import SignUp from "./Components/Form/StaffMaster";
+import SignUp from "./Components/Form/Master/StaffMaster";
 import Home from "./Pages/Header";
 import Footer from "./Pages/Footer";
-import CompanyMaster from "./Components/Form/CompanyMaster";
-import VehicaleMaster from "./Components/Form/VehicaleMaster";
-import LetterDetails from "./Components/Form/LetterDetails";
+import CompanyMaster from "./Components/Form/Master/CompanyMaster";
+import VehicaleMaster from "./Components/Form/Master/VehicaleMaster";
+import LetterDetails from "./Components/Form/Master/LetterDetails";
 import Navbar from "./Pages/MainLayout/Navbar";
-import OpeningStocks from "./Components/Form/OpeningStocks";
-import LedgerMaster from "./Components/Form/LedgerMaster";
-import LedgerTempAddresh from "./Components/Form/LedgerTempAddresh";
-import LabourMaster from "./Components/Form/LabourMaster";
+import OpeningStocks from "./Components/Form/Master/OpeningStocks";
+import LedgerMaster from "./Components/Form/Master/LedgerMaster";
+import LedgerTempAddresh from "./Components/Form/Master/LedgerTempAddresh";
+import LabourMaster from "./Components/Form/Master/LabourMaster";
+import MiscMaster from "./Components/Form/Master/MiscMaster";
 const Layout = () => (
   <div>
     <Navbar />
@@ -46,14 +47,17 @@ const router = createBrowserRouter([
         element: <LedgerMaster />,
       },
       {
+        path: "/labour-master",
+        element: <LabourMaster />,
+      },
+      {
         path: "/ledger-temp-addresh",
         element: <LedgerTempAddresh />,
       },
       {
-        path: "/labour-master",
-        element: <LabourMaster/>,
+        path: "/miscmaster",
+        element: <MiscMaster />,
       },
-      
     ],
   },
 

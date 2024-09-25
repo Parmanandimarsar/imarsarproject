@@ -28,29 +28,31 @@ const SideNave = () => {
 
   const menuItems = [
     {
-      text: "Vehicale Master",
+      text: " Master",
       icon: <MailIcon />,
       subItems: [
+       
         { text: "Vehical-Master", link: "/vehical-master", icon: <MailIcon /> },
         { text: "Letter-Details", link: "/letter-details", icon: <MailIcon /> },
         { text: "Opening-Master", link: "/opening-stocks", icon: <MailIcon /> },
+        { text: "Ledger-Master", link: "/ledger-master", icon: <MailIcon /> },
+        { text: "Temp-Addresh", link: "/ledger-temp-addresh", icon: <MailIcon /> },
+        { text: "Labour-Master", link: "/labour-master", icon: <MailIcon /> },
+        { text: "Misc-Master", link: "/miscmaster", icon: <MailIcon /> },
       ],
     },
     {
       text: "Ledger Master",
       icon:<InboxIcon /> ,
       subItems: [
-        { text: "Ledger-Master", link: "/ledger-master", icon: <MailIcon /> },
-       
-        { text: "Temp-Addresh", link: "/ledger-temp-addresh", icon: <MailIcon /> },
+        { text: "-Master", link: "/ledger-master", icon: <MailIcon /> },
       ],
     },
     {
       text: "Labour Master",
       icon: <MailIcon />,
       subItems: [
-        { text: "Labour-Master", link: "/labour-master", icon: <MailIcon /> },
-        { text: "Vehical-Master", link: "/vehical-master", icon: <MailIcon /> },
+        
         { text: "Company-Master", link: "/company-master", icon: <MailIcon /> },
       ],
     },
@@ -120,8 +122,6 @@ const SideNave = () => {
         {/* Drawer List */}
         <List sx={{ color: "white" }}>
           {menuItems.map((item, index) => 
-            
-            
             (
             <React.Fragment key={index}>
               <ListItem disablePadding>

@@ -23,11 +23,11 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { DataGrid } from "@mui/x-data-grid";
 import { useState } from "react";
-import SideNave from "../../Pages/MainLayout/SideNav";
+import SideNave from "../../../Pages/MainLayout/SideNav";
 import {
   OpeningStockscolumns,
   OpeningStocks_OS_columns,
-} from "../../Components/TableField/TablefieldsColumns";
+} from "../../TableField/TablefieldsColumns";
 const OpeningStocks = () => {
   const rows = [
     {

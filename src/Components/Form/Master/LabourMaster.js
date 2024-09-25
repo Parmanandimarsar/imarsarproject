@@ -13,7 +13,7 @@ import {
 import Grid from "@mui/material/Grid";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import SideNave from "../../Pages/MainLayout/SideNav";
+import SideNave from "../../../Pages/MainLayout/SideNav";
 
 const LabourMaster = () => {
   const validationSchema = Yup.object().shape({

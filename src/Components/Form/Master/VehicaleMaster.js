@@ -18,7 +18,7 @@ import {
 import Grid from "@mui/material/Grid";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import SideNave from "../../Pages/MainLayout/SideNav";
+import SideNave from "../../../Pages/MainLayout/SideNav";
 const VehicaleMaster = () => {
   const validationSchema = Yup.object().shape({
     model: Yup.string().required("Model is required"),

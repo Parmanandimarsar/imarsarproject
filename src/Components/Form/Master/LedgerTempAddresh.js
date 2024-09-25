@@ -1027,7 +1027,7 @@ import {
 import Grid from "@mui/material/Grid";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import SideNave from "../../Pages/MainLayout/SideNav";
+import SideNave from "../../../Pages/MainLayout/SideNav";
 
 const LedgerTempAddresh = () => {
   const validationSchema = Yup.object().shape({
@@ -1114,10 +1114,10 @@ const LedgerTempAddresh = () => {
       </div>
 
       <div className="w-[80%] sm:w-[90%] lg:w-[94%] mt-[25px] mb-[50px] mx-auto">
-        <Box className="bg-white p-6 rounded-lg shadow-lg" autoComplete="off">
-          <Box className="flex justify-between items-center mb-4">
+        <Box className="bg-white p-2 rounded-lg shadow-lg" autoComplete="off">
+          <Box className="flex justify-between items-center mb-1">
             <Typography
-              variant="h5"
+              variant="h6"
               component="h1"
               className="text-center mb-6"
             >
@@ -1869,119 +1869,159 @@ const LedgerTempAddresh = () => {
                       </Grid>
                     </FormControl>
                   </Grid>
-
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid item xs={4}></Grid>
+                        <Grid item xs={8}></Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
                   {/* Row 10 */}
 
-                  <Grid container spacing={2}>
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                      <FormControl fullWidth>
-                        <FormLabel>Document 1</FormLabel>
-                        <input
-                          type="file"
-                          name="document1"
-                          onChange={(event) => {
-                            setFieldValue(
-                              "document1",
-                              event.currentTarget.files[0]
-                            );
-                          }}
-                          style={{
-                            padding: "8px",
-                            border: "1px solid #ccc",
-                            borderRadius: "4px",
-                          }} // Custom styles
-                        />
-                        <ErrorMessage
-                          name="document1"
-                          component="div"
-                          className="text-red-600 text-xs"
-                        />
-                      </FormControl>
-                    </Grid>
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <FormLabel>Document 1</FormLabel>
+                      <input
+                        type="file"
+                        name="document1"
+                        onChange={(event) => {
+                          setFieldValue(
+                            "document1",
+                            event.currentTarget.files[0]
+                          );
+                        }}
+                        style={{
+                          padding: "8px",
+                          border: "1px solid #ccc",
+                          borderRadius: "4px",
+                        }} // Custom styles
+                      />
+                      <ErrorMessage
+                        name="document1"
+                        component="div"
+                        className="text-red-600 text-xs"
+                      />
+                    </FormControl>
+                  </Grid>
 
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                      <FormControl fullWidth>
-                        <FormLabel>Document 2</FormLabel>
-                        <input
-                          type="file"
-                          name="document2"
-                          onChange={(event) => {
-                            setFieldValue(
-                              "document2",
-                              event.currentTarget.files[0]
-                            );
-                          }}
-                          style={{
-                            padding: "8px",
-                            border: "1px solid #ccc",
-                            borderRadius: "4px",
-                          }} // Custom styles
-                        />
-                        <ErrorMessage
-                          name="document2"
-                          component="div"
-                          className="text-red-600 text-xs"
-                        />
-                      </FormControl>
-                    </Grid>
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <FormLabel>Document 2</FormLabel>
+                      <input
+                        type="file"
+                        name="document2"
+                        onChange={(event) => {
+                          setFieldValue(
+                            "document2",
+                            event.currentTarget.files[0]
+                          );
+                        }}
+                        style={{
+                          padding: "8px",
+                          border: "1px solid #ccc",
+                          borderRadius: "4px",
+                        }} // Custom styles
+                      />
+                      <ErrorMessage
+                        name="document2"
+                        component="div"
+                        className="text-red-600 text-xs"
+                      />
+                    </FormControl>
+                  </Grid>
 
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                      <FormControl fullWidth>
-                        <FormLabel>Document 3</FormLabel>
-                        <input
-                          type="file"
-                          name="document3"
-                          onChange={(event) => {
-                            setFieldValue(
-                              "document3",
-                              event.currentTarget.files[0]
-                            );
-                          }}
-                          style={{
-                            padding: "8px",
-                            border: "1px solid #ccc",
-                            borderRadius: "4px",
-                          }} // Custom styles
-                        />
-                        <ErrorMessage
-                          name="document3"
-                          component="div"
-                          className="text-red-600 text-xs"
-                        />
-                      </FormControl>
-                    </Grid>
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <FormLabel>Document 3</FormLabel>
+                      <input
+                        type="file"
+                        name="document3"
+                        onChange={(event) => {
+                          setFieldValue(
+                            "document3",
+                            event.currentTarget.files[0]
+                          );
+                        }}
+                        style={{
+                          padding: "8px",
+                          border: "1px solid #ccc",
+                          borderRadius: "4px",
+                        }} // Custom styles
+                      />
+                      <ErrorMessage
+                        name="document3"
+                        component="div"
+                        className="text-red-600 text-xs"
+                      />
+                    </FormControl>
+                  </Grid>
 
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                      <FormControl fullWidth>
-                        <FormLabel>Document 4</FormLabel>
-                        <input
-                          type="file"
-                          name="document4"
-                          onChange={(event) => {
-                            setFieldValue(
-                              "document4",
-                              event.currentTarget.files[0]
-                            );
-                          }}
-                          style={{
-                            padding: "8px",
-                            border: "1px solid #ccc",
-                            borderRadius: "4px",
-                          }} // Custom styles
-                        />
-                        <ErrorMessage
-                          name="document4"
-                          component="div"
-                          className="text-red-600 text-xs"
-                        />
-                      </FormControl>
-                    </Grid>
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <FormLabel>Document 4</FormLabel>
+                      <input
+                        type="file"
+                        name="document4"
+                        onChange={(event) => {
+                          setFieldValue(
+                            "document4",
+                            event.currentTarget.files[0]
+                          );
+                        }}
+                        style={{
+                          padding: "8px",
+                          border: "1px solid #ccc",
+                          borderRadius: "4px",
+                        }} // Custom styles
+                      />
+                      <ErrorMessage
+                        name="document4"
+                        component="div"
+                        className="text-red-600 text-xs"
+                      />
+                    </FormControl>
                   </Grid>
                 </Grid>
 
-                <Box display="flex" justifyContent="center" mt={4}>
-                  <Button variant="contained" color="primary" type="submit">
-                    Submit
+                <Box className="mt-6 flex items-end gap-4 ml-0 justify-end">
+                  <Button
+                    size="small"
+                    type="submit"
+                    color="primary"
+                    variant="contained"
+                    className="p-2"
+                  >
+                    Save
+                  </Button>
+
+                  <Button
+                    size="small"
+                    type="button"
+                    color="error"
+                    variant="outlined"
+                    className="p-2"
+                  >
+                    Down Loads View
+                  </Button>
+
+                  <Button
+                    size="small"
+                    type="reset"
+                    color="default"
+                    variant="outlined"
+                    className="p-2"
+                  >
+                    Verify Details
+                  </Button>
+
+                  <Button
+                    size="small"
+                    color="default"
+                    variant="outlined"
+                    className="p-2"
+                  >
+                    Close
                   </Button>
                 </Box>
               </Form>

@@ -1,7 +1,13 @@
 .project-thim{
   background-color: #093E53 !important;
 }
-
+.text{
+  font-size: 12px !important;
+}
+.textbold{
+  font-size: 12px !important;
+  font-weight: bold !important;
+}
 /* global dataGridTable header */
 .css-yrdy0g-MuiDataGrid-columnHeaderRow{
   background-color: #093E53 !important;
@@ -65,6 +71,8 @@ overflow: hidden !important;
 }
 .side-nav .css-1xa1c3i-MuiButtonBase-root-MuiListItemButton-root{
   padding-right: 0px !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
 }
 .side-nav-menu-icon{
   padding: 12px 8px !important;

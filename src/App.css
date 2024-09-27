@@ -1,30 +1,96 @@
 .project-thim{
-  background-color: #027b81 !important;
+  /* background-color: #093E53 !important; */
+  background: linear-gradient(rgb(91, 36, 122) 0%, rgb(27, 206, 223) 100%);
 }
-
-/* global dataGridTable */
+.text{
+  font-size: 12px !important;
+}
+.textbold{
+  font-size: 12px !important;
+  font-weight: bold !important;
+}
+.divider{
+background-color: #4ad3e970 !important;
+margin-bottom: 10px !important;
+margin-top: 5px !important;
+   
+}
+/* global dataGridTable header */
 .css-yrdy0g-MuiDataGrid-columnHeaderRow{
-  background-color: #027b81 !important;
+  /* background-color: #093E53 !important; */
+  background-color: #17a2b8de !important;
   color: #fff !important;
 }
 
+/* form lable  */
+.css-s6km2v-MuiFormLabel-root{
+  font-size: 12px !important;
+  font-weight: bold !important;
+  /* color: rgb(68, 65, 65) !important; */
+  color: black !important;
+}
+/* form field */
+ .css-1sh6wjw-MuiInputBase-input-MuiOutlinedInput-input{
+  padding: 1px 5px !important;
+  font-size: 12px !important;
+  color: gray !important;
+}
+/*datagrid field dropdown */
+.css-bgvwm1-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
+  padding: 3px 5px !important;
+  font-size: 12px !important;
+  height: 0px !important;
+  color: gray !important;
+}
+/* datagridfild dropdown menu option */
+.css-1h4bzp1-MuiButtonBase-root-MuiMenuItem-root{
+  font-size: 12px !important;
+  line-height: 12px !important;
+  padding-top: 2px !important;
+  padding-bottom: 5px !important;
+  color: gray !important;
 
+}
+/* datagridtable Head */
+.css-1t7lzbz-MuiTableCell-root ,.css-10ukr6t-MuiTableCell-root {
+padding: 5px !important;
+}
+ 
+/* data grid footerpagination */
+@media (min-width:600px) {
+  .css-wop1k0-MuiDataGrid-footerContainer, .css-16og44m-MuiToolbar-root-MuiTablePagination-toolbar {
+    min-height: 30px !important;
+    height: 35px !important;
+    overflow: hidden !important;
+  }
+}
 
+/* diloxBox Modal */
+.css-rsks93-MuiPaper-root-MuiDialog-paper{
+  width: 70% !important;
+}
+.css-ks0ey5-MuiTypography-root-MuiDialogTitle-root{
+  padding: 0px 2px !important;
+}
 .headerNav{
   transition: 300ms ease all;
-    background-image: linear-gradient(to right #027b81, #d5e3e4) !important;
+
 }
 .headerNav.css-5czdux-MuiPaper-root-MuiAppBar-root{
   position: sticky !important;
   height: 65px !important;
   margin-bottom: 5px !important;
+  background: linear-gradient(rgb(91, 36, 122) 0%, rgb(27, 206, 223) 100%);
 }
 .side-nav .css-153gm7s-MuiPaper-root-MuiDrawer-paper {
-background-color:#027b81 !important;
+/* background-color:#093E53 !important; */
+background: linear-gradient(rgb(91, 36, 122) 0%, rgb(27, 206, 223) 100%);
 overflow: hidden !important;
 }
 .side-nav .css-1xa1c3i-MuiButtonBase-root-MuiListItemButton-root{
   padding-right: 0px !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
 }
 .side-nav-menu-icon{
   padding: 12px 8px !important;
@@ -32,42 +98,70 @@ overflow: hidden !important;
 }
 
 /* Letter Details */
-.letter-details-form .css-s6km2v-MuiFormLabel-root {
-  font-size: 13px !important;
-}
-.letter-details-form .css-1sh6wjw-MuiInputBase-input-MuiOutlinedInput-input,
-.css-bgvwm1-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
-  padding: 3px 5px !important;
-  font-size: 12px !important;
-}
+
+
 
 
 /* Staff Master */
 
-.staff-master-form .css-s6km2v-MuiFormLabel-root{
-  font-size: 13px !important;
-}
-.staff-master-form .css-1sh6wjw-MuiInputBase-input-MuiOutlinedInput-input,
-.css-bgvwm1-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
-  padding: 3px 5px !important;
-  font-size: 12px !important;
-}
+
+
 
 /* company-master-form */
-.company-master-form .css-1sh6wjw-MuiInputBase-input-MuiOutlinedInput-input,
-.css-bgvwm1-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
-  padding: 3px 5px !important;
-  font-size: 12px !important;
-}
+
 
 
 /* Company Master */
 
-.company-master-form .css-s6km2v-MuiFormLabel-root{
-  font-size: 13px !important;
+
+
+
+/* ledger-details-form */
+
+/* Opening Stocks components */
+
+    /* Opening Stocks Table */
+.css-163fvz6-MuiDataGrid-root .MuiDataGrid-columnHeaderTitleContainer {
+  display: flex !important;
+  justify-content: space-between !important;
+  
 }
-.company-master-form .css-1sh6wjw-MuiInputBase-input-MuiOutlinedInput-input,
-.css-bgvwm1-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
-  padding: 3px 5px !important;
-  font-size: 12px !important;
+.css-163fvz6-MuiDataGrid-root .MuiDataGrid-columnHeader--alignRight .MuiDataGrid-columnHeaderTitleContainer {
+  flex-direction: row !important;
+  display: flex !important;
+  justify-content: space-between !important;
+}
+.css-163fvz6-MuiDataGrid-root .MuiDataGrid-columnHeader--alignRight .MuiDataGrid-columnHeaderDraggableContainer{
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+}
+.css-163fvz6-MuiDataGrid-root .MuiDataGrid-sortIcon{
+color: #fff !important;
+}
+
+/* Opening Stocks OS Table */
+
+.css-ihlsro-MuiDataGrid-root .MuiDataGrid-columnHeader--alignRight .MuiDataGrid-columnHeaderTitleContainer{
+  flex-direction: row !important;
+  display: flex !important;
+  justify-content: space-between !important;
+}
+.css-ihlsro-MuiDataGrid-root .MuiDataGrid-columnHeaderTitleContainer{
+  flex-direction: row !important;
+  display: flex !important;
+  justify-content: space-between !important;
+}
+.css-ihlsro-MuiDataGrid-root .MuiDataGrid-sortIcon{
+  color: #fff !important;
+}
+
+/* misccharge modal */
+.css-1edfpdg-MuiTypography-root{
+font-size: 12px !important;
+font-weight: bold !important;
+}
+/* PaymentVoucherTable */
+.PaymentVoucherTable .css-yrdy0g-MuiDataGrid-columnHeaderRow{
+  background: linear-gradient(rgb(91, 36, 122) 0%, rgb(27, 206, 223) 100%) !important;
 }

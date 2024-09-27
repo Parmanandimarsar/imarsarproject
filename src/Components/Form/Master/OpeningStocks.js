@@ -23,13 +23,78 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { DataGrid } from "@mui/x-data-grid";
 import { useState } from "react";
-import SideNave from "../../Pages/MainLayout/SideNav";
+import SideNave from "../../../Pages/MainLayout/SideNav";
 import {
   OpeningStockscolumns,
   OpeningStocks_OS_columns,
-} from "../../Components/TableField/TablefieldsColumns";
+} from "../../TableField/TablefieldsColumns";
 const OpeningStocks = () => {
   const rows = [
+    {
+      id: 1,
+      igst: "Snow",
+      cgst: "Jon",
+      sgst: 35,
+      cess: "434",
+      regd: "45",
+      insur: "gfg",
+      hpa: "564",
+      agree: "yes",
+      other: "oyther",
+      discount: "5%",
+    },
+    {
+      id: 1,
+      igst: "Snow",
+      cgst: "Jon",
+      sgst: 35,
+      cess: "434",
+      regd: "45",
+      insur: "gfg",
+      hpa: "564",
+      agree: "yes",
+      other: "oyther",
+      discount: "5%",
+    },
+    {
+      id: 1,
+      igst: "Snow",
+      cgst: "Jon",
+      sgst: 35,
+      cess: "434",
+      regd: "45",
+      insur: "gfg",
+      hpa: "564",
+      agree: "yes",
+      other: "oyther",
+      discount: "5%",
+    },
+    {
+      id: 1,
+      igst: "Snow",
+      cgst: "Jon",
+      sgst: 35,
+      cess: "434",
+      regd: "45",
+      insur: "gfg",
+      hpa: "564",
+      agree: "yes",
+      other: "oyther",
+      discount: "5%",
+    },
+    {
+      id: 1,
+      igst: "Snow",
+      cgst: "Jon",
+      sgst: 35,
+      cess: "434",
+      regd: "45",
+      insur: "gfg",
+      hpa: "564",
+      agree: "yes",
+      other: "oyther",
+      discount: "5%",
+    },
     {
       id: 1,
       igst: "Snow",
@@ -116,19 +181,21 @@ const OpeningStocks = () => {
         <SideNave />
       </div>
 
-      <div className="w-[85%] sm:w-[94%] mt-[25px] mb-[50px]">
-        <Box className="bg-white p-6 rounded-lg shadow-lg" autoComplete="off">
-          <Box className=" flex justify-between items-center mb-4">
+      <div className="w-[78%] sm:w-[90%] md:w-[88%] lg:w-[92%] mt-[25px] mb-[50px] mx-auto">
+        <Box className="bg-white p-2 rounded-lg shadow-lg" autoComplete="off">
+          <Box className=" flex justify-between items-center mb-1">
             <Typography
               variant="h5"
               component="h1"
-              className="text-center mb-6"
+              className="text-center mb-6 text-[#6ae072]"
             >
               Opening stocks
             </Typography>
             <Box className="flex gap-2"></Box>
           </Box>
-          <Divider sx={{ marginBottom: "20px", border: "2px solid #027b81" }} />
+          <Divider
+            className="divider"
+          />
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
@@ -554,152 +621,176 @@ const OpeningStocks = () => {
 
                   {/* Row 6*/}
                 </Grid>
+                <Divider
+                  sx={{
+                    marginBottom: "10px",
+                    marginTop: "10px",
+                    border: "0.5px solid #027b81",
+                  }}
+                />
 
-                <Box
-                  sx={{ width: "90%", mt: 4 }}
-                  className="border-2 border-[#027b81] shadow-lg  p-3 rounded-md justify-center items-center mx-auto"
-                >
-                  {/* Form */}
-                  <Grid
-                    container
-                    gap={2}
-                    alignItems="center"
-                    className="border pb-3 border-t-0 border-l-0 border-r-0 "
-                  >
-                    {/* Dropdown */}
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                      <FormControl fullWidth>
-                        <Grid container alignItems="center">
-                          <Grid item sm={2}>
-                            <FormLabel>Name</FormLabel>
-                          </Grid>
-                          <Grid item sm={8}>
-                            <TextField
-                              select
-                              name="dropdown"
-                              value={formData.dropdown}
-                              onChange={handleChange}
-                              fullWidth
-                              size="small"
-                            >
-                              {dropdownOptions.map((option) => (
-                                <MenuItem
-                                  key={option.value}
-                                  value={option.value}
-                                >
-                                  {option.label}
-                                </MenuItem>
-                              ))}
-                            </TextField>
-                          </Grid>
+                {/* Form */}
+                <Grid container spacing={2}>
+                  {/* Dropdown */}
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid item xs={4}>
+                          <FormLabel>Name</FormLabel>
                         </Grid>
-                      </FormControl>
-                    </Grid>
-
-                    {/* Description */}
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                      <FormControl fullWidth>
-                        <Grid container alignItems="center">
-                          <Grid item sm={4}>
-                            <FormLabel>Description</FormLabel>
-                          </Grid>
-                          <Grid item sm={8}>
-                            <TextField
-                              name="description"
-                              value={formData.description}
-                              onChange={handleChange}
-                              fullWidth
-                              size="small"
-                            />
-                          </Grid>
+                        <Grid item xs={8}>
+                          <TextField
+                            select
+                            name="dropdown"
+                            value={formData.dropdown}
+                            onChange={handleChange}
+                            fullWidth
+                            size="small"
+                          >
+                            {dropdownOptions.map((option) => (
+                              <MenuItem key={option.value} value={option.value}>
+                                {option.label}
+                              </MenuItem>
+                            ))}
+                          </TextField>
                         </Grid>
-                      </FormControl>
-                    </Grid>
-
-                    {/* Seq No */}
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                      <FormControl fullWidth>
-                        <Grid container alignItems="center">
-                          <Grid item sm={3}>
-                            <FormLabel>Seq. No</FormLabel>
-                          </Grid>
-                          <Grid item sm={9}>
-                            <TextField
-                              name="seqNo"
-                              value={formData.seqNo}
-                              onChange={handleChange}
-                              size="small"
-                            />
-                          </Grid>
-                        </Grid>
-                      </FormControl>
-                    </Grid>
-
-                    {/* Add Button */}
-                    <Grid item xs={12} sm={6} md={4} lg={2}>
-                      <Grid item xs={10}>
-                        <Button
-                          className="project-thim"
-                          variant="contained"
-                          onClick={handleAdd}
-                          fullWidth
-                        >
-                          Add
-                        </Button>
                       </Grid>
-                    </Grid>
+                    </FormControl>
                   </Grid>
 
-                  {/* Table */}
-                  {tableData.length > 0 && (
-                    <TableContainer component={Paper} sx={{ mt: 4 }}>
-                      <Table>
-                        <TableHead>
-                          <TableRow>
-                            <TableCell>Dropdown</TableCell>
-                            <TableCell>Description</TableCell>
-                            <TableCell>Seq. No</TableCell>
+                  {/* Description */}
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid item xs={4}>
+                          <FormLabel>Description</FormLabel>
+                        </Grid>
+                        <Grid item xs={8}>
+                          <TextField
+                            name="description"
+                            value={formData.description}
+                            onChange={handleChange}
+                            fullWidth
+                            size="small"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+
+                  {/* Seq No */}
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid item xs={4}>
+                          <FormLabel>Seq. No</FormLabel>
+                        </Grid>
+                        <Grid item xs={8}>
+                          <TextField
+                            name="seqNo"
+                            fullWidth
+                            value={formData.seqNo}
+                            onChange={handleChange}
+                            size="small"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+
+                  {/* Add Button */}
+                  <Grid item xs={12} sm={6} md={4} lg={2}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid item xs={4}></Grid>
+                        <Grid item xs={8}>
+                          <Button
+                            className="project-thim"
+                            variant="contained"
+                            onClick={handleAdd}
+                            fullWidth
+                            size="small"
+                          >
+                            Add
+                          </Button>
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+                </Grid>
+
+                {/* Table */}
+                {tableData.length > 0 && (
+                  <TableContainer component={Paper} sx={{ mt: 1 }}>
+                    <Table>
+                      <TableHead>
+                        <TableRow>
+                          <TableCell>Dropdown</TableCell>
+                          <TableCell>Description</TableCell>
+                          <TableCell>Seq. No</TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {tableData.map((row, index) => (
+                          <TableRow key={index}>
+                            <TableCell>{row.dropdown}</TableCell>
+                            <TableCell>{row.description}</TableCell>
+                            <TableCell>{row.seqNo}</TableCell>
                           </TableRow>
-                        </TableHead>
-                        <TableBody>
-                          {tableData.map((row, index) => (
-                            <TableRow key={index}>
-                              <TableCell>{row.dropdown}</TableCell>
-                              <TableCell>{row.description}</TableCell>
-                              <TableCell>{row.seqNo}</TableCell>
-                            </TableRow>
-                          ))}
-                        </TableBody>
-                      </Table>
-                    </TableContainer>
-                  )}
-                </Box>
-                <div className="border-2 mt-5 rounded-lg">
-                  <Typography variant="h6" sx={{ padding: "20px" }}>
-                    Opening stocks Table
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                )}
+                <Divider
+                  className="divider"
+                />
+                <div className="border-2 border-[#338691] mt-2 rounded-lg">
+                  <Typography variant="h5" sx={{ padding: "3px" }}>
+                    Opening Stocks Table
                   </Typography>
-                  <Paper sx={{ height: 400, width: "100%", padding: "20px" }}>
-                    <DataGrid
-                      rows={rows}
-                      columns={OpeningStockscolumns}
-                      initialState={{ pagination: { paginationModel } }}
-                      pageSizeOptions={[5, 10]}
-                      sx={{ border: 0 }}
-                    />
+                  <Paper
+                    sx={{
+                      minHeight: 100,
+                      width: "100%",
+                      padding: "3px",
+                      maxHeight: 400,
+                    }}
+                  >
+                  <DataGrid
+                  rows={rows}
+                  columns={OpeningStockscolumns}
+                  initialState={{ pagination: { paginationModel } }}
+                  pageSizeOptions={[5, 10]}
+                  rowHeight={30}
+                  headerHeight={30}
+                  columnHeaderHeight={30}
+                 
+                />
                   </Paper>
                 </div>
 
-                <div className="border-2 mt-5 rounded-lg">
-                  <Typography variant="h6" sx={{ padding: "20px" }}>
+                <div className="border-2  border-[#338691]  mt-2 rounded-lg">
+                  <Typography variant="h6" sx={{ padding: "3px" }}>
                     OS Table
                   </Typography>
-                  <Paper sx={{ height: 400, width: "100%", padding: "20px" }}>
+                  <Paper
+                    sx={{
+                      minHeight: 200,
+                      width: "100%",
+                      padding: "3px",
+                      maxHeight: 400,
+                    }}
+                  >
                     <DataGrid
                       rows={rows}
                       columns={OpeningStocks_OS_columns}
                       initialState={{ pagination: { paginationModel } }}
                       pageSizeOptions={[5, 10]}
                       sx={{ border: 0 }}
+                      rowHeight={30}
+                      headerHeight={35}
+                      columnHeaderHeight={36}
                     />
                   </Paper>
                 </div>
@@ -742,6 +833,8 @@ const OpeningStocks = () => {
                   >
                     Close
                   </Button>
+
+                  
                 </Box>
               </Form>
             )}

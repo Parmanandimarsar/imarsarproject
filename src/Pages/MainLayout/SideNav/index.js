@@ -11,13 +11,13 @@ import {
   ListItemText,
   Collapse,
 } from "@mui/material";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
+
 import { useTheme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import { menuItems } from "./SideNavMenuitems";
 const drawerWidth = 240;
 
 const SideNave = () => {
@@ -26,44 +26,7 @@ const SideNave = () => {
   const [openDropdown, setOpenDropdown] = useState(null);
   const handleDrawerOpen = () => setOpen(!open);
 
-  const menuItems = [
-    {
-      text: "Vehicale Master",
-      icon: <MailIcon />,
-      subItems: [
-        { text: "Vehical-Master", link: "/vehical-master", icon: <MailIcon /> },
-        { text: "Letter-Details", link: "/letter-details", icon: <MailIcon /> },
-        { text: "Opening-Master", link: "/opening-stocks", icon: <MailIcon /> },
-      ],
-    },
-    {
-      text: "Starred",
-      icon:<InboxIcon /> ,
-      subItems: [
-        { text: "Letter-Details", link: "/letter-details", icon: <MailIcon /> },
-       
-        { text: "Company-Master", link: "/company-master", icon: <MailIcon /> },
-      ],
-    },
-    {
-      text: "Starred",
-      icon: <MailIcon />,
-      subItems: [
-        { text: "Letter-Details", link: "/letter-details", icon: <MailIcon /> },
-        { text: "Vehical-Master", link: "/vehical-master", icon: <MailIcon /> },
-        { text: "Company-Master", link: "/company-master", icon: <MailIcon /> },
-      ],
-    },
-    {
-      text: "Starred",
-      icon:<InboxIcon /> ,
-      subItems: [
-        { text: "Letter-Details", link: "/letter-details", icon: <MailIcon /> },
-        { text: "Vehical-Master", link: "/vehical-master", icon: <MailIcon /> },
-        { text: "Company-Master", link: "/company-master", icon: <MailIcon /> },
-      ],
-    },
-  ];
+ 
   const handleDropdownClick = (index) => {
     console.log(index, "index");
 
@@ -84,7 +47,7 @@ const SideNave = () => {
 
       {/* Drawer */}
       <Drawer
-        className="side-nav"
+        className="side-nav "
         variant="permanent"
         open={open}
         sx={{
@@ -115,15 +78,13 @@ const SideNave = () => {
             <MenuIcon />
           </IconButton>
         </Box>
-        <Divider />
+        <Divider className="divider" />
 
         {/* Drawer List */}
         <List sx={{ color: "white" }}>
           {menuItems.map((item, index) => 
-            
-            
             (
-            <React.Fragment key={item.text}>
+            <React.Fragment key={index}>
               <ListItem disablePadding>
                 <ListItemButton
                   onClick={() => handleDropdownClick(index)}
@@ -187,7 +148,7 @@ const SideNave = () => {
           ))}
         </List>
 
-        <Divider />
+        <Divider  className="divider"/>
       </Drawer>
       
     </Box>

@@ -131,4 +131,80 @@ export const OpeningStockscolumns = [
    
     
   ];
+  export const PaymentVouchercolumns = [
+    { field: "id", headerName: "Sr. No", width: 130 ,
+      sortable: true, 
+      disableColumnMenu: true,
+    },
+    { field: "igst", headerName: "Payment Date", width: 130 ,
+      sortable: true, 
+      disableColumnMenu: true,
+     
+
+    },
+    { field: "cgst", headerName: "Prefix", width: 130 ,
+     sortable: true, 
+      disableColumnMenu: true,
+    },
+    {
+      field: "Voucher No",
+      headerName: "SGST",
+      type: "number",
+      width: 130,
+      sortable: true, 
+      disableColumnMenu: true,
+     
+    },
+    {
+      field: "cess",
+      headerName: "Ledger Name",
+     
+      width: 130,
+      sortable: true, 
+      disableColumnMenu: true,
+     
+    },
+    {
+      field: "regd",
+      headerName: "PaidAmount",
+      type: "number",
+      width: 130,
+      sortable: true, 
+      disableColumnMenu: true,
+      
+    },
+    {
+      field: "insur",
+      headerName: "BalAmount",
+      type: "number",
+      width: 130,
+      sortable: true, 
+      disableColumnMenu: true,
+    },
+    {
+      field: "hpa",
+      headerName: "Mode",
+      type: "number",
+      width: 130,
+      sortable: true, 
+      disableColumnMenu: true,
+    },
+    {
+      field: "agree",
+      headerName: "Remarks",
+      type: "number",
+      width: 130,
+      sortable: true, 
+      disableColumnMenu: true,
+    },
+    {
+      field: "other",
+      headerName: "TotalAmount",
+      type: "number",
+      width: 130,
+      sortable: true, 
+      disableColumnMenu: true,
+    },
+    
+  ];
   

@@ -194,7 +194,7 @@ const OpeningStocks = () => {
             <Box className="flex gap-2"></Box>
           </Box>
           <Divider
-            sx={{ marginBottom: "10px", border: "0.5px solid #027b81" }}
+            className="divider"
           />
           <Formik
             initialValues={initialValues}
@@ -743,11 +743,7 @@ const OpeningStocks = () => {
                   </TableContainer>
                 )}
                 <Divider
-                  sx={{
-                    marginBottom: "10px",
-                    marginTop: "10px",
-                    border: "0.5px solid #027b81",
-                  }}
+                  className="divider"
                 />
                 <div className="border-2 border-[#338691] mt-2 rounded-lg">
                   <Typography variant="h5" sx={{ padding: "3px" }}>

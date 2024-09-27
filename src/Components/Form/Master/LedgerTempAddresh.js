@@ -1125,11 +1125,7 @@ const LedgerTempAddresh = () => {
             </Typography>
           </Box>
           <Divider
-            sx={{
-              marginBottom: "10px",
-              marginTop: "5px",
-              border: "1px solid #027b81",
-            }}
+            className="divider"
           />
           <Formik
             initialValues={initialValues}

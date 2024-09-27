@@ -96,7 +96,7 @@ const MiscMaster = () => {
               </Typography>
             </Box>
             <Divider
-              sx={{ marginBottom: "20px", border: "1px solid #027b81" }}
+              className="divider"
             />
 
             {/* Formik Form */}
@@ -186,39 +186,43 @@ const MiscMaster = () => {
                   </Grid>
 
                   {/* Radio Group and Table Layout */}
-                  <Grid container spacing={2} mt={0}>
-                    <Grid item xs={6} sm={12} md={12}>
-                      <FormControl component="fieldset">
-                        <FormLabel component="legend">Select Option</FormLabel>
-                        <RadioGroup
-                          value={selectedOption}
-                          onChange={handleRadioChange}
-                        >
-                          <Grid container>
-                            {radioOptions.map((option, index) => (
-                              <Grid item xs={6} sm={1.5} key={index}>
-                                <FormControlLabel
-                                  control={<Radio size="small" />}
-                                  value={option}
-                                  label={option}
-                                  sx={{
-                                    "& .MuiFormControlLabel-label": {
-                                      fontSize: "12px",
-                                      fontWeight: "bold",
-                                    },
-                                  }}
-                                />
-                              </Grid>
-                            ))}
-                          </Grid>
-                        </RadioGroup>
-                      </FormControl>
+                  <div className="border-2 border-[#1A9A87] rounded-lg p-2 mt-3 mb-2">
+                    <Grid container spacing={2} mt={0}>
+                      <Grid item xs={6} sm={12} md={12}>
+                        <FormControl component="fieldset">
+                          <FormLabel component="legend">
+                            Select Option
+                          </FormLabel>
+                          <RadioGroup
+                            value={selectedOption}
+                            onChange={handleRadioChange}
+                          >
+                            <Grid container>
+                              {radioOptions.map((option, index) => (
+                                <Grid item xs={6} sm={1.5} key={index}>
+                                  <FormControlLabel
+                                    control={<Radio size="small" />}
+                                    value={option}
+                                    label={option}
+                                    sx={{
+                                      "& .MuiFormControlLabel-label": {
+                                        fontSize: "12px",
+                                        fontWeight: "bold",
+                                      },
+                                    }}
+                                  />
+                                </Grid>
+                              ))}
+                            </Grid>
+                          </RadioGroup>
+                        </FormControl>
+                      </Grid>
                     </Grid>
-                  </Grid>
+                  </div>
 
                   <Grid item xs={12} sm={6} md={6}>
                     <Typography variant="h6">Selected Data</Typography>
-                    <Divider sx={{ mb: 2 }} />
+                    <Divider className="divider"/>
                     <TableContainer component={Paper}>
                       <Table>
                         <TableHead>
@@ -260,7 +264,7 @@ const MiscMaster = () => {
                   </Grid>
                   {/* Submit Button */}
 
-                  <Box className="mt-6 flex items-end gap-4 ml-0 justify-end">
+                  <Box className="mt-6 flex items-end gap-4 ml-0 justify-end border-2 rounded-md p-2 border-[#1A9A87]">
                     <Button
                       size="small"
                       type="submit"

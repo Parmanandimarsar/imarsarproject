@@ -10,71 +10,89 @@ import {
   FormLabel,
   Grid,
   Divider,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
 } from "@mui/material";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import SideNave from "../../../Pages/MainLayout/SideNav";
 
-const LedgerMaster = () => {
+const VehicleOrder = () => {
   const validationSchema = Yup.object().shape({
-    title: Yup.string().required("Title is required"),
-    specialId: Yup.string().required("Special ID is required"),
-    search: Yup.string().required("Search is required"),
-    ledgerName: Yup.string().required("Ledger Name is required"),
-    s_o_w_o_d_o: Yup.string().required("S/o-W/o.D/o is required"),
-    address: Yup.string().required("Address is required"),
-    city: Yup.string().required("City is required"),
-    stdCode: Yup.string().required("STD Code is required"),
-    district: Yup.string().required("District is required"),
-    mobileNo: Yup.string().required("Mobile No is required"),
-    state: Yup.string().required("State is required"),
-    whatsappNo: Yup.string().required("WhatsApp No is required"),
-    aadharNo: Yup.string().required("Aadhar No is required"),
-    pinCode: Yup.string().required("Pin Code is required"),
-    mailId: Yup.string().required("Mail ID is required"),
-    panNo: Yup.string().required("Pan No is required"),
-    creditLimit: Yup.string().required("Credit Limit is required"),
-    creditLimitDate: Yup.string().required("Credit Limit Date is required"),
-    ledgerGroup: Yup.string().required("Ledger Group is required"),
-    openingBalance: Yup.string().required("Opening Balance is required"),
-    gstDealerType: Yup.string().required("GST Dealer Type is required"),
-    gstNo: Yup.string().required("GST No is required"),
-    staffName: Yup.string().required("Staff Name is required"),
-    category: Yup.string().required("Category is required"),
+    docNo: Yup.string().required("Doc No is required"),
+    date: Yup.string().required("Date is required"),
+    caption: Yup.string().required("Caption is required"),
+    seName: Yup.string().required("SE Name is required"),
     location: Yup.string().required("Location is required"),
-    wef:Yup.string().required("W.E.F  is required"),
-    wefDate: Yup.string().required("W.E.F Date is required"),
-    dueDate: Yup.string().required("Due Date is required"),
+    customer: Yup.string().required("Customer is required"),
+    financierName: Yup.string().required("Financier Name is required"),
+    entryType: Yup.string().required("Entry type is required"),
+    title: Yup.string().required("Title is required"),
+    name: Yup.string().required("Name is required"),
+    district: Yup.string().required("District is required"),
+    misc: Yup.string().required("Misc is required"),
+    address: Yup.string().required("Address is required"),
+    state: Yup.string().required("State is required"),
+    city: Yup.string().required("City is required"),
+    mobileNo: Yup.number().required("Mobile No is required"),
+    pinNo: Yup.number().required("Pin No is required"),
+    taxableType: Yup.string().required("Taxable type is required"),
+    modelName: Yup.string().required("Model Name is required"),
+    exShowroom: Yup.string().required("Ex-ShowRoom is required"),
+    regd: Yup.string().required("Regd is required"),
+    insurance: Yup.string().required("Insurance is required"),
+    hpa: Yup.string().required("HPA is required"),
+    hsnCode: Yup.string().required("HSN Code is required"),
+    qty: Yup.number().required("Qty is required"),
+    tax: Yup.number().required("Tax is required"),
+    salePrice: Yup.number().required("Sale Price is required"),
+    validTo: Yup.string().required("Valid To date is required"),
+    totalMisc: Yup.number().required("Total Misc is required"),
+    discount: Yup.number().required("Discount is required"),
+    others: Yup.number().required("Others is required"),
+    totalTaxable: Yup.number().required("Total Taxable is required"),
+    igst: Yup.number().required("IGST is required"),
+    netAmount: Yup.number().required("Net Amount is required"),
+    remarks: Yup.string().required("Remarks are required"),
   });
 
   const initialValues = {
-    title: "",
-    specialId: "",
-    search: "",
-    ledgerName: "",
-    s_o_w_o_d_o: "",
-    address: "",
-    city: "",
-    stdCode: "",
-    district: "",
-    mobileNo: "",
-    state: "",
-    whatsappNo: "",
-    aadharNo: "",
-    pinCode: "",
-    mailId: "",
-    panNo: "",
-    creditLimit: "",
-    creditLimitDate: "",
-    ledgerGroup: "",
-    openingBalance: "",
-    gstDealerType: "",
-    gstNo: "",
-    staffName: "",
-    category: "",
+    docNo: "",
+    date: "",
+    caption: "",
+    seName: "",
     location: "",
-    wefDate: "",
-    dueDate: "",
+    customer: "",
+    financierName: "",
+    entryType: "",
+    title: "",
+    name: "",
+    district: "",
+    misc: "",
+    address: "",
+    state: "",
+    city: "",
+    mobileNo: "",
+    pinNo: "",
+    taxableType: "",
+    modelName: "",
+    exShowroom: "",
+    regd: "",
+    insurance: "",
+    hpa: "",
+    hsnCode: "",
+    qty: "",
+    tax: "",
+    salePrice: "",
+    validTo: "",
+    totalMisc: "",
+    discount: "",
+    others: "",
+    totalTaxable: "",
+    igst: "",
+    netAmount: "",
+    remarks: "",
   };
 
   const handleSubmit = (values, { setSubmitting }) => {
@@ -89,34 +107,192 @@ const LedgerMaster = () => {
 
   return (
     <>
-      <div className="bg-gray-100 w-full flex">
+      <div className=" w-full flex">
         <div className="w-[15%] sm:w-[5%]">
           <SideNave />
         </div>
 
         <div className="w-[80%] sm:w-[90%] lg:w-[94%] mt-[25px] mb-[50px] mx-auto">
-          <Box className="bg-white p-6 rounded-lg shadow-lg" autoComplete="off">
-            <Box className=" flex justify-between items-center mb-4">
-              <Typography
-                variant="h5"
-                component="h1"
-                className="text-center mb-6"
-              >
-                Ledger Master Details
+          <Box className="bg-white p-1 rounded-lg shadow-lg" autoComplete="off">
+            <Box className="flex justify-between items-center">
+              <Typography variant="h6" component="h1" className="text-center">
+                Order Vehicle
               </Typography>
             </Box>
-            <Divider
-             className="divider"
-            />
+            <Divider className="divider" />
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
               onSubmit={handleSubmit}
             >
-              {({ errors, touched, isSubmitting }) => (
-                <Form autoComplete="off" className="ledger-details-form">
+              {({ setFieldValue, errors, touched, isSubmitting }) => (
+                <Form autoComplete="off" className="purchase-order-form">
                   <Grid container spacing={2}>
                     {/* Row 1 */}
+                    <Grid item xs={12} sm={6} md={4} lg={3}>
+                      <FormControl fullWidth>
+                        <Grid container alignItems="center">
+                          <Grid item xs={4}>
+                            <FormLabel>Doc No</FormLabel>
+                          </Grid>
+                          <Grid item xs={8}>
+                            <Field
+                              as={TextField}
+                              name="docNo"
+                              fullWidth
+                              variant="outlined"
+                              size="small"
+                              error={touched.docNo && !!errors.docNo}
+                            />
+                            <ErrorMessage
+                              name="docNo"
+                              component="div"
+                              className="text-red-600 text-xs"
+                            />
+                          </Grid>
+                        </Grid>
+                      </FormControl>
+                    </Grid>
+
+                    <Grid item xs={12} sm={6} md={4} lg={3}>
+                      <FormControl fullWidth>
+                        <Grid container alignItems="center">
+                          <Grid item xs={4}>
+                            <FormLabel>Date</FormLabel>
+                          </Grid>
+                          <Grid item xs={8}>
+                            <Field
+                              as={TextField}
+                              type="date"
+                              name="date"
+                              fullWidth
+                              variant="outlined"
+                              size="small"
+                              error={touched.date && !!errors.date}
+                            />
+                            <ErrorMessage
+                              name="date"
+                              component="div"
+                              className="text-red-600 text-xs"
+                            />
+                          </Grid>
+                        </Grid>
+                      </FormControl>
+                    </Grid>
+
+                    <Grid item xs={12} sm={6} md={4} lg={3}>
+                      <FormControl fullWidth>
+                        <Grid container alignItems="center">
+                          <Grid item xs={4}>
+                            <FormLabel>Caption</FormLabel>
+                          </Grid>
+                          <Grid item xs={8}>
+                            <Field
+                              as={TextField}
+                              name="caption"
+                              fullWidth
+                              variant="outlined"
+                              size="small"
+                              error={touched.caption && !!errors.caption}
+                            />
+                            <ErrorMessage
+                              name="caption"
+                              component="div"
+                              className="text-red-600 text-xs"
+                            />
+                          </Grid>
+                        </Grid>
+                      </FormControl>
+                    </Grid>
+
+                    <Grid item xs={12} sm={6} md={4} lg={3}>
+                      <FormControl fullWidth>
+                        <Grid container alignItems="center">
+                          <Grid item xs={4}>
+                            <FormLabel>SE Name</FormLabel>
+                          </Grid>
+                          <Grid item xs={8}>
+                            <Field
+                              as={Select}
+                              name="seName"
+                              fullWidth
+                              variant="outlined"
+                              size="small"
+                              error={touched.seName && !!errors.seName}
+                            >
+                              <MenuItem value="se1">SE 1</MenuItem>
+                              <MenuItem value="se2">SE 2</MenuItem>
+                            </Field>
+                            <ErrorMessage
+                              name="seName"
+                              component="div"
+                              className="text-red-600 text-xs"
+                            />
+                          </Grid>
+                        </Grid>
+                      </FormControl>
+                    </Grid>
+
+                    {/* Row 2 */}
+                    {/* Other fields here... */}
+                    {/* Row 2 - Radio Buttons (Entry, Ledger) */}
+
+                    <Grid item xs={12}>
+                      <FormControl component="fieldset">
+                        <Grid container alignItems="center">
+                          <Grid item xs={4}>
+                            <FormLabel component="legend">Entry Type</FormLabel>
+                          </Grid>
+                          <Grid item xs={8}>
+                            <Field
+                              as={RadioGroup}
+                              row
+                              name="entryType"
+                              defaultValue="entry"
+                              className="flex"
+                            >
+                              <Grid item xs={6}>
+                                <FormControlLabel
+                                  value="entry"
+                                  control={
+                                    <Radio
+                                      sx={{
+                                        "& .MuiSvgIcon-root": {
+                                          fontSize: 16,
+                                        },
+                                      }}
+                                    />
+                                  }
+                                  label="Entry"
+                                />
+                              </Grid>
+                              <Grid item xs={6}>
+                                <FormControlLabel
+                                  value="ledger"
+                                  control={
+                                    <Radio
+                                      sx={{
+                                        "& .MuiSvgIcon-root": {
+                                          fontSize: 16,
+                                        },
+                                      }}
+                                    />
+                                  }
+                                  label="Ledger"
+                                />
+                              </Grid>
+                            </Field>
+                            <ErrorMessage
+                              name="entryType"
+                              component="div"
+                              className="text-red-600 text-xs"
+                            />
+                          </Grid>
+                        </Grid>
+                      </FormControl>
+                    </Grid>
+
+                    {/* Row 3 - Form fields: Title, Name, District, Misc, Address, State, City, Mob No, Pin No */}
                     <Grid item xs={12} sm={6} md={4} lg={3}>
                       <FormControl fullWidth>
                         <Grid container alignItems="center">
@@ -130,10 +306,10 @@ const LedgerMaster = () => {
                               fullWidth
                               variant="outlined"
                               size="small"
-                              error={touched.title && !!errors.title}
                             >
-                              <MenuItem value="title1">Title 1</MenuItem>
-                              <MenuItem value="title2">Title 2</MenuItem>
+                              <MenuItem value="mr">Mr.</MenuItem>
+                              <MenuItem value="mrs">Mrs.</MenuItem>
+                              <MenuItem value="ms">Ms.</MenuItem>
                             </Field>
                             <ErrorMessage
                               name="title"
@@ -149,75 +325,19 @@ const LedgerMaster = () => {
                       <FormControl fullWidth>
                         <Grid container alignItems="center">
                           <Grid item xs={4}>
-                            <FormLabel>Special ID</FormLabel>
-                          </Grid>
-                          <Grid item xs={8}>
-                            <Field
-                              as={Select}
-                              name="specialId"
-                              fullWidth
-                              variant="outlined"
-                              size="small"
-                              error={touched.specialId && !!errors.specialId}
-                            >
-                              <MenuItem value="id1">ID 1</MenuItem>
-                              <MenuItem value="id2">ID 2</MenuItem>
-                            </Field>
-                            <ErrorMessage
-                              name="specialId"
-                              component="div"
-                              className="text-red-600 text-xs"
-                            />
-                          </Grid>
-                        </Grid>
-                      </FormControl>
-                    </Grid>
-
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                      <FormControl fullWidth>
-                        <Grid container alignItems="center">
-                          <Grid item xs={4}>
-                            <FormLabel>Search</FormLabel>
-                          </Grid>
-                          <Grid item xs={8}>
-                            <Field
-                              as={Select}
-                              name="search"
-                              fullWidth
-                              variant="outlined"
-                              size="small"
-                              error={touched.search && !!errors.search}
-                            >
-                              <MenuItem value="search1">Search 1</MenuItem>
-                              <MenuItem value="search2">Search 2</MenuItem>
-                            </Field>
-                            <ErrorMessage
-                              name="search"
-                              component="div"
-                              className="text-red-600 text-xs"
-                            />
-                          </Grid>
-                        </Grid>
-                      </FormControl>
-                    </Grid>
-
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                      <FormControl fullWidth>
-                        <Grid container alignItems="center">
-                          <Grid item xs={4}>
-                            <FormLabel>Ledger Name</FormLabel>
+                            <FormLabel>Name</FormLabel>
                           </Grid>
                           <Grid item xs={8}>
                             <Field
                               as={TextField}
-                              name="ledgerName"
+                              name="name"
                               fullWidth
                               variant="outlined"
                               size="small"
-                              error={touched.ledgerName && !!errors.ledgerName}
+                              error={touched.name && !!errors.name}
                             />
                             <ErrorMessage
-                              name="ledgerName"
+                              name="name"
                               component="div"
                               className="text-red-600 text-xs"
                             />
@@ -226,29 +346,48 @@ const LedgerMaster = () => {
                       </FormControl>
                     </Grid>
 
-                    {/* Row 2 */}
                     <Grid item xs={12} sm={6} md={4} lg={3}>
                       <FormControl fullWidth>
                         <Grid container alignItems="center">
                           <Grid item xs={4}>
-                            <FormLabel>S/o-W/o.D/o</FormLabel>
+                            <FormLabel>District</FormLabel>
                           </Grid>
                           <Grid item xs={8}>
                             <Field
-                              as={Select}
-                              name="s_o_w_o_d_o"
+                              as={TextField}
+                              name="district"
                               fullWidth
                               variant="outlined"
                               size="small"
-                              error={
-                                touched.s_o_w_o_d_o && !!errors.s_o_w_o_d_o
-                              }
-                            >
-                              <MenuItem value="option1">Option 1</MenuItem>
-                              <MenuItem value="option2">Option 2</MenuItem>
-                            </Field>
+                              error={touched.district && !!errors.district}
+                            />
                             <ErrorMessage
-                              name="s_o_w_o_d_o"
+                              name="district"
+                              component="div"
+                              className="text-red-600 text-xs"
+                            />
+                          </Grid>
+                        </Grid>
+                      </FormControl>
+                    </Grid>
+
+                    <Grid item xs={12} sm={6} md={4} lg={3}>
+                      <FormControl fullWidth>
+                        <Grid container alignItems="center">
+                          <Grid item xs={4}>
+                            <FormLabel>Misc</FormLabel>
+                          </Grid>
+                          <Grid item xs={8}>
+                            <Field
+                              as={TextField}
+                              name="misc"
+                              fullWidth
+                              variant="outlined"
+                              size="small"
+                              error={touched.misc && !!errors.misc}
+                            />
+                            <ErrorMessage
+                              name="misc"
                               component="div"
                               className="text-red-600 text-xs"
                             />
@@ -286,85 +425,6 @@ const LedgerMaster = () => {
                       <FormControl fullWidth>
                         <Grid container alignItems="center">
                           <Grid item xs={4}>
-                            <FormLabel>City</FormLabel>
-                          </Grid>
-                          <Grid item xs={8}>
-                            <Field
-                              as={Select}
-                              name="city"
-                              fullWidth
-                              variant="outlined"
-                              size="small"
-                              error={touched.city && !!errors.city}
-                            >
-                              <MenuItem value="city1">City 1</MenuItem>
-                              <MenuItem value="city2">City 2</MenuItem>
-                            </Field>
-                            <ErrorMessage
-                              name="city"
-                              component="div"
-                              className="text-red-600 text-xs"
-                            />
-                          </Grid>
-                        </Grid>
-                      </FormControl>
-                    </Grid>
-
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                      <FormControl fullWidth>
-                        <Grid container alignItems="center">
-                          <Grid item xs={4}>
-                            <FormLabel>STD Code</FormLabel>
-                          </Grid>
-                          <Grid item xs={8}>
-                            <Field
-                              as={TextField}
-                              name="stdCode"
-                              fullWidth
-                              variant="outlined"
-                              size="small"
-                              error={touched.stdCode && !!errors.stdCode}
-                            />
-                            <ErrorMessage
-                              name="stdCode"
-                              component="div"
-                              className="text-red-600 text-xs"
-                            />
-                          </Grid>
-                        </Grid>
-                      </FormControl>
-                    </Grid>
-                    
-                    {/* Row 3 */}
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                      <FormControl fullWidth>
-                        <Grid container alignItems="center">
-                          <Grid item xs={4}>
-                            <FormLabel>District</FormLabel>
-                          </Grid>
-                          <Grid item xs={8}>
-                            <Field
-                              as={TextField}
-                              name="district"
-                              fullWidth
-                              variant="outlined"
-                              size="small"
-                              error={touched.district && !!errors.district}
-                            />
-                            <ErrorMessage
-                              name="district"
-                              component="div"
-                              className="text-red-600 text-xs"
-                            />
-                          </Grid>
-                        </Grid>
-                      </FormControl>
-                    </Grid>
-
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                      <FormControl fullWidth>
-                        <Grid container alignItems="center">
-                          <Grid item xs={4}>
                             <FormLabel>State</FormLabel>
                           </Grid>
                           <Grid item xs={8}>
@@ -374,7 +434,6 @@ const LedgerMaster = () => {
                               fullWidth
                               variant="outlined"
                               size="small"
-                              error={touched.state && !!errors.state}
                             >
                               <MenuItem value="state1">State 1</MenuItem>
                               <MenuItem value="state2">State 2</MenuItem>
@@ -393,206 +452,21 @@ const LedgerMaster = () => {
                       <FormControl fullWidth>
                         <Grid container alignItems="center">
                           <Grid item xs={4}>
-                            <FormLabel>WhatsApp No</FormLabel>
-                          </Grid>
-                          <Grid item xs={8}>
-                            <Field
-                              as={TextField}
-                              name="whatsappNo"
-                              fullWidth
-                              variant="outlined"
-                              size="small"
-                              error={touched.whatsappNo && !!errors.whatsappNo}
-                            />
-                            <ErrorMessage
-                              name="whatsappNo"
-                              component="div"
-                              className="text-red-600 text-xs"
-                            />
-                          </Grid>
-                        </Grid>
-                      </FormControl>
-                    </Grid>
-
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                      <FormControl fullWidth>
-                        <Grid container alignItems="center">
-                          <Grid item xs={4}>
-                            <FormLabel>Aadhar No</FormLabel>
-                          </Grid>
-                          <Grid item xs={8}>
-                            <Field
-                              as={TextField}
-                              name="aadharNo"
-                              fullWidth
-                              variant="outlined"
-                              size="small"
-                              error={touched.aadharNo && !!errors.aadharNo}
-                            />
-                            <ErrorMessage
-                              name="aadharNo"
-                              component="div"
-                              className="text-red-600 text-xs"
-                            />
-                          </Grid>
-                        </Grid>
-                      </FormControl>
-                    </Grid>
-
-                    {/* Row 4 */}
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                      <FormControl fullWidth>
-                        <Grid container alignItems="center">
-                          <Grid item xs={4}>
-                            <FormLabel>Pin Code</FormLabel>
-                          </Grid>
-                          <Grid item xs={8}>
-                            <Field
-                              as={TextField}
-                              name="pinCode"
-                              fullWidth
-                              variant="outlined"
-                              size="small"
-                              error={touched.pinCode && !!errors.pinCode}
-                            />
-                            <ErrorMessage
-                              name="pinCode"
-                              component="div"
-                              className="text-red-600 text-xs"
-                            />
-                          </Grid>
-                        </Grid>
-                      </FormControl>
-                    </Grid>
-
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                      <FormControl fullWidth>
-                        <Grid container alignItems="center">
-                          <Grid item xs={4}>
-                            <FormLabel>Mail ID</FormLabel>
-                          </Grid>
-                          <Grid item xs={8}>
-                            <Field
-                              as={TextField}
-                              name="mailId"
-                              fullWidth
-                              variant="outlined"
-                              size="small"
-                              error={touched.mailId && !!errors.mailId}
-                            />
-                            <ErrorMessage
-                              name="mailId"
-                              component="div"
-                              className="text-red-600 text-xs"
-                            />
-                          </Grid>
-                        </Grid>
-                      </FormControl>
-                    </Grid>
-
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                      <FormControl fullWidth>
-                        <Grid container alignItems="center">
-                          <Grid item xs={4}>
-                            <FormLabel>PAN No</FormLabel>
-                          </Grid>
-                          <Grid item xs={8}>
-                            <Field
-                              as={TextField}
-                              name="panNo"
-                              fullWidth
-                              variant="outlined"
-                              size="small"
-                              error={touched.panNo && !!errors.panNo}
-                            />
-                            <ErrorMessage
-                              name="panNo"
-                              component="div"
-                              className="text-red-600 text-xs"
-                            />
-                          </Grid>
-                        </Grid>
-                      </FormControl>
-                    </Grid>
-
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                      <FormControl fullWidth>
-                        <Grid container alignItems="center">
-                          <Grid item xs={4}>
-                            <FormLabel>Credit Limit</FormLabel>
-                          </Grid>
-                          <Grid item xs={8}>
-                            <Field
-                              as={TextField}
-                              name="creditLimit"
-                              fullWidth
-                              variant="outlined"
-                              size="small"
-                              error={
-                                touched.creditLimit && !!errors.creditLimit
-                              }
-                            />
-                            <ErrorMessage
-                              name="creditLimit"
-                              component="div"
-                              className="text-red-600 text-xs"
-                            />
-                          </Grid>
-                        </Grid>
-                      </FormControl>
-                    </Grid>
-
-                    {/* Row 5 */}
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                      <FormControl fullWidth>
-                        <Grid container alignItems="center">
-                          <Grid item xs={4}>
-                            <FormLabel>Credit Limit Date</FormLabel>
-                          </Grid>
-                          <Grid item xs={8}>
-                            <Field
-                              as={TextField}
-                              name="creditLimitDate"
-                              fullWidth
-                              variant="outlined"
-                              size="small"
-                              error={
-                                touched.creditLimitDate &&
-                                !!errors.creditLimitDate
-                              }
-                            />
-                            <ErrorMessage
-                              name="creditLimitDate"
-                              component="div"
-                              className="text-red-600 text-xs"
-                            />
-                          </Grid>
-                        </Grid>
-                      </FormControl>
-                    </Grid>
-
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                      <FormControl fullWidth>
-                        <Grid container alignItems="center">
-                          <Grid item xs={4}>
-                            <FormLabel>Ledger Group</FormLabel>
+                            <FormLabel>City</FormLabel>
                           </Grid>
                           <Grid item xs={8}>
                             <Field
                               as={Select}
-                              name="ledgerGroup"
+                              name="city"
                               fullWidth
                               variant="outlined"
                               size="small"
-                              error={
-                                touched.ledgerGroup && !!errors.ledgerGroup
-                              }
                             >
-                              <MenuItem value="group1">Group 1</MenuItem>
-                              <MenuItem value="group2">Group 2</MenuItem>
+                              <MenuItem value="city1">City 1</MenuItem>
+                              <MenuItem value="city2">City 2</MenuItem>
                             </Field>
                             <ErrorMessage
-                              name="ledgerGroup"
+                              name="city"
                               component="div"
                               className="text-red-600 text-xs"
                             />
@@ -605,22 +479,20 @@ const LedgerMaster = () => {
                       <FormControl fullWidth>
                         <Grid container alignItems="center">
                           <Grid item xs={4}>
-                            <FormLabel>Opening Balance</FormLabel>
+                            <FormLabel>Mobile No</FormLabel>
                           </Grid>
                           <Grid item xs={8}>
                             <Field
                               as={TextField}
-                              name="openingBalance"
+                              name="mobNo"
+                              type="number"
                               fullWidth
                               variant="outlined"
                               size="small"
-                              error={
-                                touched.openingBalance &&
-                                !!errors.openingBalance
-                              }
+                              error={touched.mobNo && !!errors.mobNo}
                             />
                             <ErrorMessage
-                              name="openingBalance"
+                              name="mobNo"
                               component="div"
                               className="text-red-600 text-xs"
                             />
@@ -633,50 +505,51 @@ const LedgerMaster = () => {
                       <FormControl fullWidth>
                         <Grid container alignItems="center">
                           <Grid item xs={4}>
-                            <FormLabel>GST Dealer Type</FormLabel>
+                            <FormLabel>Pin No</FormLabel>
+                          </Grid>
+                          <Grid item xs={8}>
+                            <Field
+                              as={TextField}
+                              name="pinNo"
+                              type="number"
+                              fullWidth
+                              variant="outlined"
+                              size="small"
+                              error={touched.pinNo && !!errors.pinNo}
+                            />
+                            <ErrorMessage
+                              name="pinNo"
+                              component="div"
+                              className="text-red-600 text-xs"
+                            />
+                          </Grid>
+                        </Grid>
+                      </FormControl>
+                    </Grid>
+
+                    {/* Row 4 - Form fields: PAN No, Date of Birth, Account No, Account Type, Bank Name, IFSC */}
+                    {/* Row 5 - Model Name, Ex-ShowRoom, Regd, Insurance, HPA, HSN Code */}
+
+                    <Grid item xs={12} sm={6} md={4} lg={3}>
+                      <FormControl fullWidth>
+                        <Grid container alignItems="center">
+                          <Grid item xs={4}>
+                            <FormLabel>Model Name</FormLabel>
                           </Grid>
                           <Grid item xs={8}>
                             <Field
                               as={Select}
-                              name="gstDealerType"
+                              name="modelName"
                               fullWidth
                               variant="outlined"
                               size="small"
-                              error={
-                                touched.gstDealerType && !!errors.gstDealerType
-                              }
+                              error={touched.modelName && !!errors.modelName}
                             >
-                              <MenuItem value="type1">Type 1</MenuItem>
-                              <MenuItem value="type2">Type 2</MenuItem>
+                              <MenuItem value="model1">Model 1</MenuItem>
+                              <MenuItem value="model2">Model 2</MenuItem>
                             </Field>
                             <ErrorMessage
-                              name="gstDealerType"
-                              component="div"
-                              className="text-red-600 text-xs"
-                            />
-                          </Grid>
-                        </Grid>
-                      </FormControl>
-                    </Grid>
-
-                    {/* Row 6 */}
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                      <FormControl fullWidth>
-                        <Grid container alignItems="center">
-                          <Grid item xs={4}>
-                            <FormLabel>GST No</FormLabel>
-                          </Grid>
-                          <Grid item xs={8}>
-                            <Field
-                              as={TextField}
-                              name="gstNo"
-                              fullWidth
-                              variant="outlined"
-                              size="small"
-                              error={touched.gstNo && !!errors.gstNo}
-                            />
-                            <ErrorMessage
-                              name="gstNo"
+                              name="modelName"
                               component="div"
                               className="text-red-600 text-xs"
                             />
@@ -689,47 +562,22 @@ const LedgerMaster = () => {
                       <FormControl fullWidth>
                         <Grid container alignItems="center">
                           <Grid item xs={4}>
-                            <FormLabel>Staff Name</FormLabel>
-                          </Grid>
-                          <Grid item xs={8}>
-                            <Field
-                              as={TextField}
-                              name="staffName"
-                              fullWidth
-                              variant="outlined"
-                              size="small"
-                              error={touched.staffName && !!errors.staffName}
-                            />
-                            <ErrorMessage
-                              name="staffName"
-                              component="div"
-                              className="text-red-600 text-xs"
-                            />
-                          </Grid>
-                        </Grid>
-                      </FormControl>
-                    </Grid>
-
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                      <FormControl fullWidth>
-                        <Grid container alignItems="center">
-                          <Grid item xs={4}>
-                            <FormLabel>Category</FormLabel>
+                            <FormLabel>Ex-ShowRoom</FormLabel>
                           </Grid>
                           <Grid item xs={8}>
                             <Field
                               as={Select}
-                              name="category"
+                              name="exShowRoom"
                               fullWidth
                               variant="outlined"
                               size="small"
-                              error={touched.category && !!errors.category}
+                              error={touched.exShowRoom && !!errors.exShowRoom}
                             >
-                              <MenuItem value="category1">Category 1</MenuItem>
-                              <MenuItem value="category2">Category 2</MenuItem>
+                              <MenuItem value="showroom1">Showroom 1</MenuItem>
+                              <MenuItem value="showroom2">Showroom 2</MenuItem>
                             </Field>
                             <ErrorMessage
-                              name="category"
+                              name="exShowRoom"
                               component="div"
                               className="text-red-600 text-xs"
                             />
@@ -742,19 +590,19 @@ const LedgerMaster = () => {
                       <FormControl fullWidth>
                         <Grid container alignItems="center">
                           <Grid item xs={4}>
-                            <FormLabel>Location</FormLabel>
+                            <FormLabel>Regd</FormLabel>
                           </Grid>
                           <Grid item xs={8}>
                             <Field
                               as={TextField}
-                              name="location"
+                              name="regd"
                               fullWidth
                               variant="outlined"
                               size="small"
-                              error={touched.location && !!errors.location}
+                              error={touched.regd && !!errors.regd}
                             />
                             <ErrorMessage
-                              name="location"
+                              name="regd"
                               component="div"
                               className="text-red-600 text-xs"
                             />
@@ -763,24 +611,23 @@ const LedgerMaster = () => {
                       </FormControl>
                     </Grid>
 
-                    {/* Row 7 */}
                     <Grid item xs={12} sm={6} md={4} lg={3}>
                       <FormControl fullWidth>
                         <Grid container alignItems="center">
                           <Grid item xs={4}>
-                            <FormLabel>W.E.F</FormLabel>
+                            <FormLabel>Insurance</FormLabel>
                           </Grid>
                           <Grid item xs={8}>
                             <Field
                               as={TextField}
-                              name="wef"
+                              name="insurance"
                               fullWidth
                               variant="outlined"
                               size="small"
-                              error={touched.wef && !!errors.wef}
+                              error={touched.insurance && !!errors.insurance}
                             />
                             <ErrorMessage
-                              name="wef"
+                              name="insurance"
                               component="div"
                               className="text-red-600 text-xs"
                             />
@@ -789,25 +636,151 @@ const LedgerMaster = () => {
                       </FormControl>
                     </Grid>
 
-                    {/* W.E.F Date */}
                     <Grid item xs={12} sm={6} md={4} lg={3}>
                       <FormControl fullWidth>
                         <Grid container alignItems="center">
                           <Grid item xs={4}>
-                            <FormLabel>W.E.F Date</FormLabel>
+                            <FormLabel>HPA</FormLabel>
+                          </Grid>
+                          <Grid item xs={8}>
+                            <Field
+                              as={TextField}
+                              name="hpa"
+                              fullWidth
+                              variant="outlined"
+                              size="small"
+                              error={touched.hpa && !!errors.hpa}
+                            />
+                            <ErrorMessage
+                              name="hpa"
+                              component="div"
+                              className="text-red-600 text-xs"
+                            />
+                          </Grid>
+                        </Grid>
+                      </FormControl>
+                    </Grid>
+
+                    <Grid item xs={12} sm={6} md={4} lg={3}>
+                      <FormControl fullWidth>
+                        <Grid container alignItems="center">
+                          <Grid item xs={4}>
+                            <FormLabel>HSN Code</FormLabel>
+                          </Grid>
+                          <Grid item xs={8}>
+                            <Field
+                              as={TextField}
+                              name="hsnCode"
+                              fullWidth
+                              variant="outlined"
+                              size="small"
+                              error={touched.hsnCode && !!errors.hsnCode}
+                            />
+                            <ErrorMessage
+                              name="hsnCode"
+                              component="div"
+                              className="text-red-600 text-xs"
+                            />
+                          </Grid>
+                        </Grid>
+                      </FormControl>
+                    </Grid>
+
+                    {/* Row 6 - Qty, Tax, Sale Price, Valid To, Total Misc, Discount, Others, Total Taxable, IGST, Net Amount, Remarks */}
+
+                    <Grid item xs={12} sm={6} md={4} lg={3}>
+                      <FormControl fullWidth>
+                        <Grid container alignItems="center">
+                          <Grid item xs={4}>
+                            <FormLabel>Qty</FormLabel>
+                          </Grid>
+                          <Grid item xs={8}>
+                            <Field
+                              as={TextField}
+                              name="qty"
+                              fullWidth
+                              variant="outlined"
+                              size="small"
+                              error={touched.qty && !!errors.qty}
+                            />
+                            <ErrorMessage
+                              name="qty"
+                              component="div"
+                              className="text-red-600 text-xs"
+                            />
+                          </Grid>
+                        </Grid>
+                      </FormControl>
+                    </Grid>
+
+                    <Grid item xs={12} sm={6} md={4} lg={3}>
+                      <FormControl fullWidth>
+                        <Grid container alignItems="center">
+                          <Grid item xs={4}>
+                            <FormLabel>Tax</FormLabel>
+                          </Grid>
+                          <Grid item xs={8}>
+                            <Field
+                              as={TextField}
+                              name="tax"
+                              fullWidth
+                              variant="outlined"
+                              size="small"
+                              error={touched.tax && !!errors.tax}
+                            />
+                            <ErrorMessage
+                              name="tax"
+                              component="div"
+                              className="text-red-600 text-xs"
+                            />
+                          </Grid>
+                        </Grid>
+                      </FormControl>
+                    </Grid>
+
+                    <Grid item xs={12} sm={6} md={4} lg={3}>
+                      <FormControl fullWidth>
+                        <Grid container alignItems="center">
+                          <Grid item xs={4}>
+                            <FormLabel>Sale Price</FormLabel>
+                          </Grid>
+                          <Grid item xs={8}>
+                            <Field
+                              as={TextField}
+                              name="salePrice"
+                              fullWidth
+                              variant="outlined"
+                              size="small"
+                              error={touched.salePrice && !!errors.salePrice}
+                            />
+                            <ErrorMessage
+                              name="salePrice"
+                              component="div"
+                              className="text-red-600 text-xs"
+                            />
+                          </Grid>
+                        </Grid>
+                      </FormControl>
+                    </Grid>
+
+                    <Grid item xs={12} sm={6} md={4} lg={3}>
+                      <FormControl fullWidth>
+                        <Grid container alignItems="center">
+                          <Grid item xs={4}>
+                            <FormLabel>Valid To</FormLabel>
                           </Grid>
                           <Grid item xs={8}>
                             <Field
                               as={TextField}
                               type="date"
-                              name="wefDate"
+                              name="validTo"
                               fullWidth
                               variant="outlined"
                               size="small"
-                              error={touched.wefDate && !!errors.wefDate}
+                              error={touched.validTo && !!errors.validTo}
                             />
                             <ErrorMessage
-                              name="wefDate"
+                              name="validTo"
                               component="div"
                               className="text-red-600 text-xs"
                             />
@@ -816,25 +789,23 @@ const LedgerMaster = () => {
                       </FormControl>
                     </Grid>
 
-                    {/* Due Date */}
                     <Grid item xs={12} sm={6} md={4} lg={3}>
                       <FormControl fullWidth>
                         <Grid container alignItems="center">
                           <Grid item xs={4}>
-                            <FormLabel>Due Date</FormLabel>
+                            <FormLabel>Total Misc</FormLabel>
                           </Grid>
                           <Grid item xs={8}>
                             <Field
                               as={TextField}
-                              type="date"
-                              name="dueDate"
+                              name="totalMisc"
                               fullWidth
                               variant="outlined"
                               size="small"
-                              error={touched.dueDate && !!errors.dueDate}
+                              error={touched.totalMisc && !!errors.totalMisc}
                             />
                             <ErrorMessage
-                              name="dueDate"
+                              name="totalMisc"
                               component="div"
                               className="text-red-600 text-xs"
                             />
@@ -843,48 +814,230 @@ const LedgerMaster = () => {
                       </FormControl>
                     </Grid>
 
+                    <Grid item xs={12} sm={6} md={4} lg={3}>
+                      <FormControl fullWidth>
+                        <Grid container alignItems="center">
+                          <Grid item xs={4}>
+                            <FormLabel>Discount</FormLabel>
+                          </Grid>
+                          <Grid item xs={8}>
+                            <Field
+                              as={TextField}
+                              name="discount"
+                              fullWidth
+                              variant="outlined"
+                              size="small"
+                              error={touched.discount && !!errors.discount}
+                            />
+                            <ErrorMessage
+                              name="discount"
+                              component="div"
+                              className="text-red-600 text-xs"
+                            />
+                          </Grid>
+                        </Grid>
+                      </FormControl>
                     </Grid>
-                    {/* Submit Button */}
-                    <Box className="mt-6 flex items-end gap-4 ml-0 justify-end">
-                      <Button
-                        size="small"
-                        type="submit"
-                        color="primary"
-                        variant="contained"
-                        className="p-2"
-                      >
-                        Save
-                      </Button>
 
-                      <Button
-                        size="small"
-                        type="button"
-                        color="error"
-                        variant="outlined"
-                        className="p-2"
-                      >
-                        Delete
-                      </Button>
+                    <Grid item xs={12} sm={6} md={4} lg={3}>
+                      <FormControl fullWidth>
+                        <Grid container alignItems="center">
+                          <Grid item xs={4}>
+                            <FormLabel>Others</FormLabel>
+                          </Grid>
+                          <Grid item xs={8}>
+                            <Field
+                              as={TextField}
+                              name="others"
+                              fullWidth
+                              variant="outlined"
+                              size="small"
+                              error={touched.others && !!errors.others}
+                            />
+                            <ErrorMessage
+                              name="others"
+                              component="div"
+                              className="text-red-600 text-xs"
+                            />
+                          </Grid>
+                        </Grid>
+                      </FormControl>
+                    </Grid>
 
-                      <Button
-                        size="small"
-                        type="reset"
-                        color="default"
-                        variant="outlined"
-                        className="p-2"
-                      >
-                        Refresh
-                      </Button>
+                    <Grid item xs={12} sm={6} md={4} lg={3}>
+                      <FormControl fullWidth>
+                        <Grid container alignItems="center">
+                          <Grid item xs={4}>
+                            <FormLabel>Total Taxable</FormLabel>
+                          </Grid>
+                          <Grid item xs={8}>
+                            <Field
+                              as={TextField}
+                              name="totalTaxable"
+                              fullWidth
+                              variant="outlined"
+                              size="small"
+                              error={
+                                touched.totalTaxable && !!errors.totalTaxable
+                              }
+                            />
+                            <ErrorMessage
+                              name="totalTaxable"
+                              component="div"
+                              className="text-red-600 text-xs"
+                            />
+                          </Grid>
+                        </Grid>
+                      </FormControl>
+                    </Grid>
 
-                      <Button
-                        size="small"
-                        color="default"
-                        variant="outlined"
-                        className="p-2"
-                      >
-                        Close
-                      </Button>
-                    </Box>
+                    <Grid item xs={12} sm={6} md={4} lg={3}>
+                      <FormControl fullWidth>
+                        <Grid container alignItems="center">
+                          <Grid item xs={4}>
+                            <FormLabel>IGST</FormLabel>
+                          </Grid>
+                          <Grid item xs={8}>
+                            <Field
+                              as={TextField}
+                              name="igst"
+                              fullWidth
+                              variant="outlined"
+                              size="small"
+                              error={touched.igst && !!errors.igst}
+                            />
+                            <ErrorMessage
+                              name="igst"
+                              component="div"
+                              className="text-red-600 text-xs"
+                            />
+                          </Grid>
+                        </Grid>
+                      </FormControl>
+                    </Grid>
+
+                    <Grid item xs={12} sm={6} md={4} lg={3}>
+                      <FormControl fullWidth>
+                        <Grid container alignItems="center">
+                          <Grid item xs={4}>
+                            <FormLabel>Net Amount</FormLabel>
+                          </Grid>
+                          <Grid item xs={8}>
+                            <Field
+                              as={TextField}
+                              name="netAmount"
+                              fullWidth
+                              variant="outlined"
+                              size="small"
+                              error={touched.netAmount && !!errors.netAmount}
+                            />
+                            <ErrorMessage
+                              name="netAmount"
+                              component="div"
+                              className="text-red-600 text-xs"
+                            />
+                          </Grid>
+                        </Grid>
+                      </FormControl>
+                    </Grid>
+
+                    <Grid item xs={12} sm={6} md={4} lg={3}>
+                      <FormControl fullWidth>
+                        <Grid container alignItems="center">
+                          <Grid item xs={4}>
+                            <FormLabel>Remarks</FormLabel>
+                          </Grid>
+                          <Grid item xs={8}>
+                            <Field
+                              as={TextField}
+                              name="remarks"
+                              fullWidth
+                              variant="outlined"
+                              size="small"
+                              error={touched.remarks && !!errors.remarks}
+                            />
+                            <ErrorMessage
+                              name="remarks"
+                              component="div"
+                              className="text-red-600 text-xs"
+                            />
+                          </Grid>
+                        </Grid>
+                      </FormControl>
+                    </Grid>
+                  </Grid>
+
+                  <Divider className="divider" />
+                  <div className="mt-6  flex items-end gap-4 ml-0 justify-end border rounded-md p-2 border-[#1A9A87]">
+                    <Button
+                      size="small"
+                      type="button"
+                      color="error"
+                      variant="outlined"
+                      className="p-2"
+                    >
+                      ExportToExcel
+                    </Button>
+                    <Button
+                      size="small"
+                      type="button"
+                      color="error"
+                      variant="outlined"
+                      className="p-2"
+                    >
+                      Print
+                    </Button>
+                    <Button
+                      size="small"
+                      type="button"
+                      color="error"
+                      variant="outlined"
+                      className="p-2"
+                    >
+                      New
+                    </Button>
+
+                    <Button
+                      size="small"
+                      type="submit"
+                      color="primary"
+                      variant="contained"
+                     className="project-thim p-2"
+                      disabled={isSubmitting}
+                    >
+                      Save
+                    </Button>
+
+                    <Button
+                      size="small"
+                      type="button"
+                      color="error"
+                      variant="outlined"
+                      className="p-2"
+                    >
+                      Delete
+                    </Button>
+
+                    <Button
+                      size="small"
+                      type="reset"
+                      color="default"
+                      variant="outlined"
+                      className="p-2"
+                    >
+                      Refresh
+                    </Button>
+
+                    <Button
+                      size="small"
+                      color="default"
+                      variant="outlined"
+                      className="p-2"
+                    >
+                      Exit
+                    </Button>
+                  </div>
+                 
                 </Form>
               )}
             </Formik>
@@ -895,4 +1048,4 @@ const LedgerMaster = () => {
   );
 };
 
-export default LedgerMaster;
+export default VehicleOrder;

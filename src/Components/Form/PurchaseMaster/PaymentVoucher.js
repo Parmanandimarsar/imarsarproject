@@ -9,39 +9,123 @@ import {
   Box,
   FormLabel,
   Divider,
+  Paper,
 } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import SideNave from "../../../Pages/MainLayout/SideNav";
+import { DataGrid } from "@mui/x-data-grid";
+import {
+    PaymentVouchercolumns,
+  } from "../../TableField/TablefieldsColumns";
 
-const LabourMaster = () => {
+const PaymentVoucher = () => {
+    const paginationModel = { page: 0, pageSize: 5 };
+    const rows = [
+        {
+          id: 1,
+          igst: "Snow",
+          cgst: "Jon",
+          sgst: 35,
+          cess: "434",
+          regd: "45",
+          insur: "gfg",
+          hpa: "564",
+          agree: "yes",
+          other: "oyther",
+          discount: "5%",
+        },
+        {
+          id: 1,
+          igst: "Snow",
+          cgst: "Jon",
+          sgst: 35,
+          cess: "434",
+          regd: "45",
+          insur: "gfg",
+          hpa: "564",
+          agree: "yes",
+          other: "oyther",
+          discount: "5%",
+        },
+        {
+          id: 1,
+          igst: "Snow",
+          cgst: "Jon",
+          sgst: 35,
+          cess: "434",
+          regd: "45",
+          insur: "gfg",
+          hpa: "564",
+          agree: "yes",
+          other: "oyther",
+          discount: "5%",
+        },
+        {
+          id: 1,
+          igst: "Snow",
+          cgst: "Jon",
+          sgst: 35,
+          cess: "434",
+          regd: "45",
+          insur: "gfg",
+          hpa: "564",
+          agree: "yes",
+          other: "oyther",
+          discount: "5%",
+        },
+        {
+          id: 1,
+          igst: "Snow",
+          cgst: "Jon",
+          sgst: 35,
+          cess: "434",
+          regd: "45",
+          insur: "gfg",
+          hpa: "564",
+          agree: "yes",
+          other: "oyther",
+          discount: "5%",
+        },
+        {
+          id: 1,
+          igst: "Snow",
+          cgst: "Jon",
+          sgst: 35,
+          cess: "434",
+          regd: "45",
+          insur: "gfg",
+          hpa: "564",
+          agree: "yes",
+          other: "oyther",
+          discount: "5%",
+        },
+      ];
   const validationSchema = Yup.object().shape({
-    labourCode: Yup.string().required("Labour Code is required"),
-    specialId: Yup.string().required("Special ID is required"),
-    labourName: Yup.string().required("Labour Name is required"),
-    labourGroup: Yup.string().required("Labour Group is required"),
-    labour: Yup.string().required("Labour  is required"),
-    sacCode: Yup.string().required("SAC Code is required"),
-    igstNo: Yup.number().required("IGST No is required"),
-    cgstNo: Yup.number().required("CGST No is required"),
-    sgstNo: Yup.number().required("SGST No is required"),
-    mrp: Yup.number().required("MRP is required"),
-    defaultQty: Yup.number().required("Default Quantity is required"),
+    fromDate: Yup.date().required("From Date is required"),
+    toDate: Yup.date().required("To Date is required"),
+    pvNo: Yup.string().required("PV No is required"),
+    date: Yup.date().required("Date is required"),
+    customerAccount: Yup.string().required("Customer A/c is required"),
+    vehicleModel: Yup.string().required("Vehicle Model is required"),
+    totalAmount: Yup.number().required("Total Amount is required"),
+    drPaidAmount: Yup.number().required("DrPaid Amount is required"),
+    balAmount: Yup.number().required("Balance Amount is required"),
+    remarks: Yup.string().required("Remarks are required"),
   });
 
   const initialValues = {
-    labourCode: "",
-    specialId: "",
-    labourName: "",
-    labourGroup: "",
-    labour: "",
-    sacCode: "",
-    igstNo: "",
-    cgstNo: "",
-    sgstNo: "",
-    mrp: "",
-    defaultQty: "",
+    fromDate: "",
+    toDate: "",
+    pvNo: "",
+    date: "",
+    customerAccount: "",
+    vehicleModel: "",
+    totalAmount: "",
+    drPaidAmount: "",
+    balAmount: "",
+    remarks: "",
   };
 
   const handleSubmit = (values, { setSubmitting }) => {
@@ -54,25 +138,23 @@ const LabourMaster = () => {
   };
 
   return (
-    <div className="bg-gray-100 w-full flex">
+    <div className="w-full flex">
       <div className="w-[15%] sm:w-[5%]">
         <SideNave />
       </div>
 
       <div className="w-[80%] sm:w-[90%] lg:w-[94%] mt-[25px] mb-[50px] mx-auto">
-        <Box className="bg-white p-2 rounded-lg shadow-lg" autoComplete="off">
-          <Box className="flex justify-between items-center mb-1">
+        <Box className="bg-white  rounded-lg shadow-lg" autoComplete="off">
+          <Box className="flex justify-between items-center mb-1 project-thim text-white p-1  rounded-t-lg">
             <Typography
               variant="h6"
               component="h1"
-              className="text-center mb-6"
+              className="text-center mb-2"
             >
-              Labour Master
+            Payment Voucher  
             </Typography>
           </Box>
-          <Divider
-          className="divider"
-        />
+          <Divider className="divider" />
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
@@ -86,19 +168,20 @@ const LabourMaster = () => {
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
                         <Grid item xs={4}>
-                          <FormLabel>Labour Code</FormLabel>
+                          <FormLabel>From Date</FormLabel>
                         </Grid>
                         <Grid item xs={8}>
                           <Field
                             as={TextField}
-                            name="labourCode"
+                            name="fromDate"
+                            type="date"
                             fullWidth
                             variant="outlined"
                             size="small"
-                            error={touched.labourCode && !!errors.labourCode}
+                            error={touched.fromDate && !!errors.fromDate}
                           />
                           <ErrorMessage
-                            name="labourCode"
+                            name="fromDate"
                             component="div"
                             className="text-red-600 text-xs"
                           />
@@ -111,19 +194,20 @@ const LabourMaster = () => {
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
                         <Grid item xs={4}>
-                          <FormLabel>Special ID</FormLabel>
+                          <FormLabel>To Date</FormLabel>
                         </Grid>
                         <Grid item xs={8}>
                           <Field
                             as={TextField}
-                            name="specialId"
+                            name="toDate"
+                            type="date"
                             fullWidth
                             variant="outlined"
                             size="small"
-                            error={touched.specialId && !!errors.specialId}
+                            error={touched.toDate && !!errors.toDate}
                           />
                           <ErrorMessage
-                            name="specialId"
+                            name="toDate"
                             component="div"
                             className="text-red-600 text-xs"
                           />
@@ -136,19 +220,19 @@ const LabourMaster = () => {
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
                         <Grid item xs={4}>
-                          <FormLabel>Labour Name</FormLabel>
+                          <FormLabel>PV No</FormLabel>
                         </Grid>
                         <Grid item xs={8}>
                           <Field
                             as={TextField}
-                            name="labourName"
+                            name="pvNo"
                             fullWidth
                             variant="outlined"
                             size="small"
-                            error={touched.labourName && !!errors.labourName}
+                            error={touched.pvNo && !!errors.pvNo}
                           />
                           <ErrorMessage
-                            name="labourName"
+                            name="pvNo"
                             component="div"
                             className="text-red-600 text-xs"
                           />
@@ -162,21 +246,20 @@ const LabourMaster = () => {
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
                         <Grid item xs={4}>
-                          <FormLabel>Labour Group</FormLabel>
+                          <FormLabel>Date</FormLabel>
                         </Grid>
                         <Grid item xs={8}>
                           <Field
-                            as={Select}
-                            name="labourGroup"
+                            as={TextField}
+                            name="date"
+                            type="date"
                             fullWidth
+                            variant="outlined"
                             size="small"
-                            error={touched.labourGroup && !!errors.labourGroup}
-                          >
-                            <MenuItem value="Group1">Group 1</MenuItem>
-                            <MenuItem value="Group2">Group 2</MenuItem>
-                          </Field>
+                            error={touched.date && !!errors.date}
+                          />
                           <ErrorMessage
-                            name="labourGroup"
+                            name="date"
                             component="div"
                             className="text-red-600 text-xs"
                           />
@@ -189,23 +272,53 @@ const LabourMaster = () => {
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
                         <Grid item xs={4}>
-                          <FormLabel>Labour </FormLabel>
+                          <FormLabel>Customer A/c</FormLabel>
                         </Grid>
                         <Grid item xs={8}>
                           <Field
                             as={Select}
-                            name="labour"
+                            name="customerAccount"
                             fullWidth
                             size="small"
                             error={
-                              touched.labour && !!errors.labour
+                              touched.customerAccount &&
+                              !!errors.customerAccount
                             }
                           >
-                            <MenuItem value="Labour1">Labour 1</MenuItem>
-                            <MenuItem value="Labour2">Labour 2</MenuItem>
+                            <MenuItem value="Customer1">Customer 1</MenuItem>
+                            <MenuItem value="Customer2">Customer 2</MenuItem>
                           </Field>
                           <ErrorMessage
-                            name="labourDropdown"
+                            name="customerAccount"
+                            component="div"
+                            className="text-red-600 text-xs"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid item xs={4}>
+                          <FormLabel>Vehicle Model</FormLabel>
+                        </Grid>
+                        <Grid item xs={8}>
+                          <Field
+                            as={Select}
+                            name="vehicleModel"
+                            fullWidth
+                            size="small"
+                            error={
+                              touched.vehicleModel && !!errors.vehicleModel
+                            }
+                          >
+                            <MenuItem value="Model1">Model 1</MenuItem>
+                            <MenuItem value="Model2">Model 2</MenuItem>
+                          </Field>
+                          <ErrorMessage
+                            name="vehicleModel"
                             component="div"
                             className="text-red-600 text-xs"
                           />
@@ -219,19 +332,20 @@ const LabourMaster = () => {
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
                         <Grid item xs={4}>
-                          <FormLabel>SAC Code</FormLabel>
+                          <FormLabel>Total Amount</FormLabel>
                         </Grid>
                         <Grid item xs={8}>
                           <Field
                             as={TextField}
-                            name="sacCode"
+                            name="totalAmount"
+                            type="number"
                             fullWidth
                             variant="outlined"
                             size="small"
-                            error={touched.sacCode && !!errors.sacCode}
+                            error={touched.totalAmount && !!errors.totalAmount}
                           />
                           <ErrorMessage
-                            name="sacCode"
+                            name="totalAmount"
                             component="div"
                             className="text-red-600 text-xs"
                           />
@@ -240,131 +354,80 @@ const LabourMaster = () => {
                     </FormControl>
                   </Grid>
 
-                
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid item xs={4}>
+                          <FormLabel>DrPaid Amount</FormLabel>
+                        </Grid>
+                        <Grid item xs={8}>
+                          <Field
+                            as={TextField}
+                            name="drPaidAmount"
+                            type="number"
+                            fullWidth
+                            variant="outlined"
+                            size="small"
+                            error={
+                              touched.drPaidAmount && !!errors.drPaidAmount
+                            }
+                          />
+                          <ErrorMessage
+                            name="drPaidAmount"
+                            component="div"
+                            className="text-red-600 text-xs"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid item xs={4}>
+                          <FormLabel>Bal. Amount</FormLabel>
+                        </Grid>
+                        <Grid item xs={8}>
+                          <Field
+                            as={TextField}
+                            name="balAmount"
+                            type="number"
+                            fullWidth
+                            variant="outlined"
+                            size="small"
+                            error={touched.balAmount && !!errors.balAmount}
+                          />
+                          <ErrorMessage
+                            name="balAmount"
+                            component="div"
+                            className="text-red-600 text-xs"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+
                   {/* Row 4 */}
                   <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
                         <Grid item xs={4}>
-                          <FormLabel>IGST No</FormLabel>
+                          <FormLabel>Remarks</FormLabel>
                         </Grid>
                         <Grid item xs={8}>
                           <Field
                             as={TextField}
-                            name="igstNo"
-                            type="number"
+                            name="remarks"
                             fullWidth
                             variant="outlined"
                             size="small"
-                            error={touched.igstNo && !!errors.igstNo}
+                            // multiline
+                            // rows={1}
+                            error={touched.remarks && !!errors.remarks}
                           />
                           <ErrorMessage
-                            name="igstNo"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>CGST No</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={TextField}
-                            name="cgstNo"
-                            type="number"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.cgstNo && !!errors.cgstNo}
-                          />
-                          <ErrorMessage
-                            name="cgstNo"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  {/* Row 5 */}
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>SGST No</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={TextField}
-                            name="sgstNo"
-                            type="number"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.sgstNo && !!errors.sgstNo}
-                          />
-                          <ErrorMessage
-                            name="sgstNo"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>MRP</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={TextField}
-                            name="mrp"
-                            type="number"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.mrp && !!errors.mrp}
-                          />
-                          <ErrorMessage
-                            name="mrp"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>Default Qty</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={TextField}
-                            name="defaultQty"
-                            type="number"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.defaultQty && !!errors.defaultQty}
-                          />
-                          <ErrorMessage
-                            name="defaultQty"
+                            name="remarks"
                             component="div"
                             className="text-red-600 text-xs"
                           />
@@ -373,35 +436,102 @@ const LabourMaster = () => {
                     </FormControl>
                   </Grid>
                 </Grid>
+                <div className="border border-[#338691] mt-2 rounded-lg">
+                <Typography variant="h5" sx={{ padding: "3px" }}>
+                Payment Voucher Table
+                </Typography>
+                <Paper
+                  sx={{
+                    minHeight: 100,
+                    width: "100%",
+                    padding: "3px",
+                    maxHeight: 400,
+                  }}
+                >
+                <DataGrid
+                className="PaymentVoucherTable"
+                rows={rows}
+                columns={PaymentVouchercolumns}
+                initialState={{ pagination: { paginationModel } }}
+                pageSizeOptions={[5, 10]}
+                rowHeight={30}
+                headerHeight={30}
+                columnHeaderHeight={30}
+               
+              />
+                </Paper>
+              </div>
 
-                {/* Buttons */}
-                <Box className="mt-6 flex gap-4 justify-end">
+                <Divider className="divider" />
+                <div className="mt-6  flex items-end gap-4 ml-0 justify-end border rounded-md p-2 border-[#1A9A87]">
                   <Button
+                    size="small"
+                    type="button"
+                    color="error"
+                    variant="outlined"
+                    className="p-2"
+                  >
+                    ExportToExcel
+                  </Button>
+                  <Button
+                    size="small"
+                    type="button"
+                    color="error"
+                    variant="outlined"
+                    className="p-2"
+                  >
+                    Print
+                  </Button>
+                  <Button
+                    size="small"
+                    type="button"
+                    color="error"
+                    variant="outlined"
+                    className="p-2"
+                  >
+                    New
+                  </Button>
+
+                  <Button
+                    size="small"
                     type="submit"
                     color="primary"
                     variant="contained"
-                    size="small"
+                    className="p-2"
+                    disabled={isSubmitting}
                   >
                     Save
                   </Button>
 
                   <Button
+                    size="small"
                     type="button"
                     color="error"
                     variant="outlined"
-                    size="small"
+                    className="p-2"
                   >
-                    Deactivate
+                    Delete
                   </Button>
+
                   <Button
+                    size="small"
                     type="reset"
                     color="default"
                     variant="outlined"
-                    size="small"
+                    className="p-2"
                   >
-                    Clear
+                    Refresh
                   </Button>
-                </Box>
+
+                  <Button
+                    size="small"
+                    color="default"
+                    variant="outlined"
+                    className="p-2"
+                  >
+                    Exit
+                  </Button>
+                </div>
               </Form>
             )}
           </Formik>
@@ -411,4 +541,4 @@ const LabourMaster = () => {
   );
 };
 
-export default LabourMaster;
+export default PaymentVoucher;

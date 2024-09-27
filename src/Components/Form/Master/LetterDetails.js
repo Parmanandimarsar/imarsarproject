@@ -109,7 +109,7 @@ const LetterDetails = () => {
               <Box className="flex gap-2"></Box>
             </Box>
             <Divider
-              sx={{ marginBottom: "10px", border: "0.5px solid #027b81" }}
+              className="divider"
             />
             <Formik
               initialValues={initialValues}
@@ -666,11 +666,7 @@ const LetterDetails = () => {
                   </TableContainer>
                 )}
                 <Divider
-                  sx={{
-                    marginBottom: "10px",
-                    marginTop: "10px",
-                    border: "0.5px solid #027b81",
-                  }}
+                  className="divider"
                 />
 
                   <Typography variant="h6" sx={{ marginTop: "20px" }}>

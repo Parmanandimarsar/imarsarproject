@@ -1,5 +1,6 @@
 .project-thim{
-  background-color: #093E53 !important;
+  /* background-color: #093E53 !important; */
+  background: linear-gradient(rgb(91, 36, 122) 0%, rgb(27, 206, 223) 100%);
 }
 .text{
   font-size: 12px !important;
@@ -8,9 +9,16 @@
   font-size: 12px !important;
   font-weight: bold !important;
 }
+.divider{
+background-color: #4ad3e970 !important;
+margin-bottom: 10px !important;
+margin-top: 5px !important;
+   
+}
 /* global dataGridTable header */
 .css-yrdy0g-MuiDataGrid-columnHeaderRow{
-  background-color: #093E53 !important;
+  /* background-color: #093E53 !important; */
+  background-color: #17a2b8de !important;
   color: #fff !important;
 }
 
@@ -18,11 +26,12 @@
 .css-s6km2v-MuiFormLabel-root{
   font-size: 12px !important;
   font-weight: bold !important;
-  color: rgb(68, 65, 65) !important;
+  /* color: rgb(68, 65, 65) !important; */
+  color: black !important;
 }
 /* form field */
  .css-1sh6wjw-MuiInputBase-input-MuiOutlinedInput-input{
-  padding: 3px 5px !important;
+  padding: 1px 5px !important;
   font-size: 12px !important;
   color: gray !important;
 }
@@ -56,17 +65,26 @@ padding: 5px !important;
   }
 }
 
+/* diloxBox Modal */
+.css-rsks93-MuiPaper-root-MuiDialog-paper{
+  width: 70% !important;
+}
+.css-ks0ey5-MuiTypography-root-MuiDialogTitle-root{
+  padding: 0px 2px !important;
+}
 .headerNav{
   transition: 300ms ease all;
-    background-image: linear-gradient(to right #093E53, #d5e3e4) !important;
+
 }
 .headerNav.css-5czdux-MuiPaper-root-MuiAppBar-root{
   position: sticky !important;
   height: 65px !important;
   margin-bottom: 5px !important;
+  background: linear-gradient(rgb(91, 36, 122) 0%, rgb(27, 206, 223) 100%);
 }
 .side-nav .css-153gm7s-MuiPaper-root-MuiDrawer-paper {
-background-color:#093E53 !important;
+/* background-color:#093E53 !important; */
+background: linear-gradient(rgb(91, 36, 122) 0%, rgb(27, 206, 223) 100%);
 overflow: hidden !important;
 }
 .side-nav .css-1xa1c3i-MuiButtonBase-root-MuiListItemButton-root{
@@ -136,4 +154,14 @@ color: #fff !important;
 }
 .css-ihlsro-MuiDataGrid-root .MuiDataGrid-sortIcon{
   color: #fff !important;
+}
+
+/* misccharge modal */
+.css-1edfpdg-MuiTypography-root{
+font-size: 12px !important;
+font-weight: bold !important;
+}
+/* PaymentVoucherTable */
+.PaymentVoucherTable .css-yrdy0g-MuiDataGrid-columnHeaderRow{
+  background: linear-gradient(rgb(91, 36, 122) 0%, rgb(27, 206, 223) 100%) !important;
 }

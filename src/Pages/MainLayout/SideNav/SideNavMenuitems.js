@@ -23,13 +23,17 @@ export const menuItems = [
         { text: "Purchase Challan Vehicle", link: "/Purchase-Challan-Vehicle", icon: <MailIcon /> },
         { text: "Payment Voucher", link: "/payment-voucher", icon: <MailIcon /> },
         { text: "Sales Model", link: "/sales-model", icon: <MailIcon /> },
+        { text: "Receipt Booking", link: "/receipt-booking", icon: <MailIcon /> },
       ],
     },
     {
-      text: "Labour Master",
+      text: "Subdealer",
       icon: <MailIcon />,
       subItems: [
         
+        { text: "Sales-Challan(", link: "/sales-challan(", icon: <MailIcon /> },
+        { text: "Sales-Invoice", link: "/sales-invoice", icon: <MailIcon /> },
+        { text: "Company-Master", link: "/company-master", icon: <MailIcon /> },
         { text: "Company-Master", link: "/company-master", icon: <MailIcon /> },
       ],
     },

@@ -11,9 +11,14 @@
 }
 .divider{
 background-color: #4ad3e970 !important;
-margin-bottom: 10px !important;
-margin-top: 5px !important;
-   
+margin-bottom: 5px !important;
+margin-top: 5px !important; 
+}
+.borderGroup{
+  padding: 5px ;
+  border-radius: 10px;
+  margin: 5px;
+  border: 1px solid #4ad3e970 ;
 }
 /* global dataGridTable header */
 .css-yrdy0g-MuiDataGrid-columnHeaderRow{
@@ -37,7 +42,7 @@ margin-top: 5px !important;
 }
 /*datagrid field dropdown */
 .css-bgvwm1-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
-  padding: 3px 5px !important;
+  padding: 1px 5px !important;
   font-size: 12px !important;
   height: 0px !important;
   color: gray !important;

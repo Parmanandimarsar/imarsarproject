@@ -109,6 +109,14 @@ const router = createBrowserRouter([
           path: "/delivery-invoice",
           element: <DeliveryInvoice/>,
         },
+        {
+          path: "/payment-voucher",
+          element: <DeliveryInvoice/>,
+        },
+        {
+          path: "/delivery-invoice",
+          element: <DeliveryInvoice/>,
+        },
       ],
     },
   

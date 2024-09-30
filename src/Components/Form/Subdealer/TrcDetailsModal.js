@@ -1,13 +1,3 @@
-// import React from 'react'
-
-// const TrcDetailsModal = () => {
-//   return (
-//     <div>TrcDetailsModal</div>
-//   )
-// }
-
-// export default TrcDetailsModal
-
 
 import React from "react";
 import {
@@ -25,9 +15,11 @@ import {
   Typography,
   Box,
   Divider,
+  IconButton,
 } from "@mui/material";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import CloseIcon from "@mui/icons-material/Close";
 
 const TrcDetailsModal = ({ detailModalOpen, handelModalOpen }) => {
   // Initial values
@@ -62,6 +54,18 @@ const TrcDetailsModal = ({ detailModalOpen, handelModalOpen }) => {
     >
       <Box className="project-thim text-white rounded-sm">
         <DialogTitle>TRC Details</DialogTitle>
+        <IconButton
+        aria-label="close"
+        onClick={handelModalOpen}
+        sx={(theme) => ({
+          position: "absolute",
+          right: 5,
+          top: -3,
+          color: theme.palette.grey[500],
+        })}
+      >
+        <CloseIcon />
+      </IconButton>
       </Box>
       <Divider className="divider" />
       <DialogContent>

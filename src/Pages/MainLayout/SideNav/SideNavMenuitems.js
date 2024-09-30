@@ -38,10 +38,10 @@ export const menuItems = [
       ],
     },
     {
-      text: "Starred",
+      text: "Accounts",
       icon:<InboxIcon /> ,
       subItems: [
-        { text: "Letter-Details", link: "/letter-details", icon: <MailIcon /> },
+        { text: "Payment-Voucher", link: "/payment-voucher", icon: <MailIcon /> },
         { text: "Vehical-Master", link: "/vehical-master", icon: <MailIcon /> },
         { text: "Company-Master", link: "/company-master", icon: <MailIcon /> },
       ],

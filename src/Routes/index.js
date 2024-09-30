@@ -23,6 +23,8 @@ import SalesModel from '../Components/Form/PurchaseMaster/SalesModel';
 import ReceiptBooking from '../Components/Form/PurchaseMaster/ReceiptBooking';
 import SalesChallan from '../Components/Form/Subdealer/SalesChallan';
 import SalesInvoice from '../Components/Form/Subdealer/SalesInvoice';
+import DeliveryChallan from '../Components/Form/Subdealer/DeliveryChallan';
+import DeliveryInvoice from '../Components/Form/Subdealer/DeliveryInvoice';
 const Layout = () => (
     <div>
       <Navbar />
@@ -98,6 +100,14 @@ const router = createBrowserRouter([
         {
           path: "/sales-invoice",
           element: <SalesInvoice/>,
+        },
+        {
+          path: "/delivery-challan",
+          element: <DeliveryChallan/>,
+        },
+        {
+          path: "/delivery-invoice",
+          element: <DeliveryInvoice/>,
         },
       ],
     },

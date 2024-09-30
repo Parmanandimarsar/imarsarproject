@@ -33,8 +33,8 @@ export const menuItems = [
         
         { text: "Sales-Challan(", link: "/sales-challan(", icon: <MailIcon /> },
         { text: "Sales-Invoice", link: "/sales-invoice", icon: <MailIcon /> },
-        { text: "Company-Master", link: "/company-master", icon: <MailIcon /> },
-        { text: "Company-Master", link: "/company-master", icon: <MailIcon /> },
+        { text: "Delivery-Challan", link: "/delivery-challan", icon: <MailIcon /> },
+        { text: "Delivery-Invoice", link: "/delivery-invoice", icon: <MailIcon /> },
       ],
     },
     {

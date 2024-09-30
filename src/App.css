@@ -1,6 +1,11 @@
 .project-thim{
   /* background-color: #093E53 !important; */
-  background: linear-gradient(rgb(91, 36, 122) 0%, rgb(27, 206, 223) 100%);
+  /* background: linear-gradient(rgb(91, 36, 122) 0%, rgb(27, 206, 223) 100%); */
+  /* background:linear-gradient(rgba(84,140,203,255)25%,rgba(86,130,195,255)50%,rgba(121,120,183,255)100%); */
+    /* background:linear-gradient(rgba(14,102,201,255)20%,rgba(17,81,165,255)40%,rgba(27,169,249,255)70%,rgba(29,155,250,255)100%); */
+    /* background-image: linear-gradient(to left,#0E6AD0, #1154AC ,#1E9EFC,#1BA8FA); */
+        /* background-image: linear-gradient(to left,#0E6AD0, #1154AC ,#1E9EFC,#5584c2); */
+      background-image: linear-gradient(to left,#455D9B, #533584 ,#39B4E0,#2E98BF);
 }
 .text{
   font-size: 12px !important;
@@ -85,7 +90,9 @@ padding: 5px !important;
   position: sticky !important;
   height: 65px !important;
   margin-bottom: 5px !important;
-  background: linear-gradient(rgb(91, 36, 122) 0%, rgb(27, 206, 223) 100%);
+  /* background: linear-gradient(rgb(91, 36, 122) 0%, rgb(27, 206, 223) 100%); */
+  /* background-image: linear-gradient(to right,#0E6AD0, #1154AC ,#1E9EFC,#1BA8FA); */
+  background-image: linear-gradient(to right,#455D9B, #533584 ,#39B4E0,#2E98BF);
 }
 .side-nav .css-153gm7s-MuiPaper-root-MuiDrawer-paper {
 /* background-color:#093E53 !important; */
@@ -169,4 +176,12 @@ font-weight: bold !important;
 /* PaymentVoucherTable */
 .PaymentVoucherTable .css-yrdy0g-MuiDataGrid-columnHeaderRow{
   background: linear-gradient(rgb(91, 36, 122) 0%, rgb(27, 206, 223) 100%) !important;
+}
+/* Access Details Delivery */
+.css-1jk99ih-MuiInputBase-input-MuiOutlinedInput-input ,
+.css-15k6ek6-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 0px 0px !important;
+}
+.css-1kxd7on-MuiDialogContent-root{
+  padding: 0px 8px !important;
 }

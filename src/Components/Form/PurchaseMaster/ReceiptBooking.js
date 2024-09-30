@@ -1,4 +1,3 @@
-
 import React from "react";
 import {
   Button,
@@ -165,6 +164,31 @@ const ReceiptBooking = () => {
                 <FormControl fullWidth>
                   <Grid container alignItems="center">
                     <Grid item xs={4}>
+                      <FormLabel>Branch</FormLabel>
+                    </Grid>
+                    <Grid item xs={8}>
+                      <Select
+                        name="branch"
+                        // value={formValues.branch}
+                        // onChange={handleChange}
+                        fullWidth
+                        variant="outlined"
+                        size="small"
+                        
+                      >
+                        <MenuItem value="">Branch Select</MenuItem>
+                        <MenuItem value="rv1">Branch 1</MenuItem>
+                        <MenuItem value="rv2">Branch 2</MenuItem>
+                      </Select>
+                     
+                    </Grid>
+                  </Grid>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} sm={6} md={4} lg={3}>
+                <FormControl fullWidth>
+                  <Grid container alignItems="center">
+                    <Grid item xs={4}>
                       <FormLabel>From</FormLabel>
                     </Grid>
                     <Grid item xs={8}>
@@ -201,7 +225,7 @@ const ReceiptBooking = () => {
                 <FormControl fullWidth>
                   <Grid container alignItems="center">
                     <Grid item xs={12}>
-                      <button className="border-2 rounded-lg pl-1 pr-1  ">
+                      <button className="border-2 rounded-lg pl-1 pr-1 bg-green-600 text-white ">
                         Export To Excel
                       </button>
                     </Grid>
@@ -585,7 +609,8 @@ const ReceiptBooking = () => {
                     variant="outlined"
                     className="p-2"
                   >
-                    SMSSent
+                    
+                    Smssent
                   </Button>
 
                   <Button
@@ -595,6 +620,7 @@ const ReceiptBooking = () => {
                     className="p-2"
                   >
                     TotalAmount
+                  
                   </Button>
                   <Button
                     size="small"

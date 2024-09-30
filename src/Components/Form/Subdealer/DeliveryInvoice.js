@@ -1,4 +1,14 @@
-import React from "react";
+// import React from 'react'
+
+// const DeliveryInvoice = () => {
+//   return (
+//     <div>DeliveryInvoice</div>
+//   )
+// }
+
+// export default DeliveryInvoice
+
+import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import {
@@ -9,105 +19,108 @@ import {
   FormLabel,
   Select,
   MenuItem,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
   Box,
   Typography,
   Divider,
 } from "@mui/material";
-import SideNave from "../../../Pages/MainLayout/SideNav";
+import SideNav from "../../../Pages/MainLayout/SideNav";
+import TrcDetailsModal from "./TrcDetailsModal";
 
-const SalesInvoice = () => {
+const DeliveryInvoice = () => {
   // Initial values
+  const [detailModalOpen, setDetailModalOpen] = useState(false);
   const initialValues = {
-    slnvSDNo: "",
+    vsChallanNo: "",
     date: "",
-    salePerson: "",
-    dealer: "",
-    location: "",
-    challanNo: "",
-    hsnNo: "",
-    gst: "",
-    cost: "",
-    discount: "",
-    value: "",
-    monthsYear: "",
     model: "",
-    chassis: "",
+    financerName: "",
+    challanNo: "",
+    location: "",
+    address: "",
+    partyName: "",
+    mobileNo: "",
+    chassisNo: "",
+    vehicleNo: "",
     engineNo: "",
-    keyNo: "",
-    pono: "",
-    colour: "",
+    mode: "",
+    color: "",
+    price: "",
+    mfgMonthYear: "",
+    chargeNo: "",
+    discount: "",
     batteryNo: "",
+    gstPercentage: "",
     wrcNo: "",
-    chooseFile: null,
-    loadExcelNo: "",
-    remarks: "",
-    grossAmount: "",
-    tradeDiscount: "",
-    taxable: "",
-    igst: "",
-    cgst: "",
-    sgst: "",
-    cess: "",
-    others: "",
-    netAmount: "",
+    keyNo: "",
+    cessPercentage: "",
+    total: "",
+    addrss: "",
+    eInvoiceStatus: "",
+    irn: "",
+    ackNo: "",
+    ackDate: "",
+    ewagNo: "",
   };
 
   // Validation schema
   const validationSchema = Yup.object().shape({
-    slnvSDNo: Yup.string().required("SlnvSDNo is required"),
+    vsChallanNo: Yup.string().required("VSChallan No is required"),
     date: Yup.date().required("Date is required"),
-    salePerson: Yup.string().required("Sale Person is required"),
-    dealer: Yup.string().required("Dealer is required"),
-    location: Yup.string().required("Location is required"),
-    challanNo: Yup.string().required("Challan No is required"),
-    hsnNo: Yup.string().required("HSN No is required"),
-    gst: Yup.string().required("GST is required"),
-    cost: Yup.string().required("Cost is required"),
-    discount: Yup.string().required("Discount is required"),
-    value: Yup.string().required("Value is required"),
-    monthsYear: Yup.date().required("Months/Year is required"),
     model: Yup.string().required("Model is required"),
-    chassis: Yup.string().required("Chassis is required"),
+    financerName: Yup.string().required("Financer Name is required"),
+    challanNo: Yup.string().required("Challan No is required"),
+    location: Yup.string().required("Location is required"),
+    address: Yup.string().required("Address is required"),
+    partyName: Yup.string().required("Party Name is required"),
+    mobileNo: Yup.number().required("Mobile No is required"),
+    chassisNo: Yup.string().required("Chassis No is required"),
+    vehicleNo: Yup.string().required("Vehicle No is required"),
     engineNo: Yup.string().required("Engine No is required"),
-    keyNo: Yup.string().required("Key No is required"),
-    pono: Yup.string().required("PONO is required"),
-    colour: Yup.string().required("Colour is required"),
+    mode: Yup.string().required("Mode is required"),
+    color: Yup.string().required("Color is required"),
+    price: Yup.number().required("Price is required"),
+    mfgMonthYear: Yup.date().required("MFG Month/Year is required"),
+    chargeNo: Yup.string().required("Charge No is required"),
+    discount: Yup.number().required("Discount is required"),
     batteryNo: Yup.string().required("Battery No is required"),
-    wrcNo: Yup.string().required("WRC No is required"),
-    chooseFile: Yup.mixed().required("Choose File is required"),
-    loadExcelNo: Yup.string().required("Load Excel No is required"),
-    remarks: Yup.string().required("Remarks is required"),
-    grossAmount: Yup.number().required("Gross Amount is required"),
-    tradeDiscount: Yup.number().required("Trade Discount is required"),
-    taxable: Yup.number().required("Taxable is required"),
-    igst: Yup.string().required("IGST is required"),
-    cgst: Yup.string().required("CGST is required"),
-    sgst: Yup.string().required("SGST is required"),
-    cess: Yup.string().required("CESS is required"),
-    others: Yup.string().required("Others is required"),
-    netAmount: Yup.number().required("Net Amount is required"),
+    gstPercentage: Yup.number().required("GST % is required"),
+    wrcNo: Yup.number().required("WRC No is required"),
+    keyNo: Yup.string().required("Key No is required"),
+    cessPercentage: Yup.string().required("Cess % is required"),
+    total: Yup.number().required("Total is required"),
+    addrss: Yup.string().required("Address is required"),
+    eInvoiceStatus: Yup.string().required("EInvoice Status is required"),
+    irn: Yup.string().required("IRN is required"),
+    ackNo: Yup.number().required("ACK No is required"),
+    ackDate: Yup.date().required("ACK Date is required"),
+    ewagNo: Yup.string().required("EWAG No is required"),
   });
 
   // Form submission handler
   const onSubmit = (values, { setSubmitting }) => {
-    console.log("Form Submitted!", values); 
+    console.log("Form Submitted!", values);
     setTimeout(() => {
       console.log(values);
       setSubmitting(false);
     }, 400);
   };
-
+const handelModalOpen=()=>{
+    setDetailModalOpen(!detailModalOpen)
+}
   return (
     <div className="w-full flex">
       <div className="w-[15%] sm:w-[5%]">
-        <SideNave />
+        <SideNav />
       </div>
 
-      <div className="w-[80%] sm:w-[90%] lg:w-[94%]  mb-[50px] mx-auto">
+      <div className="w-[80%] sm:w-[90%] lg:w-[94%] mb-[50px] mx-auto">
         <Box className="bg-white rounded-lg shadow-lg" autoComplete="off">
           <Box className="flex justify-between items-center mb-1 project-thim text-white p-1 rounded-t-lg">
-            <Typography variant="h6" component="h1" className="text-center ">
-            Sales Invoice
+            <Typography variant="h6" component="h1" className="text-center">
+              Delivery Invoice
             </Typography>
           </Box>
           <Divider className="divider" />
@@ -116,28 +129,31 @@ const SalesInvoice = () => {
             validationSchema={validationSchema}
             onSubmit={onSubmit}
           >
-            {({ isSubmitting, touched, errors, setFieldValue }) => (
-              
-              <Form>
-                <Grid container spacing={2}>
-                  {/* SlnvSDNo */}
+            {({ isSubmitting, touched, errors }) => (
+              <Form className="p-1">
+                <Grid container spacing={1}>
+                  {/* VSChallan No Dropdown */}
                   <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
                         <Grid item xs={4}>
-                          <FormLabel>SlnvSDNo</FormLabel>
+                          <FormLabel>VSChallan No</FormLabel>
                         </Grid>
                         <Grid item xs={8}>
                           <Field
-                            as={TextField}
-                            name="slnvSDNo"
+                            as={Select}
+                            name="vsChallanNo"
                             fullWidth
                             variant="outlined"
                             size="small"
-                            error={touched.slnvSDNo && !!errors.slnvSDNo}
-                          />
+                            error={touched.vsChallanNo && !!errors.vsChallanNo}
+                          >
+                            {/* Example MenuItems; replace with your options */}
+                            <MenuItem value="option1">Option 1</MenuItem>
+                            <MenuItem value="option2">Option 2</MenuItem>
+                          </Field>
                           <ErrorMessage
-                            name="slnvSDNo"
+                            name="vsChallanNo"
                             component="div"
                             className="text-red-600 text-xs"
                           />
@@ -173,28 +189,28 @@ const SalesInvoice = () => {
                     </FormControl>
                   </Grid>
 
-                  {/* Sale Person */}
+                  {/* Model Dropdown */}
                   <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
                         <Grid item xs={4}>
-                          <FormLabel>Sale Person</FormLabel>
+                          <FormLabel>Model</FormLabel>
                         </Grid>
                         <Grid item xs={8}>
                           <Field
                             as={Select}
-                            name="salePerson"
+                            name="model"
                             fullWidth
                             variant="outlined"
                             size="small"
-                            error={touched.salePerson && !!errors.salePerson}
+                            error={touched.model && !!errors.model}
                           >
-                            <MenuItem value="Person1">Person 1</MenuItem>
-                            <MenuItem value="Person2">Person 2</MenuItem>
-                            {/* Add more options */}
+                            {/* Example MenuItems; replace with your options */}
+                            <MenuItem value="model1">Model 1</MenuItem>
+                            <MenuItem value="model2">Model 2</MenuItem>
                           </Field>
                           <ErrorMessage
-                            name="salePerson"
+                            name="model"
                             component="div"
                             className="text-red-600 text-xs"
                           />
@@ -203,28 +219,60 @@ const SalesInvoice = () => {
                     </FormControl>
                   </Grid>
 
-                  {/* Dealer */}
+                  {/* Financer Name Dropdown */}
                   <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
                         <Grid item xs={4}>
-                          <FormLabel>Dealer</FormLabel>
+                          <FormLabel>Financer Name</FormLabel>
                         </Grid>
                         <Grid item xs={8}>
                           <Field
                             as={Select}
-                            name="dealer"
+                            name="financerName"
                             fullWidth
                             variant="outlined"
                             size="small"
-                            error={touched.dealer && !!errors.dealer}
+                            error={
+                              touched.financerName && !!errors.financerName
+                            }
                           >
-                            <MenuItem value="Dealer1">Dealer 1</MenuItem>
-                            <MenuItem value="Dealer2">Dealer 2</MenuItem>
-                            {/* Add more options */}
+                            {/* Example MenuItems; replace with your options */}
+                            <MenuItem value="financer1">Financer 1</MenuItem>
+                            <MenuItem value="financer2">Financer 2</MenuItem>
                           </Field>
                           <ErrorMessage
-                            name="dealer"
+                            name="financerName"
+                            component="div"
+                            className="text-red-600 text-xs"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+
+                  {/* Challan No Dropdown */}
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid item xs={4}>
+                          <FormLabel>Challan No</FormLabel>
+                        </Grid>
+                        <Grid item xs={8}>
+                          <Field
+                            as={Select}
+                            name="challanNo"
+                            fullWidth
+                            variant="outlined"
+                            size="small"
+                            error={touched.challanNo && !!errors.challanNo}
+                          >
+                            {/* Example MenuItems; replace with your options */}
+                            <MenuItem value="challan1">Challan 1</MenuItem>
+                            <MenuItem value="challan2">Challan 2</MenuItem>
+                          </Field>
+                          <ErrorMessage
+                            name="challanNo"
                             component="div"
                             className="text-red-600 text-xs"
                           />
@@ -242,17 +290,13 @@ const SalesInvoice = () => {
                         </Grid>
                         <Grid item xs={8}>
                           <Field
-                            as={Select}
+                            as={TextField}
                             name="location"
                             fullWidth
                             variant="outlined"
                             size="small"
                             error={touched.location && !!errors.location}
-                          >
-                            <MenuItem value="Location1">Location 1</MenuItem>
-                            <MenuItem value="Location2">Location 2</MenuItem>
-                            {/* Add more options */}
-                          </Field>
+                          />
                           <ErrorMessage
                             name="location"
                             component="div"
@@ -262,53 +306,25 @@ const SalesInvoice = () => {
                       </Grid>
                     </FormControl>
                   </Grid>
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>Challan No</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={Select}
-                            name="challanNo"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.challanNo && !!errors.challanNo}
-                          >
-                            <MenuItem value="Challan1">Challan 1</MenuItem>
-                            <MenuItem value="Challan2">Challan 2</MenuItem>
-                            {/* Add more options */}
-                          </Field>
-                          <ErrorMessage
-                            name="challanNo"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
 
-                  {/* HSN No */}
+                  {/* Address */}
                   <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
                         <Grid item xs={4}>
-                          <FormLabel>HSN No</FormLabel>
+                          <FormLabel>Address</FormLabel>
                         </Grid>
                         <Grid item xs={8}>
                           <Field
                             as={TextField}
-                            name="hsnNo"
+                            name="address"
                             fullWidth
                             variant="outlined"
                             size="small"
-                            error={touched.hsnNo && !!errors.hsnNo}
+                            error={touched.address && !!errors.address}
                           />
                           <ErrorMessage
-                            name="hsnNo"
+                            name="address"
                             component="div"
                             className="text-red-600 text-xs"
                           />
@@ -317,24 +333,24 @@ const SalesInvoice = () => {
                     </FormControl>
                   </Grid>
 
-                  {/* GST */}
+                  {/* Party Name */}
                   <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
                         <Grid item xs={4}>
-                          <FormLabel>GST</FormLabel>
+                          <FormLabel>Party Name</FormLabel>
                         </Grid>
                         <Grid item xs={8}>
                           <Field
                             as={TextField}
-                            name="gst"
+                            name="partyName"
                             fullWidth
                             variant="outlined"
                             size="small"
-                            error={touched.gst && !!errors.gst}
+                            error={touched.partyName && !!errors.partyName}
                           />
                           <ErrorMessage
-                            name="gst"
+                            name="partyName"
                             component="div"
                             className="text-red-600 text-xs"
                           />
@@ -343,24 +359,24 @@ const SalesInvoice = () => {
                     </FormControl>
                   </Grid>
 
-                  {/* Cost */}
+                  {/* Mobile No */}
                   <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
                         <Grid item xs={4}>
-                          <FormLabel>Cost</FormLabel>
+                          <FormLabel>Mobile No</FormLabel>
                         </Grid>
                         <Grid item xs={8}>
                           <Field
                             as={TextField}
-                            name="cost"
+                            name="mobileNo"
                             fullWidth
                             variant="outlined"
                             size="small"
-                            error={touched.cost && !!errors.cost}
+                            error={touched.mobileNo && !!errors.mobileNo}
                           />
                           <ErrorMessage
-                            name="cost"
+                            name="mobileNo"
                             component="div"
                             className="text-red-600 text-xs"
                           />
@@ -368,25 +384,35 @@ const SalesInvoice = () => {
                       </Grid>
                     </FormControl>
                   </Grid>
-
-                  {/* Discount */}
+                </Grid>
+                <Divider className="divider" />
+                <Box >
+                  <Typography
+                
+                  >
+                  Access Details 
+                  </Typography>
+                </Box>
+                <Divider className="divider" />
+                <Grid container spacing={1}>
+                  {/* Chassis No */}
                   <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
                         <Grid item xs={4}>
-                          <FormLabel>Discount</FormLabel>
+                          <FormLabel>Chassis No</FormLabel>
                         </Grid>
                         <Grid item xs={8}>
                           <Field
                             as={TextField}
-                            name="discount"
+                            name="chassisNo"
                             fullWidth
                             variant="outlined"
                             size="small"
-                            error={touched.discount && !!errors.discount}
+                            error={touched.chassisNo && !!errors.chassisNo}
                           />
                           <ErrorMessage
-                            name="discount"
+                            name="chassisNo"
                             component="div"
                             className="text-red-600 text-xs"
                           />
@@ -395,111 +421,24 @@ const SalesInvoice = () => {
                     </FormControl>
                   </Grid>
 
-                  {/* Value */}
+                  {/* Vehicle No */}
                   <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
                         <Grid item xs={4}>
-                          <FormLabel>Value</FormLabel>
+                          <FormLabel>Vehicle No</FormLabel>
                         </Grid>
                         <Grid item xs={8}>
                           <Field
                             as={TextField}
-                            name="value"
+                            name="vehicleNo"
                             fullWidth
                             variant="outlined"
                             size="small"
-                            error={touched.value && !!errors.value}
+                            error={touched.vehicleNo && !!errors.vehicleNo}
                           />
                           <ErrorMessage
-                            name="value"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  {/* Months/Year */}
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>Months/Year</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={TextField}
-                            name="monthsYear"
-                            type="date"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.monthsYear && !!errors.monthsYear}
-                          />
-                          <ErrorMessage
-                            name="monthsYear"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  {/* Model */}
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>Model</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={Select}
-                            name="model"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.model && !!errors.model}
-                          >
-                            <MenuItem value="Model1">Model 1</MenuItem>
-                            <MenuItem value="Model2">Model 2</MenuItem>
-                            {/* Add more options */}
-                          </Field>
-                          <ErrorMessage
-                            name="model"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  {/* Chassis */}
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>Chassis</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={Select}
-                            name="chassis"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.chassis && !!errors.chassis}
-                          >
-                            <MenuItem value="Chassis1">Chassis 1</MenuItem>
-                            <MenuItem value="Chassis2">Chassis 2</MenuItem>
-                            {/* Add more options */}
-                          </Field>
-                          <ErrorMessage
-                            name="chassis"
+                            name="vehicleNo"
                             component="div"
                             className="text-red-600 text-xs"
                           />
@@ -517,17 +456,13 @@ const SalesInvoice = () => {
                         </Grid>
                         <Grid item xs={8}>
                           <Field
-                            as={Select}
+                            as={TextField}
                             name="engineNo"
                             fullWidth
                             variant="outlined"
                             size="small"
                             error={touched.engineNo && !!errors.engineNo}
-                          >
-                            <MenuItem value="Engine1">Engine 1</MenuItem>
-                            <MenuItem value="Engine2">Engine 2</MenuItem>
-                            {/* Add more options */}
-                          </Field>
+                          />
                           <ErrorMessage
                             name="engineNo"
                             component="div"
@@ -538,81 +473,161 @@ const SalesInvoice = () => {
                     </FormControl>
                   </Grid>
 
-                  {/* Remaining Fields */}
-
-                  {/* Key No */}
+                  {/* Mode Dropdown */}
                   <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
                         <Grid item xs={4}>
-                          <FormLabel>Key No</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={TextField}
-                            name="keyNo"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.keyNo && !!errors.keyNo}
-                          />
-                          <ErrorMessage
-                            name="keyNo"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  {/* PONO */}
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>PONO</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={TextField}
-                            name="pono"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.pono && !!errors.pono}
-                          />
-                          <ErrorMessage
-                            name="pono"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-                  {/* Add the rest of the fields following this pattern */}
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>Colour</FormLabel>
+                          <FormLabel>Mode</FormLabel>
                         </Grid>
                         <Grid item xs={8}>
                           <Field
                             as={Select}
-                            name="colour"
+                            name="mode"
                             fullWidth
                             variant="outlined"
                             size="small"
-                            error={touched.colour && !!errors.colour}
+                            error={touched.mode && !!errors.mode}
                           >
-                            <MenuItem value="Red">Red</MenuItem>
-                            <MenuItem value="Blue">Blue</MenuItem>
-                            {/* Add more options */}
+                            <MenuItem value="manual">Manual</MenuItem>
+                            <MenuItem value="automatic">Automatic</MenuItem>
                           </Field>
                           <ErrorMessage
-                            name="colour"
+                            name="mode"
+                            component="div"
+                            className="text-red-600 text-xs"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+
+                  {/* Color */}
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid item xs={4}>
+                          <FormLabel>Color</FormLabel>
+                        </Grid>
+                        <Grid item xs={8}>
+                          <Field
+                            as={TextField}
+                            name="color"
+                            fullWidth
+                            variant="outlined"
+                            size="small"
+                            error={touched.color && !!errors.color}
+                          />
+                          <ErrorMessage
+                            name="color"
+                            component="div"
+                            className="text-red-600 text-xs"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+
+                  {/* Price */}
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid item xs={4}>
+                          <FormLabel>Price</FormLabel>
+                        </Grid>
+                        <Grid item xs={8}>
+                          <Field
+                            as={TextField}
+                            name="price"
+                            type="number"
+                            fullWidth
+                            variant="outlined"
+                            size="small"
+                            error={touched.price && !!errors.price}
+                          />
+                          <ErrorMessage
+                            name="price"
+                            component="div"
+                            className="text-red-600 text-xs"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+
+                  {/* MFG Month/Year */}
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid item xs={4}>
+                          <FormLabel>MFG Month/Year</FormLabel>
+                        </Grid>
+                        <Grid item xs={8}>
+                          <Field
+                            as={TextField}
+                            name="mfgMonthYear"
+                            type="month"
+                            fullWidth
+                            variant="outlined"
+                            size="small"
+                            error={
+                              touched.mfgMonthYear && !!errors.mfgMonthYear
+                            }
+                          />
+                          <ErrorMessage
+                            name="mfgMonthYear"
+                            component="div"
+                            className="text-red-600 text-xs"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+
+                  {/* Charge No */}
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid item xs={4}>
+                          <FormLabel>Charge No</FormLabel>
+                        </Grid>
+                        <Grid item xs={8}>
+                          <Field
+                            as={TextField}
+                            name="chargeNo"
+                            fullWidth
+                            variant="outlined"
+                            size="small"
+                            error={touched.chargeNo && !!errors.chargeNo}
+                          />
+                          <ErrorMessage
+                            name="chargeNo"
+                            component="div"
+                            className="text-red-600 text-xs"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+                  {/* Discount */}
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid item xs={4}>
+                          <FormLabel>Discount</FormLabel>
+                        </Grid>
+                        <Grid item xs={8}>
+                          <Field
+                            as={TextField}
+                            name="discount"
+                            type="number"
+                            fullWidth
+                            variant="outlined"
+                            size="small"
+                            error={touched.discount && !!errors.discount}
+                          />
+                          <ErrorMessage
+                            name="discount"
                             component="div"
                             className="text-red-600 text-xs"
                           />
@@ -647,6 +662,35 @@ const SalesInvoice = () => {
                     </FormControl>
                   </Grid>
 
+                  {/* GST Percentage */}
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid item xs={4}>
+                          <FormLabel>GST %</FormLabel>
+                        </Grid>
+                        <Grid item xs={8}>
+                          <Field
+                            as={TextField}
+                            name="gstPercentage"
+                            type="number"
+                            fullWidth
+                            variant="outlined"
+                            size="small"
+                            error={
+                              touched.gstPercentage && !!errors.gstPercentage
+                            }
+                          />
+                          <ErrorMessage
+                            name="gstPercentage"
+                            component="div"
+                            className="text-red-600 text-xs"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+
                   {/* WRC No */}
                   <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
@@ -673,49 +717,24 @@ const SalesInvoice = () => {
                     </FormControl>
                   </Grid>
 
-                  {/* Choose File */}
+                  {/* Key No */}
                   <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
                         <Grid item xs={4}>
-                          <FormLabel>Choose File</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <input
-                            type="file"
-                            name="chooseFile"
-                            onChange={(event) => {
-                              setFieldValue("chooseFile", event.currentTarget.files[0]);
-                            }}
-                          />
-                          <ErrorMessage
-                            name="chooseFile"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  {/* Load Excel No */}
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>Load Excel No</FormLabel>
+                          <FormLabel>Key No</FormLabel>
                         </Grid>
                         <Grid item xs={8}>
                           <Field
                             as={TextField}
-                            name="loadExcelNo"
+                            name="keyNo"
                             fullWidth
                             variant="outlined"
                             size="small"
-                            error={touched.loadExcelNo && !!errors.loadExcelNo}
+                            error={touched.keyNo && !!errors.keyNo}
                           />
                           <ErrorMessage
-                            name="loadExcelNo"
+                            name="keyNo"
                             component="div"
                             className="text-red-600 text-xs"
                           />
@@ -724,80 +743,27 @@ const SalesInvoice = () => {
                     </FormControl>
                   </Grid>
 
-                  {/* Remarks */}
+                  {/* Cess Percentage */}
                   <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
                         <Grid item xs={4}>
-                          <FormLabel>Remarks</FormLabel>
+                          <FormLabel>Cess %</FormLabel>
                         </Grid>
                         <Grid item xs={8}>
                           <Field
                             as={TextField}
-                            name="remarks"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.remarks && !!errors.remarks}
-                          />
-                          <ErrorMessage
-                            name="remarks"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  {/* Gross Amount */}
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>Gross Amount</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={TextField}
-                            name="grossAmount"
-                            type="number"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.grossAmount && !!errors.grossAmount}
-                          />
-                          <ErrorMessage
-                            name="grossAmount"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  {/* Trade Discount */}
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>Trade Discount</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={TextField}
-                            name="tradeDiscount"
+                            name="cessPercentage"
                             type="number"
                             fullWidth
                             variant="outlined"
                             size="small"
                             error={
-                              touched.tradeDiscount && !!errors.tradeDiscount
+                              touched.cessPercentage && !!errors.cessPercentage
                             }
                           />
                           <ErrorMessage
-                            name="tradeDiscount"
+                            name="cessPercentage"
                             component="div"
                             className="text-red-600 text-xs"
                           />
@@ -806,27 +772,25 @@ const SalesInvoice = () => {
                     </FormControl>
                   </Grid>
 
-                  {/* Taxable Amount */}
+                  {/* Total */}
                   <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
                         <Grid item xs={4}>
-                          <FormLabel>Taxable Amount</FormLabel>
+                          <FormLabel>Total</FormLabel>
                         </Grid>
                         <Grid item xs={8}>
                           <Field
                             as={TextField}
-                            name="taxable"
+                            name="total"
                             type="number"
                             fullWidth
                             variant="outlined"
                             size="small"
-                            error={
-                              touched.taxable && !!errors.taxable
-                            }
+                            error={touched.total && !!errors.total}
                           />
                           <ErrorMessage
-                            name="taxable"
+                            name="total"
                             component="div"
                             className="text-red-600 text-xs"
                           />
@@ -835,24 +799,24 @@ const SalesInvoice = () => {
                     </FormControl>
                   </Grid>
 
-                  {/* IGST */}
+                  {/* Address */}
                   <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
                         <Grid item xs={4}>
-                          <FormLabel>IGST</FormLabel>
+                          <FormLabel>Address</FormLabel>
                         </Grid>
                         <Grid item xs={8}>
                           <Field
                             as={TextField}
-                            name="igst"
+                            name="addrss"
                             fullWidth
                             variant="outlined"
                             size="small"
-                            error={touched.igst && !!errors.igst}
+                            error={touched.addrss && !!errors.addrss}
                           />
                           <ErrorMessage
-                            name="igst"
+                            name="addrss"
                             component="div"
                             className="text-red-600 text-xs"
                           />
@@ -860,140 +824,152 @@ const SalesInvoice = () => {
                       </Grid>
                     </FormControl>
                   </Grid>
-
-                  {/* CGST */}
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>CGST</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={TextField}
-                            name="cgst"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.cgst && !!errors.cgst}
-                          />
-                          <ErrorMessage
-                            name="cgst"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  {/* SGST */}
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>SGST</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={TextField}
-                            name="sgst"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.sgst && !!errors.sgst}
-                          />
-                          <ErrorMessage
-                            name="sgst"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  {/* CESS */}
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>CESS</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={TextField}
-                            name="cess"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.cess && !!errors.cess}
-                          />
-                          <ErrorMessage
-                            name="cess"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  {/* Others */}
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>Others</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={TextField}
-                            name="others"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.others && !!errors.others}
-                          />
-                          <ErrorMessage
-                            name="others"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  {/* Net Amount */}
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>Net Amount</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={TextField}
-                            name="netAmount"
-                            type="number"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.netAmount && !!errors.netAmount}
-                          />
-                          <ErrorMessage
-                            name="netAmount"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-                  {/* Submit Button */}
-                  
                 </Grid>
+
+                <Divider className="divider" />
+                <Box >
+                <Typography
+              
+                >
+                EInvoice Details
+                </Typography>
+              </Box>
+              <Divider className="divider" />
+                {/* EInvoice Status */}
+                <Grid container spacing={1}>
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid item xs={4}>
+                          <FormLabel>EInvoice Status</FormLabel>
+                        </Grid>
+                        <Grid item xs={8}>
+                          <Field
+                            as={TextField}
+                            name="eInvoiceStatus"
+                            fullWidth
+                            variant="outlined"
+                            size="small"
+                            error={
+                              touched.eInvoiceStatus && !!errors.eInvoiceStatus
+                            }
+                          />
+                          <ErrorMessage
+                            name="eInvoiceStatus"
+                            component="div"
+                            className="text-red-600 text-xs"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+
+                  {/* IRN */}
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid item xs={4}>
+                          <FormLabel>IRN</FormLabel>
+                        </Grid>
+                        <Grid item xs={8}>
+                          <Field
+                            as={TextField}
+                            name="irn"
+                            fullWidth
+                            variant="outlined"
+                            size="small"
+                            error={touched.irn && !!errors.irn}
+                          />
+                          <ErrorMessage
+                            name="irn"
+                            component="div"
+                            className="text-red-600 text-xs"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+
+                  {/* ACK No */}
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid item xs={4}>
+                          <FormLabel>ACK No</FormLabel>
+                        </Grid>
+                        <Grid item xs={8}>
+                          <Field
+                            as={TextField}
+                            name="ackNo"
+                            fullWidth
+                            variant="outlined"
+                            size="small"
+                            error={touched.ackNo && !!errors.ackNo}
+                          />
+                          <ErrorMessage
+                            name="ackNo"
+                            component="div"
+                            className="text-red-600 text-xs"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+
+                  {/* ACK Date */}
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid item xs={4}>
+                          <FormLabel>ACK Date</FormLabel>
+                        </Grid>
+                        <Grid item xs={8}>
+                          <Field
+                            as={TextField}
+                            name="ackDate"
+                            type="date"
+                            fullWidth
+                            variant="outlined"
+                            size="small"
+                            error={touched.ackDate && !!errors.ackDate}
+                          />
+                          <ErrorMessage
+                            name="ackDate"
+                            component="div"
+                            className="text-red-600 text-xs"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+
+                  {/* EWAG No */}
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid item xs={4}>
+                          <FormLabel>EWAG No</FormLabel>
+                        </Grid>
+                        <Grid item xs={8}>
+                          <Field
+                            as={TextField}
+                            name="ewagNo"
+                            fullWidth
+                            variant="outlined"
+                            size="small"
+                            error={touched.ewagNo && !!errors.ewagNo}
+                          />
+                          <ErrorMessage
+                            name="ewagNo"
+                            component="div"
+                            className="text-red-600 text-xs"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+                </Grid>
+                {/* Submission Button */}
                 <div className="mt-6  flex items-end gap-4 ml-0 justify-end border rounded-md p-2 border-[#1A9A87]">
                   <Button
                     size="small"
@@ -1001,8 +977,9 @@ const SalesInvoice = () => {
                     color="error"
                     variant="outlined"
                     className="p-2"
+                    onClick={handelModalOpen}
                   >
-                    MiscCharge
+                    EINVOICE
                   </Button>
                   <Button
                     size="small"
@@ -1011,24 +988,23 @@ const SalesInvoice = () => {
                     variant="outlined"
                     className="p-2"
                   >
-                    Print
+                    EWAGBILL
                   </Button>
                   <Button
                     size="small"
                     type="button"
-                    color="error"
-                    variant="outlined"
-                    className="p-2"
+                    variant="contained"
+                    className="p-2 bg-sky-600"
                   >
                     New
                   </Button>
 
                   <Button
                     size="small"
-                    type="submit" 
+                    type="submit"
                     color="primary"
                     variant="contained"
-                    className="p-2"
+                    className="project-thim p-2"
                     disabled={isSubmitting}
                   >
                     Save
@@ -1068,8 +1044,9 @@ const SalesInvoice = () => {
           </Formik>
         </Box>
       </div>
+      <TrcDetailsModal detailModalOpen={detailModalOpen} handelModalOpen={handelModalOpen}/>
     </div>
   );
 };
 
-export default SalesInvoice;
+export default DeliveryInvoice;

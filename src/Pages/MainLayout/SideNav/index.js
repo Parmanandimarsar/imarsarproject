@@ -26,7 +26,6 @@ const SideNave = () => {
   const [openDropdown, setOpenDropdown] = useState(null);
   const handleDrawerOpen = () => setOpen(!open);
 
- 
   const handleDropdownClick = (index) => {
     console.log(index, "index");
 
@@ -43,8 +42,6 @@ const SideNave = () => {
   };
   return (
     <Box sx={{ display: "flex", marginBottom: "50px" }}>
-      
-
       {/* Drawer */}
       <Drawer
         className="side-nav "
@@ -82,8 +79,7 @@ const SideNave = () => {
 
         {/* Drawer List */}
         <List sx={{ color: "white" }}>
-          {menuItems.map((item, index) => 
-            (
+          {menuItems.map((item, index) => (
             <React.Fragment key={index}>
               <ListItem disablePadding>
                 <ListItemButton
@@ -99,6 +95,7 @@ const SideNave = () => {
                     primary={item.text}
                     sx={{ opacity: open ? 1 : 0 }}
                   />
+
                   {/* Toggle icon based on open/close state */}
                   {item.subItems.length > 0 ? (
                     openDropdown === index ? (
@@ -109,6 +106,7 @@ const SideNave = () => {
                   ) : null}
                 </ListItemButton>
               </ListItem>
+              <Divider />
 
               {/* Dropdown for sub-items */}
               {item.subItems.length > 0 && (
@@ -118,7 +116,7 @@ const SideNave = () => {
                   unmountOnExit
                   onClick={handleSubChild}
                 >
-                  <List component="div" disablePadding>
+                  <List component="div" disablePadding className="submenu">
                     {item.subItems.map((subItem, subIndex) => (
                       <ListItemButton
                         key={subItem}
@@ -128,9 +126,9 @@ const SideNave = () => {
                           pl: 3,
                           justifyContent: open ? "initial" : "center",
                         }}
-                        >
+                      >
                         <ListItemIcon
-                        key={subIndex}
+                          key={subIndex}
                           sx={{ justifyContent: "center", color: "white" }}
                         >
                           {subItem.icon}
@@ -139,18 +137,20 @@ const SideNave = () => {
                           primary={subItem.text}
                           sx={{ opacity: open ? 1 : 0 }}
                         />
-                      </ListItemButton>
+                        <Divider  />
+                        </ListItemButton>
                     ))}
+                    
                   </List>
+                  <Divider  />
                 </Collapse>
               )}
             </React.Fragment>
           ))}
         </List>
 
-        <Divider  className="divider"/>
+        <Divider className="divider" />
       </Drawer>
-      
     </Box>
   );
 };

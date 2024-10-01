@@ -31,7 +31,7 @@ export const menuItems = [
       icon: <MailIcon />,
       subItems: [
         
-        { text: "Sales-Challan(", link: "/sales-challan(", icon: <MailIcon /> },
+        { text: "Sales-Challan", link: "/sales-challan", icon: <MailIcon /> },
         { text: "Sales-Invoice", link: "/sales-invoice", icon: <MailIcon /> },
         { text: "Delivery-Challan", link: "/delivery-challan", icon: <MailIcon /> },
         { text: "Delivery-Invoice", link: "/delivery-invoice", icon: <MailIcon /> },
@@ -41,9 +41,11 @@ export const menuItems = [
       text: "Accounts",
       icon:<InboxIcon /> ,
       subItems: [
-        { text: "Payment-Voucher", link: "/payment-voucher", icon: <MailIcon /> },
-        { text: "Vehical-Master", link: "/vehical-master", icon: <MailIcon /> },
-        { text: "Company-Master", link: "/company-master", icon: <MailIcon /> },
+        { text: "Account Payment Voucher", link: "/account-payment-voucher", icon: <MailIcon /> },
+        { text: "Contra Voucher", link: "/contra-voucher", icon: <MailIcon /> },
+        { text: "Cash Books", link: "/cash-books", icon: <MailIcon /> },
+        { text: "Expense Books", link: "/expense-book", icon: <MailIcon /> },
+        { text: "Ledger view", link: "/ledger-view", icon: <MailIcon /> },
       ],
     },
   ];

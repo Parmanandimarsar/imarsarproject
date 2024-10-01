@@ -25,6 +25,7 @@ import {
   Box,
   Typography,
   Divider,
+  Checkbox,
 } from "@mui/material";
 import SideNav from "../../../Pages/MainLayout/SideNav";
 import TrcDetailsModal from "./TrcDetailsModal";
@@ -107,9 +108,9 @@ const DeliveryInvoice = () => {
       setSubmitting(false);
     }, 400);
   };
-const handelModalOpen=()=>{
-    setDetailModalOpen(!detailModalOpen)
-}
+  const handelModalOpen = () => {
+    setDetailModalOpen(!detailModalOpen);
+  };
   return (
     <div className="w-full flex">
       <div className="w-[15%] sm:w-[5%]">
@@ -386,12 +387,8 @@ const handelModalOpen=()=>{
                   </Grid>
                 </Grid>
                 <Divider className="divider" />
-                <Box >
-                  <Typography
-                
-                  >
-                  Access Details 
-                  </Typography>
+                <Box>
+                  <Typography>Access Details</Typography>
                 </Box>
                 <Divider className="divider" />
                 <Grid container spacing={1}>
@@ -827,14 +824,10 @@ const handelModalOpen=()=>{
                 </Grid>
 
                 <Divider className="divider" />
-                <Box >
-                <Typography
-              
-                >
-                EInvoice Details
-                </Typography>
-              </Box>
-              <Divider className="divider" />
+                <Box>
+                  <Typography>EInvoice Details</Typography>
+                </Box>
+                <Divider className="divider" />
                 {/* EInvoice Status */}
                 <Grid container spacing={1}>
                   <Grid item xs={12} sm={6} md={4} lg={3}>
@@ -969,6 +962,47 @@ const handelModalOpen=()=>{
                     </FormControl>
                   </Grid>
                 </Grid>
+
+                <div>
+                  <FormControlLabel
+                    control={<Checkbox sx={{ transform: "scale(0.8)" }}/>}
+                    label="Print After Save"
+                  />
+
+                  {/* Subsidy Invoice */}
+                  <FormControlLabel
+                    control={<Checkbox sx={{ transform: "scale(0.8)" }}/>}
+                    label="Subsidy Invoice"
+                    size="small"
+                  />
+
+                  {/* Send SMS After Save */}
+                  <FormControlLabel
+                    control={<Checkbox sx={{ transform: "scale(0.8)" }}/>}
+                    label="Send SMS After Save"
+                    size="small"
+                  />
+
+                  {/* Invoice */}
+                  <FormControlLabel control={<Checkbox sx={{ transform: "scale(0.8)" }}/>} size="small" label="Invoice" />
+
+                  {/* Sale Certificate */}
+                  <FormControlLabel
+                    control={<Checkbox sx={{ transform: "scale(0.8)" }}/>}
+                    label="Sale Certificate"
+                    size="small"
+                  />
+
+                  {/* Form No.20 */}
+                  <FormControlLabel control={<Checkbox sx={{ transform: "scale(0.8)" }}/>} size="small" label="Form No.20" />
+
+                  {/* Invoice With Access Form No.19 */}
+                  <FormControlLabel
+                    control={<Checkbox sx={{ transform: "scale(0.8)" }}/>}
+                    label="Invoice With Access Form No.19"
+                  />
+                </div>
+
                 {/* Submission Button */}
                 <div className="mt-6  flex items-end gap-4 ml-0 justify-end border rounded-md p-2 border-[#1A9A87]">
                   <Button
@@ -1044,7 +1078,10 @@ const handelModalOpen=()=>{
           </Formik>
         </Box>
       </div>
-      <TrcDetailsModal detailModalOpen={detailModalOpen} handelModalOpen={handelModalOpen}/>
+      <TrcDetailsModal
+        detailModalOpen={detailModalOpen}
+        handelModalOpen={handelModalOpen}
+      />
     </div>
   );
 };

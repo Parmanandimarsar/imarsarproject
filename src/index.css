@@ -6,6 +6,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 12px !important;
+  font-weight: 400 !important;
+  letter-spacing: 1px !important;
 }
 
 code {

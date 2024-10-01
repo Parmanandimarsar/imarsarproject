@@ -17,7 +17,6 @@ import LabourMaster from "../Components/Form/Master/LabourMaster";
 import MiscMaster from "../Components/Form/Master/MiscMaster";
 import VehicleOrder from "../Components/Form/PurchaseMaster/VehicleOrder";
 import PurchaseChallanVehicle from '../Components/Form/PurchaseMaster/PurchaseChallan';
-import PurchaseChallan from '../Components/Form/PurchaseMaster/PurchaseChallan';
 import PaymentVoucher from '../Components/Form/PurchaseMaster/PaymentVoucher';
 import SalesModel from '../Components/Form/PurchaseMaster/SalesModel';
 import ReceiptBooking from '../Components/Form/PurchaseMaster/ReceiptBooking';
@@ -25,6 +24,11 @@ import SalesChallan from '../Components/Form/Subdealer/SalesChallan';
 import SalesInvoice from '../Components/Form/Subdealer/SalesInvoice';
 import DeliveryChallan from '../Components/Form/Subdealer/DeliveryChallan';
 import DeliveryInvoice from '../Components/Form/Subdealer/DeliveryInvoice';
+import AccountsPaymentVoucher from '../Components/Form/Accounts/AccountsPaymentVoucher';
+import ContraVoucher from '../Components/Form/Accounts/ContraVoucher';
+import CashBooks from '../Components/Form/Accounts/CashBooks';
+import ExpenseBook from '../Components/Form/Accounts/ExpenseBook';
+import LedgerView from '../Components/Form/Accounts/LedgerView';
 const Layout = () => (
     <div>
       <Navbar />
@@ -94,7 +98,7 @@ const router = createBrowserRouter([
           element: <ReceiptBooking/>,
         },
         {
-          path: "/sales-challan(",
+          path: "/sales-challan",
           element: <SalesChallan/>,
         },
         {
@@ -110,12 +114,24 @@ const router = createBrowserRouter([
           element: <DeliveryInvoice/>,
         },
         {
-          path: "/payment-voucher",
-          element: <DeliveryInvoice/>,
+          path: "/account-payment-voucher",
+          element: <AccountsPaymentVoucher/>,
         },
         {
-          path: "/delivery-invoice",
-          element: <DeliveryInvoice/>,
+          path: "/contra-voucher",
+          element: <ContraVoucher/>,
+        },
+        {
+          path: "/cash-books",
+          element: <CashBooks/>,
+        },
+        {
+          path: "/expense-book",
+          element: <ExpenseBook/>,
+        },
+        {
+          path: "/ledger-view",
+          element: <LedgerView/>,
         },
       ],
     },

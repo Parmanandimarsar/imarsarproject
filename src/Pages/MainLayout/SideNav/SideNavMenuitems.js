@@ -46,6 +46,8 @@ export const menuItems = [
         { text: "Cash Books", link: "/cash-books", icon: <MailIcon /> },
         { text: "Expense Books", link: "/expense-book", icon: <MailIcon /> },
         { text: "Ledger view", link: "/ledger-view", icon: <MailIcon /> },
+        { text: "Income", link: "/income", icon: <MailIcon /> },
+        { text: "Receipt", link: "/receipt", icon: <MailIcon /> },
       ],
     },
   ];

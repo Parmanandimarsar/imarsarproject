@@ -29,6 +29,8 @@ import ContraVoucher from '../Components/Form/Accounts/ContraVoucher';
 import CashBooks from '../Components/Form/Accounts/CashBooks';
 import ExpenseBook from '../Components/Form/Accounts/ExpenseBook';
 import LedgerView from '../Components/Form/Accounts/LedgerView';
+import Income from '../Components/Form/Accounts/Income';
+import Receipt from '../Components/Form/Accounts/Receipt';
 const Layout = () => (
     <div>
       <Navbar />
@@ -132,6 +134,14 @@ const router = createBrowserRouter([
         {
           path: "/ledger-view",
           element: <LedgerView/>,
+        },
+        {
+          path: "/income",
+          element: <Income/>,
+        },
+        {
+          path: "/receipt",
+          element: <Receipt/>,
         },
       ],
     },

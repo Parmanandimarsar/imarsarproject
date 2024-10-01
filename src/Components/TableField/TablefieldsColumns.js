@@ -666,3 +666,163 @@ export const OpeningStockscolumns = [
     },
     
   ];
+  export const AccountIncomeTable=[
+    { field: "id", headerName: "Sr. No", width: 130 ,
+      sortable: true, 
+      disableColumnMenu: true,
+    },
+    { field: "igst", headerName: "IncomeDate", width: 130 ,
+      sortable: true, 
+      disableColumnMenu: true,
+     
+
+    },
+    { field: "cgst", headerName: "IDate", width: 130 ,
+     sortable: true, 
+      disableColumnMenu: true,
+    },
+    {
+      field: "sgst",
+      headerName: "InComeType",
+      type: "number",
+      width: 130,
+      sortable: true, 
+      disableColumnMenu: true,
+     
+    },
+    {
+      field: "cess",
+      headerName: "Particular",
+     
+      width: 130,
+      sortable: true, 
+      disableColumnMenu: true,
+     
+    },
+    {
+      field: "regd",
+      headerName: "Amount ",
+      type: "number",
+      width: 130,
+      sortable: true, 
+      disableColumnMenu: true,
+      
+    },
+    {
+      field: "insur",
+      headerName: "LedgerName",
+      type: "number",
+      width: 130,
+      sortable: true, 
+      disableColumnMenu: true,
+    },
+    {
+      field: "hpa",
+      headerName: "TotalIncome",
+      type: "number",
+      width: 130,
+      sortable: true, 
+      disableColumnMenu: true,
+    },
+    {
+      field: "hpa",
+      headerName: "Amount",
+      type: "number",
+      width: 130,
+      sortable: true, 
+      disableColumnMenu: true,
+    },
+    {
+      field: "hpa",
+      headerName: "Remarks",
+      type: "number",
+      width: 130,
+      sortable: true, 
+      disableColumnMenu: true,
+    },
+    
+  ];
+  export const AccountReceiptTable=[
+    { field: "id", headerName: "Sr. No", width: 130 ,
+      sortable: true, 
+      disableColumnMenu: true,
+    },
+    { field: "igst", headerName: "ReceiptDate", width: 130 ,
+      sortable: true, 
+      disableColumnMenu: true,
+     
+
+    },
+    { field: "cgst", headerName: "Prefix", width: 130 ,
+     sortable: true, 
+      disableColumnMenu: true,
+    },
+    {
+      field: "sgst",
+      headerName: "VouchNo",
+      type: "number",
+      width: 130,
+      sortable: true, 
+      disableColumnMenu: true,
+     
+    },
+    {
+      field: "cess",
+      headerName: "LedgerName",
+     
+      width: 130,
+      sortable: true, 
+      disableColumnMenu: true,
+     
+    },
+    {
+      field: "regd",
+      headerName: "TotAmount ",
+      type: "number",
+      width: 130,
+      sortable: true, 
+      disableColumnMenu: true,
+      
+    },
+    {
+      field: "insur",
+      headerName: "PaidAmt",
+      type: "number",
+      width: 130,
+      sortable: true, 
+      disableColumnMenu: true,
+    },
+    {
+      field: "hpa",
+      headerName: "Bal",
+      type: "number",
+      width: 130,
+      sortable: true, 
+      disableColumnMenu: true,
+    },
+    {
+      field: "hpa",
+      headerName: "TranDate",
+      type: "number",
+      width: 130,
+      sortable: true, 
+      disableColumnMenu: true,
+    },
+    {
+      field: "hpa",
+      headerName: "TotAmt",
+      type: "number",
+      width: 130,
+      sortable: true, 
+      disableColumnMenu: true,
+    },
+    {
+      field: "hpa",
+      headerName: "Remarks",
+      type: "number",
+      width: 130,
+      sortable: true, 
+      disableColumnMenu: true,
+    },
+    
+  ];

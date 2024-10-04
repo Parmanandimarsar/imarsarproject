@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import {
-  TextField,
   Typography,
   MenuItem,
   Select,
@@ -9,40 +8,119 @@ import {
   FormLabel,
   Divider,
   Paper,
-  Button,
+ 
 } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import SideNave from "../../../Pages/MainLayout/SideNav";
 import { DataGrid } from "@mui/x-data-grid";
 import { MasterDistrictStateTable } from "../../TableField/TablefieldsColumns";
+
+
+
 const DistrictStateMaster = () => {
-  // Validation schema
+  const [selectedState, setSelectedState] = useState(""); // State to store the selected state
+  const [selectedDistrict, setSelectedDistrict] = useState(""); // State to store the selected district
+  const [selectedCity, setSelectedCity] = useState(""); // State to store the selected city
+  const [districts, setDistricts] = useState([]); // State to store the list of districts
+  const [cities, setCities] = useState([]); // State to store the list of cities
+  const [addedRows, setAddedRows] = useState([]); // State to store added rows to the table
+  const [editRowId, setEditRowId] = useState(null);
   const paginationModel = { page: 0, pageSize: 5 };
 
-  const rows = [
-    {
-      id: 1,
-      igst: "Snow",
-      cgst: "Jon",
-      sgst: 35,
-      cess: "434",
-      regd: "45",
-      insur: "gfg",
-      hpa: "564",
-      agree: "yes",
-      other: "oyther",
-      discount: "5%",
+  const stateDistrictCityData = {
+    "Uttar Pradesh": {
+      Agra: ["Agra City", "Fatehpur Sikri", "Kiraoli"],
+      Aligarh: ["Aligarh City", "Khair", "Atrauli"],
+      Allahabad: ["Allahabad City", "Phulpur", "Soraon"],
+      Varanasi: ["Varanasi City", "Ramnagar", "Pindra"],
     },
-  ];
+    Maharashtra: {
+      Mumbai: ["South Mumbai", "Andheri", "Borivali"],
+      Pune: ["Pune City", "Kothrud", "Shivajinagar"],
+      Nagpur: ["Nagpur City", "Hingna", "Kamthi"],
+      Nashik: ["Nashik City", "Sinnar", "Igatpuri"],
+    },
+    Gujarat: {
+      Ahmedabad: ["Ahmedabad City", "Sanand", "Dholka"],
+      Surat: ["Surat City", "Bardoli", "Choryasi"],
+      Vadodara: ["Vadodara City", "Dabhoi", "Karjan"],
+      Rajkot: ["Rajkot City", "Morbi", "Jetpur"],
+    },
+  };
+
+  // Handle State Change
+  const handleStateChange = (event) => {
+    const state = event.target.value;
+    setSelectedState(state);
+    setSelectedDistrict("");
+    setCities([]);
+    setDistricts(Object.keys(stateDistrictCityData[state] || {}));
+  };
+
+  // Handle District Change
+  const handleDistrictChange = (event) => {
+    const district = event.target.value;
+    setSelectedDistrict(district);
+    setCities(stateDistrictCityData[selectedState][district] || []);
+  };
+  const handleCityChange = (event) => {
+    setSelectedCity(event.target.value);
+  };
+  const handleAdd = () => {
+    if (editRowId) {
+      // If editing, update the row
+      const updatedRows = addedRows.map((row) =>
+        row.id === editRowId
+          ? {
+              ...row,
+              state: selectedState,
+              district: selectedDistrict,
+              city: selectedCity,
+            }
+          : row
+      );
+      setAddedRows(updatedRows);
+      setEditRowId(null); 
+    } else {
+      // Add new row
+      if (selectedState && selectedDistrict && selectedCity) {
+        const newRow = {
+          id: addedRows.length + 1, 
+          state: selectedState,
+          district: selectedDistrict,
+          city: selectedCity,
+        };
+        setAddedRows([...addedRows, newRow]);
+      } else {
+        alert("Please select state, district, and city.");
+      }
+    }
+    // Optionally, reset the selection
+    setSelectedState("");
+    setSelectedDistrict("");
+    setSelectedCity("");
+    setDistricts([]);
+    setCities([]);
+  };
+  const handleEdit = (row) => {
+    setEditRowId(row.id);
+    setSelectedState(row.state);
+    setSelectedDistrict(row.district);
+    setSelectedCity(row.city);
+    setDistricts(Object.keys(stateDistrictCityData[row.state] || {}));
+    setCities(stateDistrictCityData[row.state][row.district] || []);
+  };
+
+  
 
   return (
-    <div className="w-full flex">
+    <div className="w-full flex ">
       <div className="w-[15%] sm:w-[5%]">
         <SideNave />
       </div>
 
-      <div className="w-[80%] sm:w-[90%] lg:w-[94%]  mb-[50px] mx-auto">
-        <Box className="bg-white rounded-lg shadow-lg" autoComplete="off">
+      <div className="w-[80%] sm:w-[90%] lg:w-[94%]  mx-auto">
+        <Box className="bg-white rounded-lg shadow-lg pb-5" autoComplete="off">
           <Box className="flex justify-between items-center mb-1 project-thim text-white p-1 rounded-t-lg">
             <Typography
               variant="h6"
@@ -53,78 +131,10 @@ const DistrictStateMaster = () => {
             </Typography>
           </Box>
           <Divider className="divider" />
-          <div className=" pl-1 pr-1">
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6} md={4} lg={3}>
-                <FormControl fullWidth>
-                  <Grid container alignItems="center">
-                    <Grid item xs={4}>
-                      <FormLabel>Branch</FormLabel>
-                    </Grid>
-                    <Grid item xs={8}>
-                      <Select
-                        name="branch"
-                        // value={formValues.branch}
-                        // onChange={handleChange}
-                        fullWidth
-                        variant="outlined"
-                        size="small"
-                      >
-                        <MenuItem value="">Branch Select</MenuItem>
-                        <MenuItem value="rv1">Branch 1</MenuItem>
-                        <MenuItem value="rv2">Branch 2</MenuItem>
-                      </Select>
-                    </Grid>
-                  </Grid>
-                </FormControl>
-              </Grid>
 
-              <Grid item xs={12} sm={6} md={4} lg={3}>
-                <FormControl fullWidth>
-                  <Grid container alignItems="center">
-                    <Grid item xs={4}>
-                      <FormLabel>District</FormLabel>
-                    </Grid>
-                    <Grid item xs={8}>
-                      <Select
-                        name="branch"
-                        // value={formValues.branch}
-                        // onChange={handleChange}
-                        fullWidth
-                        variant="outlined"
-                        size="small"
-                      >
-                        <MenuItem value="">District Select</MenuItem>
-                        <MenuItem value="rv1">District 1</MenuItem>
-                        <MenuItem value="rv2">District 2</MenuItem>
-                      </Select>
-                    </Grid>
-                  </Grid>
-                </FormControl>
-              </Grid>
-              <Grid item xs={12} sm={6} md={4} lg={3}>
-                <FormControl fullWidth>
-                  <Grid container alignItems="center">
-                    <Grid item xs={4}>
-                      <FormLabel>City</FormLabel>
-                    </Grid>
-                    <Grid item xs={8}>
-                      <Select
-                        name="City"
-                        // value={formValues.branch}
-                        // onChange={handleChange}
-                        fullWidth
-                        variant="outlined"
-                        size="small"
-                      >
-                        <MenuItem value="">City Select</MenuItem>
-                        <MenuItem value="rv1">City 1</MenuItem>
-                        <MenuItem value="rv2">City 2</MenuItem>
-                      </Select>
-                    </Grid>
-                  </Grid>
-                </FormControl>
-              </Grid>
+          <div className="pl-1 pr-1">
+            <Grid container spacing={2}>
+              {/* State Dropdown */}
               <Grid item xs={12} sm={6} md={4} lg={3}>
                 <FormControl fullWidth>
                   <Grid container alignItems="center">
@@ -134,46 +144,105 @@ const DistrictStateMaster = () => {
                     <Grid item xs={8}>
                       <Select
                         name="State"
-                        // value={formValues.branch}
-                        // onChange={handleChange}
+                        value={selectedState}
+                        placeholder="Select State"
+                        onChange={handleStateChange}
                         fullWidth
                         variant="outlined"
                         size="small"
+                        displayEmpty
                       >
-                        <MenuItem value="">State Select</MenuItem>
-                        <MenuItem value="rv1">State 1</MenuItem>
-                        <MenuItem value="rv2">State 2</MenuItem>
+                        <MenuItem value="" disabled>
+                          State Select
+                        </MenuItem>
+                        {Object.keys(stateDistrictCityData).map((state) => (
+                          <MenuItem key={state} value={state}>
+                            {state}
+                          </MenuItem>
+                        ))}
                       </Select>
                     </Grid>
                   </Grid>
                 </FormControl>
               </Grid>
+
+              {/* District Dropdown */}
               <Grid item xs={12} sm={6} md={4} lg={3}>
                 <FormControl fullWidth>
                   <Grid container alignItems="center">
                     <Grid item xs={4}>
-                      <FormLabel>STD CODE</FormLabel>
+                      <FormLabel>District</FormLabel>
                     </Grid>
                     <Grid item xs={8}>
-                      <TextField
-                        name="STDCODE"
-                        // value={formValues.branch}
-                        // onChange={handleChange}
+                      <Select
+                        name="District"
+                        value={selectedDistrict}
+                        onChange={handleDistrictChange}
+                        placeholder="Select District"
                         fullWidth
                         variant="outlined"
                         size="small"
-                      ></TextField>
+                        disabled={!selectedState} // Disable if no state selected
+                        displayEmpty
+                      >
+                        <MenuItem value="" disabled>
+                          Select District{" "}
+                        </MenuItem>
+                        {districts.map((district) => (
+                          <MenuItem key={district} value={district}>
+                            {district}
+                          </MenuItem>
+                        ))}
+                      </Select>
                     </Grid>
                   </Grid>
                 </FormControl>
               </Grid>
 
+              {/* City Dropdown */}
+              <Grid item xs={12} sm={6} md={4} lg={3}>
+                <FormControl fullWidth>
+                  <Grid container alignItems="center">
+                    <Grid item xs={4}>
+                      <FormLabel>City</FormLabel>
+                    </Grid>
+                    <Grid item xs={8}>
+                      <Select
+                        name="City"
+                        value={selectedCity}
+                        onChange={handleCityChange}
+                        placeholder="Select City"
+                        fullWidth
+                        variant="outlined"
+                        size="small"
+                        disabled={!selectedDistrict} // Disable if no district selected
+                        displayEmpty
+                      >
+                        <MenuItem value="" disabled>
+                          {" "}
+                          Select City{" "}
+                        </MenuItem>
+                        {cities.map((city) => (
+                          <MenuItem key={city} value={city}>
+                            {city}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </Grid>
+                  </Grid>
+                </FormControl>
+              </Grid>
+
+              {/* Search Button */}
               <Grid item xs={12} sm={6} md={4} lg={3}>
                 <FormControl fullWidth>
                   <Grid container alignItems="center">
                     <Grid item xs={12}>
-                      <button className="border-2 rounded-lg  px-5 bg-green-600 text-white ">
-                        Search
+                      <button
+                        className="border-2 rounded-lg px-5 bg-green-600 text-white "
+                        onClick={handleAdd}
+                      >
+                        {editRowId ? "Update" : "Add"}
                       </button>
                     </Grid>
                   </Grid>
@@ -181,7 +250,9 @@ const DistrictStateMaster = () => {
               </Grid>
             </Grid>
           </div>
-          <div className="border border-[#338691] mt-2 rounded-lg ml-1 mr-1">
+
+          {/* Table Section */}
+          <div className="border border-[#338691] mt-2 rounded-lg ml-1 mr-1 w-[650px] ">
             <Typography variant="h6" sx={{ padding: "1px" }}>
               District State Master Table
             </Typography>
@@ -195,8 +266,9 @@ const DistrictStateMaster = () => {
             >
               <DataGrid
                 className="PaymentVoucherTable"
-                rows={rows}
-                columns={MasterDistrictStateTable}
+                rows={addedRows}
+               
+                columns={MasterDistrictStateTable(handleEdit)}
                 initialState={{ pagination: { paginationModel } }}
                 pageSizeOptions={[5, 10]}
                 rowHeight={30}
@@ -204,58 +276,9 @@ const DistrictStateMaster = () => {
                 columnHeaderHeight={30}
                 checkboxSelection={false}
                 hideFooterSelectedRowCount
+               
               />
             </Paper>
-          </div>
-          <div className="mt-6  flex items-end gap-4 ml-0 justify-end border rounded-md p-2 border-[#1A9A87]">
-            <Button
-              size="small"
-              type="button"
-              color="error"
-              variant="outlined"
-              className="p-2"
-            >
-              New
-            </Button>
-
-            <Button
-              size="small"
-              type="submit"
-              color="primary"
-              variant="contained"
-              className="p-2"
-            >
-              Save
-            </Button>
-
-            <Button
-              size="small"
-              type="button"
-              color="error"
-              variant="outlined"
-              className="p-2"
-            >
-              Delete
-            </Button>
-
-            <Button
-              size="small"
-              type="reset"
-              color="default"
-              variant="outlined"
-              className="p-2"
-            >
-              Refresh
-            </Button>
-
-            <Button
-              size="small"
-              color="default"
-              variant="outlined"
-              className="p-2"
-            >
-              Exit
-            </Button>
           </div>
         </Box>
       </div>

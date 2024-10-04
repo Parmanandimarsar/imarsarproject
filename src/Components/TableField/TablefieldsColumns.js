@@ -1,4 +1,5 @@
-
+import { IconButton } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit"; 
 export const MasterHSNCodeTable=[
   { field: "id", headerName: "Sr. No", width: 130 ,
     sortable: true, 
@@ -52,24 +53,21 @@ export const MasterLedgerGroupTable=[
   
 ];
 
-export const MasterDistrictStateTable=[
-  { field: "id", headerName: "Sr. No", width: 130 ,
-    sortable: true, 
-    disableColumnMenu: true,
+export const MasterDistrictStateTable = (handleEdit) => [
+  { field: "id", headerName: "ID", width: 70 },
+  { field: "state", headerName: "State", width: 150 },
+  { field: "district", headerName: "District", width: 150 },
+  { field: "city", headerName: "City", width: 150 },
+  {
+    field: "actions",
+    headerName: "Actions",
+    width: 100,
+    renderCell: (params) => (
+      <IconButton onClick={() => handleEdit(params.row)}>
+        <EditIcon sx={{ fontSize: 16 }} />
+      </IconButton>
+    ),
   },
-  { field: "igst", headerName: "District_Name", width: 130 ,
-    sortable: true, 
-    disableColumnMenu: true,
-  },
-  { field: "cgst", headerName: "City_Name", width: 130 ,
-    sortable: true, 
-     disableColumnMenu: true,
-   },
-   { field: "cgst", headerName: "State_Name_name", width: 130 ,
-    sortable: true, 
-     disableColumnMenu: true,
-   },
-
 ];
 export const OpeningStockscolumns = [
     { field: "id", headerName: "HSNCODE", width: 130 ,

@@ -31,6 +31,12 @@ import ExpenseBook from '../Components/Form/Accounts/ExpenseBook';
 import LedgerView from '../Components/Form/Accounts/LedgerView';
 import Income from '../Components/Form/Accounts/Income';
 import Receipt from '../Components/Form/Accounts/Receipt';
+import BankBook from '../Components/Form/Accounts/BankBook';
+import HSNCODEMaster from '../Components/Form/Master/HSNCODEMaster';
+import PartsMaster from '../Components/Form/Master/PartsMaster';
+import LocationMaster from '../Components/Form/Master/LocationMaster';
+import LedgerGroup from '../Components/Form/Master/LedgerGroup';
+import DistrictStateMaster from '../Components/Form/Master/DistrictStateMaster';
 const Layout = () => (
     <div>
       <Navbar />
@@ -142,6 +148,30 @@ const router = createBrowserRouter([
         {
           path: "/receipt",
           element: <Receipt/>,
+        },
+        {
+          path: "/bank-book",
+          element: <BankBook/>,
+        },
+        {
+          path: "/hsncode-master",
+          element: <HSNCODEMaster/>,
+        },
+        {
+          path: "/parts-master",
+          element: <PartsMaster/>,
+        },
+        {
+          path: "/location-master",
+          element: <LocationMaster/>,
+        },
+        {
+          path: "/ledger-group",
+          element: <LedgerGroup/>,
+        },
+        {
+          path: "/distric-state-master",
+          element: <DistrictStateMaster/>,
         },
       ],
     },

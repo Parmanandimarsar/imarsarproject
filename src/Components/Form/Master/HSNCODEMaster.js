@@ -9,81 +9,17 @@ import {
   FormLabel,
   Divider,
   Paper,
+  Button,
 } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import SideNave from "../../../Pages/MainLayout/SideNav";
 import { DataGrid } from "@mui/x-data-grid";
-import { AccountBankBookTable } from "../../TableField/TablefieldsColumns";
-const BankBook = () => {
+import { MasterHSNCodeTable } from "../../TableField/TablefieldsColumns";
+const HSNCODEMaster = () => {
   // Validation schema
   const paginationModel = { page: 0, pageSize: 5 };
 
   const rows = [
-    {
-      id: 1,
-      igst: "Snow",
-      cgst: "Jon",
-      sgst: 35,
-      cess: "434",
-      regd: "45",
-      insur: "gfg",
-      hpa: "564",
-      agree: "yes",
-      other: "oyther",
-      discount: "5%",
-    },
-    {
-      id: 1,
-      igst: "Snow",
-      cgst: "Jon",
-      sgst: 35,
-      cess: "434",
-      regd: "45",
-      insur: "gfg",
-      hpa: "564",
-      agree: "yes",
-      other: "oyther",
-      discount: "5%",
-    },
-    {
-      id: 1,
-      igst: "Snow",
-      cgst: "Jon",
-      sgst: 35,
-      cess: "434",
-      regd: "45",
-      insur: "gfg",
-      hpa: "564",
-      agree: "yes",
-      other: "oyther",
-      discount: "5%",
-    },
-    {
-      id: 1,
-      igst: "Snow",
-      cgst: "Jon",
-      sgst: 35,
-      cess: "434",
-      regd: "45",
-      insur: "gfg",
-      hpa: "564",
-      agree: "yes",
-      other: "oyther",
-      discount: "5%",
-    },
-    {
-      id: 1,
-      igst: "Snow",
-      cgst: "Jon",
-      sgst: 35,
-      cess: "434",
-      regd: "45",
-      insur: "gfg",
-      hpa: "564",
-      agree: "yes",
-      other: "oyther",
-      discount: "5%",
-    },
     {
       id: 1,
       igst: "Snow",
@@ -113,7 +49,7 @@ const BankBook = () => {
               component="h1"
               className="text-center mb-2"
             >
-              Bank Book
+              HSN CODE Master
             </Typography>
           </Box>
           <Divider className="divider" />
@@ -146,21 +82,17 @@ const BankBook = () => {
                 <FormControl fullWidth>
                   <Grid container alignItems="center">
                     <Grid item xs={4}>
-                      <FormLabel>Location</FormLabel>
+                      <FormLabel>HSN Code </FormLabel>
                     </Grid>
                     <Grid item xs={8}>
-                      <Select
+                      <TextField
                         name="branch"
                         // value={formValues.branch}
                         // onChange={handleChange}
                         fullWidth
                         variant="outlined"
                         size="small"
-                      >
-                        <MenuItem value="">Location Select</MenuItem>
-                        <MenuItem value="rv1">Location 1</MenuItem>
-                        <MenuItem value="rv2">Location 2</MenuItem>
-                      </Select>
+                      ></TextField>
                     </Grid>
                   </Grid>
                 </FormControl>
@@ -169,12 +101,30 @@ const BankBook = () => {
                 <FormControl fullWidth>
                   <Grid container alignItems="center">
                     <Grid item xs={4}>
-                      <FormLabel>From</FormLabel>
+                      <FormLabel>IGST </FormLabel>
+                    </Grid>
+                    <Grid item xs={8}>
+                      <TextField
+                        // value={formValues.branch}
+                        // onChange={handleChange}
+                        fullWidth
+                        variant="outlined"
+                        size="small"
+                      ></TextField>
+                    </Grid>
+                  </Grid>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} sm={6} md={4} lg={3}>
+                <FormControl fullWidth>
+                  <Grid container alignItems="center">
+                    <Grid item xs={4}>
+                      <FormLabel>CGST</FormLabel>
                     </Grid>
                     <Grid item xs={8}>
                       <TextField
                         name="date"
-                        type="date"
+                        type="text"
                         fullWidth
                         variant="outlined"
                         size="small"
@@ -187,12 +137,12 @@ const BankBook = () => {
                 <FormControl fullWidth>
                   <Grid container alignItems="center">
                     <Grid item xs={4}>
-                      <FormLabel>To</FormLabel>
+                      <FormLabel>SGST</FormLabel>
                     </Grid>
                     <Grid item xs={8}>
                       <TextField
-                        name="date"
-                        type="date"
+                        name="SGST"
+                        type="text"
                         fullWidth
                         variant="outlined"
                         size="small"
@@ -201,35 +151,13 @@ const BankBook = () => {
                   </Grid>
                 </FormControl>
               </Grid>
-              <Grid item xs={12} sm={6} md={4} lg={3}>
-                <FormControl fullWidth>
-                  <Grid container alignItems="center">
-                    <Grid item xs={4}>
-                      <FormLabel>Bal Type </FormLabel>
-                    </Grid>
-                    <Grid item xs={8}>
-                      <Select
-                        name="branch"
-                        // value={formValues.branch}
-                        // onChange={handleChange}
-                        fullWidth
-                        variant="outlined"
-                        size="small"
-                      >
-                        <MenuItem value="">Bal Type Select</MenuItem>
-                        <MenuItem value="rv1">Bal Type 1</MenuItem>
-                        <MenuItem value="rv2">Bal Type 2</MenuItem>
-                      </Select>
-                    </Grid>
-                  </Grid>
-                </FormControl>
-              </Grid>
+
               <Grid item xs={12} sm={6} md={4} lg={3}>
                 <FormControl fullWidth>
                   <Grid container alignItems="center">
                     <Grid item xs={12}>
                       <button className="border-2 rounded-lg  px-5 bg-green-600 text-white ">
-                        show
+                        Search
                       </button>
                     </Grid>
                   </Grid>
@@ -239,7 +167,7 @@ const BankBook = () => {
           </div>
           <div className="border border-[#338691] mt-2 rounded-lg ml-1 mr-1">
             <Typography variant="h6" sx={{ padding: "1px" }}>
-              Bank Book Table
+              HSN Code Master Table
             </Typography>
             <Paper
               sx={{
@@ -250,9 +178,9 @@ const BankBook = () => {
               }}
             >
               <DataGrid
-                className="PaymentVoucherTable"
+              className="PaymentVoucherTable"
                 rows={rows}
-                columns={AccountBankBookTable}
+                columns={MasterHSNCodeTable}
                 initialState={{ pagination: { paginationModel } }}
                 pageSizeOptions={[5, 10]}
                 rowHeight={30}
@@ -263,10 +191,61 @@ const BankBook = () => {
               />
             </Paper>
           </div>
+          <div className="mt-6  flex items-end gap-4 ml-0 justify-end border rounded-md p-2 border-[#1A9A87]">
+            
+            <Button
+              size="small"
+              type="button"
+              color="error"
+              variant="outlined"
+              className="p-2"
+            >
+              New
+            </Button>
+
+            <Button
+              size="small"
+              type="submit"
+              color="primary"
+              variant="contained"
+              className="p-2"
+            >
+              Save
+            </Button>
+
+            <Button
+              size="small"
+              type="button"
+              color="error"
+              variant="outlined"
+              className="p-2"
+            >
+              Delete
+            </Button>
+
+            <Button
+              size="small"
+              type="reset"
+              color="default"
+              variant="outlined"
+              className="p-2"
+            >
+              Refresh
+            </Button>
+
+            <Button
+              size="small"
+              color="default"
+              variant="outlined"
+              className="p-2"
+            >
+              Exit
+            </Button>
+          </div>
         </Box>
       </div>
     </div>
   );
 };
 
-export default BankBook;
+export default HSNCODEMaster;

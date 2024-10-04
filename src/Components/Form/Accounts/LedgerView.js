@@ -1,14 +1,3 @@
-// import React from 'react'
-
-// const LedgerView = () => {
-//   return (
-//     <div>LedgerView</div>
-//   )
-// }
-
-// export default LedgerView
-
-
 import React from "react";
 import {
   Button,

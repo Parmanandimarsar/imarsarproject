@@ -13,6 +13,11 @@ export const menuItems = [
         { text: "Temp-Addresh", link: "/ledger-temp-addresh", icon: <MailIcon /> },
         { text: "Labour-Master", link: "/labour-master", icon: <MailIcon /> },
         { text: "Misc-Master", link: "/miscmaster", icon: <MailIcon /> },
+        { text: "HSNCode Master", link: "/hsncode-master", icon: <MailIcon /> },
+        { text: "Parts Master", link: "/parts-master", icon: <MailIcon /> },
+        { text: "Location Master", link: "/location-master", icon: <MailIcon /> },
+        { text: "Ledger Group", link: "/ledger-group", icon: <MailIcon /> },
+        { text: "Distric State Master", link: "/distric-state-master", icon: <MailIcon /> },
       ],
     },
     {
@@ -24,6 +29,7 @@ export const menuItems = [
         { text: "Payment Voucher", link: "/payment-voucher", icon: <MailIcon /> },
         { text: "Sales Model", link: "/sales-model", icon: <MailIcon /> },
         { text: "Receipt Booking", link: "/receipt-booking", icon: <MailIcon /> },
+       
       ],
     },
     {
@@ -48,6 +54,7 @@ export const menuItems = [
         { text: "Ledger view", link: "/ledger-view", icon: <MailIcon /> },
         { text: "Income", link: "/income", icon: <MailIcon /> },
         { text: "Receipt", link: "/receipt", icon: <MailIcon /> },
+        { text: "Bank Book", link: "/bank-book", icon: <MailIcon /> },
       ],
     },
   ];

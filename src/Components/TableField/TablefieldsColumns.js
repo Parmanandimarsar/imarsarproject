@@ -1,5 +1,76 @@
 
+export const MasterHSNCodeTable=[
+  { field: "id", headerName: "Sr. No", width: 130 ,
+    sortable: true, 
+    disableColumnMenu: true,
+  },
+  { field: "igst", headerName: "HSN CODE", width: 130 ,
+    sortable: true, 
+    disableColumnMenu: true,
+   
 
+  },
+  { field: "cgst", headerName: "IGST", width: 130 ,
+   sortable: true, 
+    disableColumnMenu: true,
+  },
+  {
+    field: "sgst",
+    headerName: "CGST",
+    type: "number",
+    width: 130,
+    sortable: true, 
+    disableColumnMenu: true,
+   
+  },
+  {
+    field: "cess",
+    headerName: "SGST",
+   
+    width: 130,
+    sortable: true, 
+    disableColumnMenu: true,
+   
+  },
+ 
+  
+];
+export const MasterLedgerGroupTable=[
+  { field: "id", headerName: "Sr. No", width: 130 ,
+    sortable: true, 
+    disableColumnMenu: true,
+  },
+  { field: "igst", headerName: "Ledger_Group_Name", width: 130 ,
+    sortable: true, 
+    disableColumnMenu: true,
+  },
+  { field: "cgst", headerName: "Main_Ledger_name", width: 130 ,
+    sortable: true, 
+     disableColumnMenu: true,
+   },
+ 
+  
+];
+
+export const MasterDistrictStateTable=[
+  { field: "id", headerName: "Sr. No", width: 130 ,
+    sortable: true, 
+    disableColumnMenu: true,
+  },
+  { field: "igst", headerName: "District_Name", width: 130 ,
+    sortable: true, 
+    disableColumnMenu: true,
+  },
+  { field: "cgst", headerName: "City_Name", width: 130 ,
+    sortable: true, 
+     disableColumnMenu: true,
+   },
+   { field: "cgst", headerName: "State_Name_name", width: 130 ,
+    sortable: true, 
+     disableColumnMenu: true,
+   },
+
+];
 export const OpeningStockscolumns = [
     { field: "id", headerName: "HSNCODE", width: 130 ,
       sortable: true, 
@@ -824,5 +895,82 @@ export const OpeningStockscolumns = [
       sortable: true, 
       disableColumnMenu: true,
     },
+    
+  ];
+  export const AccountBankBookTable=[
+    { field: "id", headerName: "Sr. No", width: 130 ,
+      sortable: true, 
+      disableColumnMenu: true,
+    },
+    { field: "igst", headerName: "TraDate", width: 130 ,
+      sortable: true, 
+      disableColumnMenu: true,
+     
+
+    },
+    { field: "cgst", headerName: "VoucherPrefix", width: 130 ,
+     sortable: true, 
+      disableColumnMenu: true,
+    },
+    {
+      field: "sgst",
+      headerName: "VoucherNo",
+      type: "number",
+      width: 130,
+      sortable: true, 
+      disableColumnMenu: true,
+     
+    },
+    {
+      field: "cess",
+      headerName: "Particulars",
+     
+      width: 130,
+      sortable: true, 
+      disableColumnMenu: true,
+     
+    },
+    {
+      field: "regd",
+      headerName: "Debit ",
+      type: "number",
+      width: 130,
+      sortable: true, 
+      disableColumnMenu: true,
+      
+    },
+    {
+      field: "insur",
+      headerName: "Credbit",
+      type: "number",
+      width: 130,
+      sortable: true, 
+      disableColumnMenu: true,
+    },
+    {
+      field: "hpa",
+      headerName: "TotalDebit",
+      type: "number",
+      width: 130,
+      sortable: true, 
+      disableColumnMenu: true,
+    },
+    {
+      field: "hpa",
+      headerName: "TotCrebit",
+      type: "number",
+      width: 130,
+      sortable: true, 
+      disableColumnMenu: true,
+    },
+    {
+      field: "hpa",
+      headerName: "TotalBal",
+      type: "number",
+      width: 130,
+      sortable: true, 
+      disableColumnMenu: true,
+    },
+   
     
   ];

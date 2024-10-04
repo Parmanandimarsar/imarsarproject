@@ -1,13 +1,3 @@
-// import React from 'react'
-
-// const SalesChallan = () => {
-//   return (
-//     <div>SalesChallan</div>
-//   )
-// }
-
-// export default SalesChallan
-
 import React from "react";
 import {
   Button,

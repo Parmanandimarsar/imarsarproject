@@ -132,10 +132,7 @@ const DistrictStateMaster = () => {
 
   return (
     <div className="w-full flex ">
-      <div className="w-[15%] sm:w-[5%]">
         <SideNave />
-      </div>
-
       <div className="w-[80%] sm:w-[90%] lg:w-[94%]  mx-auto">
         <Box className="bg-white rounded-lg  pb-5  border " autoComplete="off">
           <Box className="flex justify-between items-center bg-slate-50   ml-4  rounded-t-lg">

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import {
   Box,
   IconButton,
@@ -41,7 +41,8 @@ const SideNave = () => {
     handleDrawerOpen();
   };
   return (
-    <Box sx={{ display: "flex", marginBottom: "50px" }}>
+    <div className="w-[15%] sm:w-[5%]">
+    {true?<Box sx={{ display: "flex", marginBottom: "50px" }}>
       {/* Drawer */}
       <Drawer
         className="side-nav "
@@ -155,7 +156,8 @@ const SideNave = () => {
 
         <Divider className="divider" />
       </Drawer>
-    </Box>
+    </Box>:null}
+    </div>
   );
 };
 

@@ -8,15 +8,14 @@ import Menu from "@mui/material/Menu";
 import { ExpandLess, ExpandMore, Search } from "@mui/icons-material";
 import { menuItems } from "../SideNav/SideNavMenuitems";
 import { Link } from "react-router-dom";
-import { Divider } from "@mui/material";
-import logo from "../../../assets/images/G1.png"
-// Styled AppBar component
+import { Divider, Popover, Switch } from "@mui/material";
+import logo from "../../../assets/images/G1.png";
 
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [open, setOpen] = useState(false);
-  // const [openDropdown, setOpenDropdown] = useState(null);
   const [hoveredMenuIndex, setHoveredMenuIndex] = useState(null);
+  const [submenuAnchorEl, setSubmenuAnchorEl] = useState(null);
+  const [menuEnabled, setMenuEnabled] = useState(true); // State to track switch toggle
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -26,25 +25,47 @@ const Navbar = () => {
     setAnchorEl(null);
   };
 
+  const handleSubmenuOpen = (event, index) => {
+    if (menuEnabled) { // Only open if menu is enabled
+      setHoveredMenuIndex(index);
+      setSubmenuAnchorEl(event.currentTarget);
+    }
+  };
+
+  const handleSubmenuClose = () => {
+    setHoveredMenuIndex(null);
+    setSubmenuAnchorEl(null);
+  };
+
+  const handleSwitchToggle = (event) => {
+    setMenuEnabled(event.target.checked); // Update state based on switch toggle
+  };
+
   return (
     <>
       <AppBar className="headerNav project-thim ">
-        <Toolbar className="headerNav-child  ">
+        <Toolbar className="headerNav-child">
           <div className="w-full my-auto">
-            <div className="flex justify-around sm:justify-between  ml-auto w-[97%] items-center">
+            <div className="flex justify-around sm:justify-between ml-auto w-[97%] items-center">
               <div className="flex items-center gap-5">
                 <div className="w-[200px] h-[50px]">
-                  <img src={logo} alt="img" className="w-[170px] h-[45px]"/>
+                  <img src={logo} alt="img" className="w-[170px] h-[45px]" />
                 </div>
-                <div className="relative hidden sm:block ">
+                <div className="relative hidden sm:block">
                   <input
-                    className="p-2 px-16 justify-start rounded-lg outline-none text-gray-500 "
+                    className="p-2 px-16 justify-start rounded-lg outline-none text-gray-500"
                     placeholder="Search"
                   />
-                  <Search className="absolute top-2 right-3  z-[1500] text-gray-500 "></Search>
+                  <Search className="absolute top-2 right-3 z-[1500] text-gray-500" />
                 </div>
               </div>
+
               <div className="flex items-center">
+                <Switch
+                  checked={menuEnabled} // Switch state controls the menu
+                  onChange={handleSwitchToggle}
+                  color="primary"
+                />
                 <IconButton
                   size="large"
                   aria-label="account of current user"
@@ -73,49 +94,56 @@ const Navbar = () => {
                   <MenuItem onClick={handleClose}>Profile</MenuItem>
                   <MenuItem onClick={handleClose}>LogOut</MenuItem>
                 </Menu>
-                <p className="text-[14px] hidden sm:block ">Parmanand Maurya</p>
+                <p className="text-[14px] hidden sm:block">Parmanand Maurya</p>
               </div>
             </div>
 
-            <div className="flex w-[90%] justify-around ml-auto">
+            {menuEnabled ?<div className="flex w-[90%] justify-around ml-auto">
               {menuItems.map((items, index) => (
                 <div
                   key={index}
-                  className="relative flex flex-col items-center"
-                  onMouseEnter={() => setHoveredMenuIndex(index)}
-                  onMouseLeave={() => setHoveredMenuIndex(null)}
+                  className="relative flex flex-col top-[-6px] items-center"
+                  onMouseEnter={(e) => handleSubmenuOpen(e, index)}
+                  onMouseLeave={handleSubmenuClose}
                 >
-                  <p className="text-white pl-2  font-bold ">{items.text}</p>
-                  {items.subItems.length > 0 ? (
-                    hoveredMenuIndex === index ? (
-                      <ExpandLess sx={{ opacity: open ? 1 : 0 }} />
-                    ) : (
-                      <ExpandMore sx={{ opacity: open ? 1 : 0 }} />
-                    )
-                  ) : null}
-                  {/* Submenu */}
-                  {hoveredMenuIndex === index && (
-                    <div
-                      className="absolute top-3 right-auto grid grid-cols-2 gap-1 submenu mx-auto text-white p-2 rounded-lg shadow-lg scale-90 z-10"
-                      style={{ minWidth: "400px" }}
-                    >
-                      {items.subItems.map((submenu, subIndex) => (
-                        <Link
-                          to={submenu.link}
-                          key={subIndex}
-                          className="block"
-                        >
-                          <p className=" hover:text-green-600  ">
-                            {submenu.text}
-                          </p>
-                          <Divider className="bg-[#4ad3e970]"/>
-                        </Link>
+                  <button
+                    className="text-white pl-2 font-bold flex items-center"
+                    
+                  >
+                    {items.text}
+                    {items.subItems.length > 0 &&
+                      (hoveredMenuIndex === index ? (
+                        <ExpandLess />
+                      ) : (
+                        <ExpandMore />
                       ))}
-                    </div>
+                  </button>
+
+                  {items.subItems.length > 0 && (
+                    <Popover
+                      open={hoveredMenuIndex === index && menuEnabled} 
+                      anchorEl={submenuAnchorEl}
+                      onClose={handleSubmenuClose}
+                      anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+                      transformOrigin={{ vertical: "top", horizontal: "left" }}
+                    >
+                      <div className="submenu p-4 rounded-lg shadow-lg grid grid-cols-3 gap-4">
+                        {items.subItems.map((submenu, subIndex) => (
+                          <Link
+                            to={submenu.link}
+                            key={subIndex}
+                            className="block text-white hover:text-green-600"
+                          >
+                            {submenu.text}
+                            <Divider className="bg-gray-300" />
+                          </Link>
+                        ))}
+                      </div>
+                    </Popover>
                   )}
                 </div>
               ))}
-            </div>
+            </div>:<div className="relative flex flex-col top-[-6px] p-2 items-center"></div>}
           </div>
         </Toolbar>
       </AppBar>
@@ -124,4 +152,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

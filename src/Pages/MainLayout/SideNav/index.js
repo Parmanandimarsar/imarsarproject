@@ -116,7 +116,7 @@ const SideNave = () => {
                   unmountOnExit
                   onClick={handleSubChild}
                 >
-                  <List component="div" disablePadding className="submenu">
+                  <List component="div" disablePadding className="submenu ">
                     {item.subItems.map((subItem, subIndex) => (
                       <ListItemButton
                         key={subItem}
@@ -126,6 +126,7 @@ const SideNave = () => {
                           pl: 3,
                           justifyContent: open ? "initial" : "center",
                         }}
+                        className=" border-b"
                       >
                         <ListItemIcon
                           key={subIndex}
@@ -133,13 +134,16 @@ const SideNave = () => {
                         >
                           {subItem.icon}
                         </ListItemIcon>
+                       
                         <ListItemText
                           primary={subItem.text}
                           sx={{ opacity: open ? 1 : 0 }}
+                          
                         />
-                        <Divider  />
                         </ListItemButton>
-                    ))}
+                       
+                      ))}
+                      
                     
                   </List>
                   <Divider  />

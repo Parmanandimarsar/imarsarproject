@@ -8,14 +8,13 @@ import {
   FormLabel,
   Divider,
   Paper,
- 
+  Stack,
 } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import SideNave from "../../../Pages/MainLayout/SideNav";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridOverlay } from "@mui/x-data-grid";
 import { MasterDistrictStateTable } from "../../TableField/TablefieldsColumns";
-
-
+import CustomNoRowsOverlay from "../../NoDataFoundTable/CustomNoRowsOverlay";
 
 const DistrictStateMaster = () => {
   const [selectedState, setSelectedState] = useState(""); // State to store the selected state
@@ -80,12 +79,12 @@ const DistrictStateMaster = () => {
           : row
       );
       setAddedRows(updatedRows);
-      setEditRowId(null); 
+      setEditRowId(null);
     } else {
       // Add new row
       if (selectedState && selectedDistrict && selectedCity) {
         const newRow = {
-          id: addedRows.length + 1, 
+          id: addedRows.length + 1,
           state: selectedState,
           district: selectedDistrict,
           city: selectedCity,
@@ -110,8 +109,26 @@ const DistrictStateMaster = () => {
     setDistricts(Object.keys(stateDistrictCityData[row.state] || {}));
     setCities(stateDistrictCityData[row.state][row.district] || []);
   };
-
   
+  // const CustomNoRowsOverlay = () => {
+  //   return (
+  //     <GridOverlay
+  //       sx={{
+  //         height: "20px", // Custom height
+  //         display: "flex", // Flex for centering
+  //         justifyContent: "center",
+  //         alignItems: "center",
+  //         color: "gray",
+  //         backgroundColor: "#f9f9f9", // Optional background to make it stand out
+          
+  //       }}
+  //     >
+  //       <Typography variant="h6">Data not found</Typography>
+  //     </GridOverlay>
+  //   );
+  // };
+
+  console.log("addedRows", addedRows);
 
   return (
     <div className="w-full flex ">
@@ -120,19 +137,15 @@ const DistrictStateMaster = () => {
       </div>
 
       <div className="w-[80%] sm:w-[90%] lg:w-[94%]  mx-auto">
-        <Box className="bg-white rounded-lg shadow-lg pb-5" autoComplete="off">
-          <Box className="flex justify-between items-center mb-1 project-thim text-white p-1 rounded-t-lg">
-            <Typography
-              variant="h6"
-              component="h1"
-              className="text-center mb-2"
-            >
+        <Box className="bg-white rounded-lg  pb-5  border " autoComplete="off">
+          <Box className="flex justify-between items-center bg-slate-50   ml-4  rounded-t-lg">
+            <Typography className="text-[#28a745] ">
               District State Master
             </Typography>
           </Box>
           <Divider className="divider" />
 
-          <div className="pl-1 pr-1">
+          <div className="pl-1 pr-1  p-2">
             <Grid container spacing={2}>
               {/* State Dropdown */}
               <Grid item xs={12} sm={6} md={4} lg={3}>
@@ -252,13 +265,11 @@ const DistrictStateMaster = () => {
           </div>
 
           {/* Table Section */}
-          <div className="border border-[#338691] mt-2 rounded-lg ml-1 mr-1 w-[650px] ">
-            <Typography variant="h6" sx={{ padding: "1px" }}>
-              District State Master Table
-            </Typography>
+          <Divider className="divider" />
+          <div className="border  mt-2  ml-1 mr-1 w-[650px] rounded-md ">
             <Paper
               sx={{
-                minHeight: 100,
+                minHeight: 50,
                 width: "100%",
                 padding: "3px",
                 maxHeight: 400,
@@ -267,16 +278,22 @@ const DistrictStateMaster = () => {
               <DataGrid
                 className="PaymentVoucherTable"
                 rows={addedRows}
-               
                 columns={MasterDistrictStateTable(handleEdit)}
                 initialState={{ pagination: { paginationModel } }}
                 pageSizeOptions={[5, 10]}
                 rowHeight={30}
                 headerHeight={30}
-                columnHeaderHeight={30}
+                columnHeaderHeight={20}
                 checkboxSelection={false}
                 hideFooterSelectedRowCount
-               
+                slots={{
+                  noRowsOverlay: CustomNoRowsOverlay, 
+                }}
+                sx={{
+                  height: "80px", 
+                  maxHeight: "80px", 
+                  overflow: "hidden", 
+                }}
               />
             </Paper>
           </div>

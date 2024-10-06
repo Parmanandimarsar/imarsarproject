@@ -85,12 +85,12 @@ const MiscMaster = () => {
         </div>
 
         <div className="w-[80%] sm:w-[90%] lg:w-[94%] mt-[25px] mb-[50px] mx-auto">
-          <Box className="bg-white p-6 rounded-lg shadow-lg" autoComplete="off">
-            <Box className="flex justify-between items-center mb-4">
+          <Box className="bg-white p-1 rounded-lg shadow-lg" autoComplete="off">
+            <Box className="flex justify-between items-center ">
               <Typography
-                variant="h5"
+                variant="h6"
                 component="h1"
-                className="text-center mb-6"
+                className="text-center mb-1"
               >
                 Misc. Master
               </Typography>
@@ -186,8 +186,8 @@ const MiscMaster = () => {
                   </Grid>
 
                   {/* Radio Group and Table Layout */}
-                  <div className="border-2 border-[#1A9A87] rounded-lg p-2 mt-3 mb-2">
-                    <Grid container spacing={2} mt={0}>
+                  <div className="border-2 border-[#1A9A87] rounded-lg p-1 mt-3 mb-1">
+                    <Grid container spacing={1} >
                       <Grid item xs={6} sm={12} md={12}>
                         <FormControl component="fieldset">
                           <FormLabel component="legend">
@@ -199,15 +199,16 @@ const MiscMaster = () => {
                           >
                             <Grid container>
                               {radioOptions.map((option, index) => (
-                                <Grid item xs={6} sm={1.5} key={index}>
+                                <Grid item xs={6} sm={4} md={2} key={index}>
                                   <FormControlLabel
                                     control={<Radio size="small" />}
                                     value={option}
                                     label={option}
                                     sx={{
                                       "& .MuiFormControlLabel-label": {
-                                        fontSize: "12px",
-                                        fontWeight: "bold",
+                                        // fontSize: "6px",
+                                        fontWeight:"500"
+                                        
                                       },
                                     }}
                                   />

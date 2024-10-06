@@ -47,7 +47,7 @@ export const menuItems = [
       text: "Accounts",
       icon:<InboxIcon /> ,
       subItems: [
-        { text: "Account Payment Voucher", link: "/account-payment-voucher", icon: <MailIcon /> },
+        { text: "A/C Payment Voucher", link: "/account-payment-voucher", icon: <MailIcon /> },
         { text: "Contra Voucher", link: "/contra-voucher", icon: <MailIcon /> },
         { text: "Cash Books", link: "/cash-books", icon: <MailIcon /> },
         { text: "Expense Books", link: "/expense-book", icon: <MailIcon /> },

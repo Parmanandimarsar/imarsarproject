@@ -127,14 +127,14 @@ const Navbar = () => {
                       anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
                       transformOrigin={{ vertical: "top", horizontal: "left" }}
                     >
-                      <div className="submenu p-4 rounded-lg shadow-lg grid grid-cols-3 gap-4">
+                      <div className="submenu p-2 rounded-lg shadow-lg grid grid-cols-3 gap-2">
                         {items.subItems.map((submenu, subIndex) => (
                           <Link
                             to={submenu.link}
                             key={subIndex}
                             className="block text-white hover:text-green-600"
                           >
-                            {submenu.text}
+                            <p className="text-[11px]">{submenu.text}</p>
                             <Divider className="bg-gray-300" />
                           </Link>
                         ))}

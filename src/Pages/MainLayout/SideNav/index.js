@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import {
   Box,
   IconButton,
@@ -27,7 +27,7 @@ const SideNave = () => {
   const handleDrawerOpen = () => setOpen(!open);
 
   const handleDropdownClick = (index) => {
-    console.log(index, "index");
+    
 
     if (openDropdown === index) {
       setOpenDropdown(null);

@@ -137,18 +137,13 @@ const AccountsPaymentVoucher = () => {
   };
 
   return (
-    <div className="w-full flex">
-      <div className="w-[15%] sm:w-[5%]">
-        <SideNave />
-      </div>
+    
 
-      <div className="w-[80%] sm:w-[90%] lg:w-[94%]  mb-[50px] mx-auto">
+      <div className=" mb-[50px] pl-2">
         <Box className="bg-white rounded-lg shadow-lg" autoComplete="off">
           <Box className="flex justify-between items-center mb-1 project-thim text-white p-1 rounded-t-lg">
             <Typography
-              variant="h6"
-              component="h1"
-              className="text-center mb-2"
+             
             >
               Account Payment Voucher
             </Typography>
@@ -229,9 +224,7 @@ const AccountsPaymentVoucher = () => {
             </Grid>
           </div>
           <div className="border border-[#338691] mt-2 rounded-lg ml-1 mr-1">
-            <Typography variant="h6" sx={{ padding: "1px" }}>
-              Account Payment Voucher Table
-            </Typography>
+           
             <Paper
               sx={{
                 minHeight: 100,
@@ -248,7 +241,7 @@ const AccountsPaymentVoucher = () => {
                 pageSizeOptions={[5, 10]}
                 rowHeight={30}
                 headerHeight={30}
-                columnHeaderHeight={30}
+                columnHeaderHeight={20}
               />
             </Paper>
           </div>
@@ -551,7 +544,7 @@ const AccountsPaymentVoucher = () => {
           </Formik>
         </Box>
       </div>
-    </div>
+   
   );
 };
 

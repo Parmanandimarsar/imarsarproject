@@ -138,18 +138,13 @@ const PaymentVoucher = () => {
   };
 
   return (
-    <div className="w-full flex">
-      <div className="w-[15%] sm:w-[5%]">
-        <SideNave />
-      </div>
+   
 
-      <div className="w-[80%] sm:w-[90%] lg:w-[94%] mt-[25px] mb-[50px] mx-auto">
-        <Box className="bg-white  rounded-lg shadow-lg" autoComplete="off">
+      <div className="  mb-[50px] pl-2">
+        <Box className="bg-white  rounded-lg shadow-lg p-1" autoComplete="off">
           <Box className="flex justify-between items-center mb-1 project-thim text-white p-1  rounded-t-lg">
             <Typography
-              variant="h6"
-              component="h1"
-              className="text-center mb-2"
+             
             >
             Payment Voucher  
             </Typography>
@@ -162,7 +157,7 @@ const PaymentVoucher = () => {
           >
             {({ errors, touched, isSubmitting }) => (
               <Form autoComplete="off" className="staff-master-form">
-                <Grid container spacing={2}>
+                <Grid container spacing={1}>
                   {/* Row 1 */}
                   <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
@@ -437,9 +432,7 @@ const PaymentVoucher = () => {
                   </Grid>
                 </Grid>
                 <div className="border border-[#338691] mt-2 rounded-lg">
-                <Typography variant="h5" sx={{ padding: "3px" }}>
-                Payment Voucher Table
-                </Typography>
+               
                 <Paper
                   sx={{
                     minHeight: 100,
@@ -456,7 +449,7 @@ const PaymentVoucher = () => {
                 pageSizeOptions={[5, 10]}
                 rowHeight={30}
                 headerHeight={30}
-                columnHeaderHeight={30}
+                columnHeaderHeight={20}
                
               />
                 </Paper>
@@ -537,7 +530,7 @@ const PaymentVoucher = () => {
           </Formik>
         </Box>
       </div>
-    </div>
+   
   );
 };
 

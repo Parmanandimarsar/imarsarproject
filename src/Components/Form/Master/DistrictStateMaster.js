@@ -131,10 +131,10 @@ const DistrictStateMaster = () => {
   console.log("addedRows", addedRows);
 
   return (
-    <div className="w-full flex ">
-        <SideNave />
-      <div className="w-[80%] sm:w-[90%] lg:w-[94%]  mx-auto">
-        <Box className="bg-white rounded-lg  pb-5  border " autoComplete="off">
+    
+        
+      <div className="   mb-[50px] pl-2">
+        <Box className="bg-white p-2 rounded-lg  pb-5  border " autoComplete="off">
           <Box className="flex justify-between items-center bg-slate-50   ml-4  rounded-t-lg">
             <Typography className="text-[#28a745] ">
               District State Master
@@ -296,7 +296,7 @@ const DistrictStateMaster = () => {
           </div>
         </Box>
       </div>
-    </div>
+  
   );
 };
 

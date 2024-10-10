@@ -11,11 +11,11 @@ import { Link } from "react-router-dom";
 import { Divider, Popover, Switch } from "@mui/material";
 import logo from "../../../assets/images/G1.png";
 
-const Navbar = () => {
+const Navbar = ({ setMenuEnabled, menuEnabled }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [hoveredMenuIndex, setHoveredMenuIndex] = useState(null);
   const [submenuAnchorEl, setSubmenuAnchorEl] = useState(null);
-  const [menuEnabled, setMenuEnabled] = useState(true); // State to track switch toggle
+  
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -40,11 +40,11 @@ const Navbar = () => {
   const handleSwitchToggle = (event) => {
     setMenuEnabled(event.target.checked); // Update state based on switch toggle
   };
-
+  
   return (
     <>
-      <AppBar className="headerNav project-thim ">
-        <Toolbar className="headerNav-child">
+      <AppBar className="headerNav project-thim " position="sticky">
+        <Toolbar>
           <div className="w-full my-auto">
             <div className="flex justify-around sm:justify-between ml-auto w-[97%] items-center">
               <div className="flex items-center gap-5">

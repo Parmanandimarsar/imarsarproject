@@ -27,8 +27,6 @@ const SideNave = () => {
   const handleDrawerOpen = () => setOpen(!open);
 
   const handleDropdownClick = (index) => {
-    
-
     if (openDropdown === index) {
       setOpenDropdown(null);
     } else {
@@ -41,15 +39,14 @@ const SideNave = () => {
     handleDrawerOpen();
   };
   return (
-    <div className="w-[15%] sm:w-[5%]">
-    {true?<Box sx={{ display: "flex", marginBottom: "50px" }}>
+    <Box sx={{ display: "flex", marginBottom: "50px" }}>
       {/* Drawer */}
       <Drawer
         className="side-nav "
         variant="permanent"
         open={open}
         sx={{
-          width: drawerWidth,
+          width: "50px",
           flexShrink: 0,
           "& .MuiDrawer-paper": {
             width: drawerWidth,
@@ -135,29 +132,24 @@ const SideNave = () => {
                         >
                           {subItem.icon}
                         </ListItemIcon>
-                       
+
                         <ListItemText
                           primary={subItem.text}
                           sx={{ opacity: open ? 1 : 0 }}
-                          
                         />
-                        </ListItemButton>
-                       
-                      ))}
-                      
-                    
+                        <Divider sx={{ bgcolor: "white" }} />
+                      </ListItemButton>
+                    ))}
                   </List>
-                  <Divider  />
+                  <Divider />
                 </Collapse>
               )}
+              <Divider className="divider" />
             </React.Fragment>
           ))}
         </List>
-
-        <Divider className="divider" />
       </Drawer>
-    </Box>:null}
-    </div>
+    </Box>
   );
 };
 

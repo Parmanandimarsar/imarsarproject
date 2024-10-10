@@ -92,17 +92,13 @@ const handelModelOpen=()=>{
 
   return (
     <>
-      <div className="bg-[#fff] w-full flex">
-        <div className="w-[15%] sm:w-[5%]">
-          <SideNave />
-        </div>
+     
 
-        <div className="w-[80%] sm:w-[90%] lg:w-[94%] mt-[25px] mb-[50px] mx-auto">
-          <Box className="bg-white p-2 rounded-lg shadow-lg" autoComplete="off">
-            <Box className=" flex justify-between items-center mb-1">
+        <div className="  mb-[50px] pl-2">
+          <Box className="bg-white p-2 rounded-lg shadow-lg border" autoComplete="off">
+            <Box className=" flex justify-between text-green-700 items-center mb-1">
               <Typography
-                component="p"
-                className="text-center mb-6 font-bold text-[#63c76a]"
+               
               >
                 Purchase Challan Vehicle
               </Typography>
@@ -115,7 +111,7 @@ const handelModelOpen=()=>{
             >
               {({ setFieldValue, errors, touched, isSubmitting }) => (
                 <Form autoComplete="off">
-                  <Grid container spacing={2}>
+                  <Grid container spacing={1}>
                     {/* Row 1 */}
                     <Grid item xs={12} sm={6} md={4} lg={3}>
                       <FormControl fullWidth>
@@ -910,7 +906,7 @@ const handelModelOpen=()=>{
             </Formik>
           </Box>
         </div>
-      </div>
+    
       <MiscChargeModal openMicModal={openMicModal} handelModelOpen={handelModelOpen}/>
     </>
   );

@@ -95,18 +95,13 @@ const LedgerTempAddresh = () => {
   };
 
   return (
-    <div className="bg-gray-100 w-full flex">
-      <div className="w-[15%] sm:w-[5%]">
-        <SideNave />
-      </div>
+    
 
-      <div className="w-[80%] sm:w-[90%] lg:w-[94%] mt-[25px] mb-[50px] mx-auto">
-        <Box className="bg-white p-2 rounded-lg shadow-lg" autoComplete="off">
+      <div className=" mb-[50px] pl-2">
+        <Box className="bg-white p-2 rounded-lg shadow-lg border" autoComplete="off">
           <Box className="flex justify-between items-center mb-1">
             <Typography
-              variant="h6"
-              component="h1"
-              className="text-center mb-6"
+             
             >
               Ledger Temporary Master
             </Typography>
@@ -1012,7 +1007,7 @@ const LedgerTempAddresh = () => {
           </Formik>
         </Box>
       </div>
-    </div>
+    
   );
 };
 

@@ -141,25 +141,20 @@ const ReceiptBooking = () => {
   };
 
   return (
-    <div className="w-full flex">
-      <div className="w-[15%] sm:w-[5%]">
-        <SideNave />
-      </div>
+   
 
-      <div className="w-[80%] sm:w-[90%] lg:w-[94%]  mb-[50px] mx-auto">
+      <div className="  mb-[50px] pl-2">
         <Box className="bg-white rounded-lg shadow-lg" autoComplete="off">
           <Box className="flex justify-between items-center mb-1 project-thim text-white p-1 rounded-t-lg">
             <Typography
-              variant="h6"
-              component="h1"
-              className="text-center mb-2"
+            
             >
               Receipt Booking
             </Typography>
           </Box>
           <Divider className="divider" />
           <div className="flex">
-            <Grid container spacing={2}>
+            <Grid container spacing={1}>
               <Grid item xs={12} sm={6} md={4} lg={3}>
                 <FormControl fullWidth>
                   <Grid container alignItems="center">
@@ -235,9 +230,7 @@ const ReceiptBooking = () => {
             </Grid>
           </div>
           <div className="border border-[#338691] mt-2 rounded-lg">
-            <Typography variant="h6" sx={{ padding: "1px" }}>
-              Receipt Booking Table
-            </Typography>
+           
             <Paper
               sx={{
                 minHeight: 100,
@@ -713,7 +706,7 @@ const ReceiptBooking = () => {
           </Formik>
         </Box>
       </div>
-    </div>
+  
   );
 };
 

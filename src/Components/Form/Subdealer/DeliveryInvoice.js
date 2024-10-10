@@ -113,14 +113,11 @@ const DeliveryInvoice = () => {
   };
   return (
     <div className="w-full flex">
-      <div className="w-[15%] sm:w-[5%]">
-        <SideNav />
-      </div>
-
-      <div className="w-[80%] sm:w-[90%] lg:w-[94%] mb-[50px] mx-auto">
+     
+      <div className=" mb-[50px] pl-2">
         <Box className="bg-white rounded-lg shadow-lg" autoComplete="off">
           <Box className="flex justify-between items-center mb-1 project-thim text-white p-1 rounded-t-lg">
-            <Typography variant="h6" component="h1" className="text-center">
+            <Typography >
               Delivery Invoice
             </Typography>
           </Box>

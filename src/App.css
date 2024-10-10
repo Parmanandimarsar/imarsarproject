@@ -16,7 +16,7 @@
   /* background-image: linear-gradient(to left,#0E6AD0, #1154AC ,#1E9EFC,#5584c2); */
   /* background-image: linear-gradient(to left,#455D9B, #533584 ,#39B4E0,#2E98BF); */
   /* background: linear-gradient(158deg, #fc3752 -23%, #0c3d78 90%); */
-  background: linear-gradient(170deg, rgba(41, 109, 152, 1) 10%, rgba(0, 0, 25, 1) 100%)
+  background: linear-gradient(170deg, rgba(41, 109, 152, 1) 10%, rgba(0, 0, 25, 1) 100%) !important
   
 }
 .text {
@@ -138,9 +138,9 @@
   transition: 300ms ease all;
 }
 .headerNav.css-5czdux-MuiPaper-root-MuiAppBar-root {
-  position: sticky !important;
-  height: 65px !important;
-  margin-bottom: 5px !important;
+  /* position: sticky !important; */
+  /* height: 65px !important; */
+  /* margin-bottom: 5px !important; */
   /* background: linear-gradient(rgb(91, 36, 122) 0%, rgb(27, 206, 223) 100%); */
   /* background-image: linear-gradient(to right,#0E6AD0, #1154AC ,#1E9EFC,#1BA8FA); */
   /* background-image: linear-gradient(to right,#455D9B, #533584 ,#39B4E0,#2E98BF); */

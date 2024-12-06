@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
 import {
-  Button,
   TextField,
+  Checkbox,
   Typography,
   Box,
   FormControl,
@@ -13,24 +12,31 @@ import {
   Grid,
   Divider,
 } from "@mui/material";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import SideNave from "../../../Pages/MainLayout/SideNav";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import DataGridTable from "../../ConstantComponents/DataGridTable";
+import { miscMasterTable } from "../../TableField/TablefieldsColumns";
+import {
+  fetchMiscData,
+  postMiscData,
+} from "../../../redux/slices/actions/master";
+import { useDispatch, useSelector } from "react-redux";
 
 const MiscMaster = () => {
-  const [selectedOption, setSelectedOption] = useState(""); // State for single radio selection
+  const dispatch = useDispatch();
+  const [rows, setRows] = useState([]); // State for table rows
+  const [editRow, setEditRow] = useState(null); // Track row being edited
+  const [selectedOption, setSelectedOption] = useState(""); // State for selected radio option
+  const {
+    miscData = [],
+    loading,
+    error,
+  } = useSelector((state) => state.master);
 
+  // Radio button options
   const radioOptions = [
     "Title",
     "Bank Mode",
-    "State",
     "Department",
     "Designation",
     "Source",
@@ -44,270 +50,207 @@ const MiscMaster = () => {
     "Category",
   ];
 
+  // Fetch Miscellaneous Data
+  useEffect(() => {
+    dispatch(fetchMiscData());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (miscData) {
+      setRows(
+        miscData.map((item) => ({
+          id: item.misc_id, // Use misc_id as unique identifier
+          misc_name: item.misc_name,
+          type: item.type,
+          is_active: item.is_active,
+          created_datetime: item.created_datetime,
+          modified_datetime: item.modified_datetime,
+        }))
+      );
+    }
+  }, [miscData]);
+
+  // Form validation schema
   const validationSchema = Yup.object().shape({
-    miscMaster: Yup.string().required("MiscMaster is required"),
-    miscName: Yup.string().required("MiscName is required"),
-    search: Yup.string().required("Search is required"),
+    misc_name: Yup.string().required("Misc Name is required"),
   });
-
-  const initialValues = {
-    miscMaster: "",
-    miscName: "",
-    search: "",
-  };
-
-  const submitForm = async (values, { setSubmitting }) => {
-    console.log("Form submitted with values:", values);
-    console.log("Selected option:", selectedOption);
-
-    setSubmitting(true);
-
-    // Prepare data to send
-    const dataToSend = {
-      ...values,
-      selectedOption, // Include selected radio option in the payload
-    };
-    console.log(dataToSend, "555555555");
-
-    setSubmitting(false);
-  };
 
   // Handle radio button change
   const handleRadioChange = (event) => {
     setSelectedOption(event.target.value);
   };
 
+  // Handle form submission
+  const submitForm = async (values, { resetForm }) => {
+    const newRow = {
+      misc_name: values.misc_name,
+      is_active: values.is_active,
+      type: selectedOption,
+      created_datetime: new Date().toISOString(),
+      modified_datetime: editRow ? new Date().toISOString() : null,
+    };
+
+    try {
+      if (editRow) {
+        // Update existing row
+        const updatedRow = { ...editRow, ...newRow };
+        dispatch(postMiscData(updatedRow)); // Update API
+        setRows((prevRows) =>
+          prevRows.map((row) => (row.id === editRow.id ? updatedRow : row))
+        );
+      } else {
+        // Add new row
+        dispatch(postMiscData(newRow)); // Save API
+        setRows((prevRows) => [...prevRows, { ...newRow, id: Date.now() }]); // Simulate ID
+      }
+
+      resetForm(); // Reset the form
+      setEditRow(null); // Reset editing state
+      setSelectedOption(""); // Reset radio selection
+    } catch (error) {
+      console.error("Error saving data:", error);
+    }
+  };
+
+  // Handle row edit
+  const handleEdit = (row) => {
+    setEditRow(row); // Set editing row
+    setSelectedOption(row.type); // Set the radio group based on the row's type
+  };
+
+  // Define dynamic initial values for Formik
+  const initialValues = editRow
+    ? { misc_name: editRow.misc_name, is_active: editRow.is_active }
+    : { misc_name: "", is_active: false };
+
   return (
-    <>
-      <div className="mb-[50px] pl-2">
-        <Box className=" p-1 rounded-lg shadow-lg border" autoComplete="off">
-          <Box className="flex justify-between items-center mb-1 project-thim text-white p-1 rounded-t-lg">
+    <div className="mb-[50px] pl-2">
+      <Box className="p-1 rounded-lg shadow-lg border" autoComplete="off">
+        <Box className="flex justify-between items-center mb-1 project-thim text-white p-1 rounded-t-lg">
           <Typography>Misc. Master</Typography>
         </Box>
-          <Divider className="divider" />
+        <Divider className="divider" />
 
-          {/* Formik Form */}
-          <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={submitForm}
-          >
-            {({ errors, touched, isSubmitting }) => (
-              <Form autoComplete="off" className="ledger-details-form">
-                <Grid container spacing={2}>
-                  {/* Row 1 */}
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid
-                          item
-                          xs={3}
-                          className="formlableborder"
-                          sx={{ mr: "3px" }}
-                        >
-                          <FormLabel>Misc Master</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={TextField}
-                            name="miscMaster"
-                            fullWidth
-                             placeholder="Enter misc Master"
-                            variant="outlined"
-                            size="small"
-                            error={touched.miscMaster && !!errors.miscMaster}
-                          />
-                          <ErrorMessage
-                            name="miscMaster"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={submitForm}
+          enableReinitialize={true}
+        >
+          {({ errors, touched, isSubmitting, values, handleChange }) => (
+            <Form autoComplete="off">
+              {/* Radio Group */}
+              <Grid container spacing={1} pt={1} pl={2}>
+                <FormControl fullWidth>
+                  <RadioGroup
+                    row
+                    value={selectedOption}
+                    onChange={handleRadioChange}
+                  >
+                    {radioOptions.map((option, index) => (
+                      <FormControlLabel
+                        key={index}
+                        control={<Radio size="small" />}
+                        value={option}
+                        label={option}
+                        sx={{
+                          "& .MuiFormControlLabel-label": {
+                            fontWeight: "400",
+                          },
+                        }}
+                      />
+                    ))}
+                  </RadioGroup>
+                </FormControl>
+              </Grid>
+
+              <Divider className="divider" />
+
+              {/* Form Fields */}
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6} md={3} lg={3}>
+                  <FormControl fullWidth>
+                    <Grid container alignItems="center">
+                      <Grid
+                        item
+                        xs={4}
+                        className="formlableborder"
+                        sx={{ mr: "3px" }}
+                      >
+                        <FormLabel>Misc Name</FormLabel>
                       </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}  className="formlableborder"
-                        sx={{ mr: "3px" }}>
-                          <FormLabel>Misc Name</FormLabel>
-                        </Grid>
-                        <Grid item xs={7}>
-                          <Field
-                            as={TextField}
-                            name="miscName"
-                            fullWidth
-                            variant="outlined"
-                             placeholder="Misc Name"
-                            size="small"
-                            error={touched.miscName && !!errors.miscName}
-                          />
-                          <ErrorMessage
-                            name="miscName"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
+                      <Grid item xs={7}>
+                        <Field
+                          as={TextField}
+                          name="misc_name"
+                          fullWidth
+                          variant="outlined"
+                          placeholder="Misc Name"
+                          size="small"
+                          error={touched.misc_name && !!errors.misc_name}
+                        />
+                        <ErrorMessage
+                          name="misc_name"
+                          component="div"
+                          className="text-red-600 text-xs"
+                        />
                       </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}  className="formlableborder"
-                        sx={{ mr: "3px" }}>
-                          <FormLabel>Search</FormLabel>
-                        </Grid>
-                        <Grid item xs={7}>
-                          <Field
-                            as={TextField}
-                            name="search"
-                            fullWidth
-                             placeholder="search"
-                            variant="outlined"
-                            size="small"
-                            error={touched.search && !!errors.search}
-                          />
-                          <ErrorMessage
-                            name="search"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-                </Grid>
-
-                <Divider className="divider"/>
-
-                {/* Radio Group and Table Layout */}
-                <div className=" rounded-lg pl-3 mt-3 mb-1">
-                  <Grid container spacing={1}>
-                    <Grid item xs={6} sm={12} md={12}>
-                      <FormControl component="fieldset">
-                        <FormLabel component="legend">Select Option</FormLabel>
-                        <RadioGroup
-                          value={selectedOption}
-                          onChange={handleRadioChange}
-                        >
-                          <Grid container>
-                            {radioOptions.map((option, index) => (
-                              <Grid item xs={4} sm={3} md={2} key={index}>
-                                <FormControlLabel
-                                  control={<Radio size="small" />}
-                                  value={option}
-                                  label={option}
-                                  sx={{
-                                    "& .MuiFormControlLabel-label": {
-                                      // fontSize: "6px",
-                                      fontWeight: "400",
-                                    },
-                                  }}
-                                />
-                              </Grid>
-                            ))}
-                          </Grid>
-                        </RadioGroup>
-                      </FormControl>
                     </Grid>
-                  </Grid>
-                </div>
-
-                <Grid item xs={12} sm={6} md={6}>
-                  <Typography>Selected Data</Typography>
-                  <Divider className="divider" />
-                  <TableContainer component={Paper}>
-                    <Table>
-                      <TableHead>
-                        <TableRow
-                          className="project-thim text-white"
-                          sx={{ color: "white" }}
-                        >
-                          <TableCell sx={{ color: "white", padding: "1px" }}>
-                            Sr.No
-                          </TableCell>
-                          <TableCell sx={{ color: "white", padding: "1px" }}>
-                            Type_Name
-                          </TableCell>
-                        </TableRow>
-                      </TableHead>
-                      <TableBody>
-                        {selectedOption ? (
-                          <TableRow
-                            sx={{
-                              "&:last-child td, &:last-child th": {
-                                border: 0,
-                              },
-                              font: "11px",
-                            }}
-                          >
-                            <TableCell className="textbold">1</TableCell>
-                            <TableCell className="textbold">
-                              {selectedOption}
-                            </TableCell>
-                          </TableRow>
-                        ) : (
-                          <TableRow>
-                            <TableCell colSpan={2}>No data</TableCell>
-                          </TableRow>
-                        )}
-                      </TableBody>
-                    </Table>
-                  </TableContainer>
+                  </FormControl>
                 </Grid>
-                {/* Submit Button */}
+                <Grid item xs={12} sm={6} md={3} lg={3}>
+                  <Grid container alignItems="center">
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          size="small"
+                          name="is_active"
+                          checked={values.is_active}
+                          onChange={handleChange}
+                        />
+                      }
+                      label="Active"
+                    />
+                  </Grid>
+                </Grid>
+                <Grid item xs={12} sm={6} md={4} lg={5}>
+                  <Box className="flex items-end gap-4 ml-0 justify-end ">
+                    <button
+                      type="submit"
+                      className="p-2 savebutton project-thim"
+                      disabled={isSubmitting}
+                    >
+                      {editRow !== null ? "Update" : "Save"}
+                    </button>
 
-                <Box className="mt-6 flex items-end gap-4 ml-0 justify-end border-2 rounded-md p-2 border-[#1A9A87]">
-                  <Button
-                    size="small"
-                    type="submit"
-                    color="primary"
-                    variant="contained"
-                    className="p-2"
-                    disabled={isSubmitting}
-                  >
-                    Save
-                  </Button>
+                    <button
+                      size="small"
+                      type="reset"
+                      className="p-2 savebutton project-thim"
+                      onClick={() => {
+                        setEditRow(null); // Reset editing state
+                        setSelectedOption(""); // Reset radio selection
+                      }}
+                    >
+                      Refresh
+                    </button>
+                  </Box>
+                </Grid>
+              </Grid>
 
-                  <Button
-                    size="small"
-                    type="button"
-                    color="error"
-                    variant="outlined"
-                    className="p-2"
-                  >
-                    Delete
-                  </Button>
-
-                  <Button
-                    size="small"
-                    type="reset"
-                    color="default"
-                    variant="outlined"
-                    className="p-2"
-                  >
-                    Refresh
-                  </Button>
-
-                  <Button
-                    size="small"
-                    color="default"
-                    variant="outlined"
-                    className="p-2"
-                  >
-                    Close
-                  </Button>
-                </Box>
-              </Form>
-            )}
-          </Formik>
-        </Box>
-      </div>
-    </>
+              {/* Table */}
+              <Grid item xs={12} sm={6} md={6}>
+                <Divider className="divider" />
+                <DataGridTable
+                  rows={rows}
+                  columns={miscMasterTable(handleEdit)}
+                />
+              </Grid>
+            </Form>
+          )}
+        </Formik>
+      </Box>
+    </div>
   );
 };
 

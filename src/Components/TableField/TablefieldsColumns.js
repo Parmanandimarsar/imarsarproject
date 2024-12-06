@@ -972,3 +972,49 @@ export const OpeningStockscolumns = [
    
     
   ];
+
+  export const miscMasterTable=(handleEdit)=>[
+    { field: "id", headerName: "miscid", width: 130 ,
+      sortable: true, 
+      disableColumnMenu: true,
+    },
+    { field: "misc_name", headerName: "Misc Name", flex:1,
+      sortable: true, 
+      disableColumnMenu: true,
+     
+
+    },
+    { field: "type", headerName: "Type", flex:1,
+      sortable: true, 
+      disableColumnMenu: true,
+     
+
+    },
+    { field: "is_active", headerName: "Active", flex:1,
+      sortable: true, 
+      disableColumnMenu: true,
+     
+
+    },
+    { field: "created_datetime", headerName: "Created Date", flex:1,
+      sortable: true, 
+      disableColumnMenu: true,
+     
+
+    },
+    
+    {
+      field: "actions",
+      headerName: "Actions",
+      width: 100,
+      renderCell: (params) => (
+        <IconButton onClick={() => handleEdit(params.row)}>
+          <EditIcon sx={{ fontSize: 16 }} />
+        </IconButton>
+      ),
+    },
+    
+    
+   
+    
+  ];

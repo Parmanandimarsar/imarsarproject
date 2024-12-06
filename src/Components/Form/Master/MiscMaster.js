@@ -79,234 +79,234 @@ const MiscMaster = () => {
 
   return (
     <>
-      
+      <div className="mb-[50px] pl-2">
+        <Box className=" p-1 rounded-lg shadow-lg border" autoComplete="off">
+          <Box className="flex justify-between items-center mb-1 project-thim text-white p-1 rounded-t-lg">
+          <Typography>Misc. Master</Typography>
+        </Box>
+          <Divider className="divider" />
 
-        <div className="mb-[50px] pl-2">
-          <Box className="bg-white p-1 rounded-lg shadow-lg border" autoComplete="off">
-            <Box className="flex justify-between items-center ">
-              <Typography
-                
-              >
-                Misc. Master
-              </Typography>
-            </Box>
-            <Divider
-              className="divider"
-            />
-
-            {/* Formik Form */}
-            <Formik
-              initialValues={initialValues}
-              validationSchema={validationSchema}
-              onSubmit={submitForm}
-            >
-              {({ errors, touched, isSubmitting }) => (
-                <Form autoComplete="off" className="ledger-details-form">
-                  <Grid container spacing={2}>
-                    {/* Row 1 */}
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                      <FormControl fullWidth>
-                        <Grid container alignItems="center">
-                          <Grid item xs={4}>
-                            <FormLabel>Misc. Master</FormLabel>
-                          </Grid>
-                          <Grid item xs={8}>
-                            <Field
-                              as={TextField}
-                              name="miscMaster"
-                              fullWidth
-                              variant="outlined"
-                              size="small"
-                              error={touched.miscMaster && !!errors.miscMaster}
-                            />
-                            <ErrorMessage
-                              name="miscMaster"
-                              component="div"
-                              className="text-red-600 text-xs"
-                            />
-                          </Grid>
+          {/* Formik Form */}
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={submitForm}
+          >
+            {({ errors, touched, isSubmitting }) => (
+              <Form autoComplete="off" className="ledger-details-form">
+                <Grid container spacing={2}>
+                  {/* Row 1 */}
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid
+                          item
+                          xs={3}
+                          className="formlableborder"
+                          sx={{ mr: "3px" }}
+                        >
+                          <FormLabel>Misc Master</FormLabel>
                         </Grid>
-                      </FormControl>
-                    </Grid>
-
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                      <FormControl fullWidth>
-                        <Grid container alignItems="center">
-                          <Grid item xs={4}>
-                            <FormLabel>Misc Name</FormLabel>
-                          </Grid>
-                          <Grid item xs={8}>
-                            <Field
-                              as={TextField}
-                              name="miscName"
-                              fullWidth
-                              variant="outlined"
-                              size="small"
-                              error={touched.miscName && !!errors.miscName}
-                            />
-                            <ErrorMessage
-                              name="miscName"
-                              component="div"
-                              className="text-red-600 text-xs"
-                            />
-                          </Grid>
+                        <Grid item xs={8}>
+                          <Field
+                            as={TextField}
+                            name="miscMaster"
+                            fullWidth
+                             placeholder="Enter misc Master"
+                            variant="outlined"
+                            size="small"
+                            error={touched.miscMaster && !!errors.miscMaster}
+                          />
+                          <ErrorMessage
+                            name="miscMaster"
+                            component="div"
+                            className="text-red-600 text-xs"
+                          />
                         </Grid>
-                      </FormControl>
-                    </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
 
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                      <FormControl fullWidth>
-                        <Grid container alignItems="center">
-                          <Grid item xs={4}>
-                            <FormLabel>Search</FormLabel>
-                          </Grid>
-                          <Grid item xs={8}>
-                            <Field
-                              as={TextField}
-                              name="search"
-                              fullWidth
-                              variant="outlined"
-                              size="small"
-                              error={touched.search && !!errors.search}
-                            />
-                            <ErrorMessage
-                              name="search"
-                              component="div"
-                              className="text-red-600 text-xs"
-                            />
-                          </Grid>
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid item xs={4}  className="formlableborder"
+                        sx={{ mr: "3px" }}>
+                          <FormLabel>Misc Name</FormLabel>
                         </Grid>
+                        <Grid item xs={7}>
+                          <Field
+                            as={TextField}
+                            name="miscName"
+                            fullWidth
+                            variant="outlined"
+                             placeholder="Misc Name"
+                            size="small"
+                            error={touched.miscName && !!errors.miscName}
+                          />
+                          <ErrorMessage
+                            name="miscName"
+                            component="div"
+                            className="text-red-600 text-xs"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid item xs={4}  className="formlableborder"
+                        sx={{ mr: "3px" }}>
+                          <FormLabel>Search</FormLabel>
+                        </Grid>
+                        <Grid item xs={7}>
+                          <Field
+                            as={TextField}
+                            name="search"
+                            fullWidth
+                             placeholder="search"
+                            variant="outlined"
+                            size="small"
+                            error={touched.search && !!errors.search}
+                          />
+                          <ErrorMessage
+                            name="search"
+                            component="div"
+                            className="text-red-600 text-xs"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+                </Grid>
+
+                <Divider className="divider"/>
+
+                {/* Radio Group and Table Layout */}
+                <div className=" rounded-lg pl-3 mt-3 mb-1">
+                  <Grid container spacing={1}>
+                    <Grid item xs={6} sm={12} md={12}>
+                      <FormControl component="fieldset">
+                        <FormLabel component="legend">Select Option</FormLabel>
+                        <RadioGroup
+                          value={selectedOption}
+                          onChange={handleRadioChange}
+                        >
+                          <Grid container>
+                            {radioOptions.map((option, index) => (
+                              <Grid item xs={4} sm={3} md={2} key={index}>
+                                <FormControlLabel
+                                  control={<Radio size="small" />}
+                                  value={option}
+                                  label={option}
+                                  sx={{
+                                    "& .MuiFormControlLabel-label": {
+                                      // fontSize: "6px",
+                                      fontWeight: "400",
+                                    },
+                                  }}
+                                />
+                              </Grid>
+                            ))}
+                          </Grid>
+                        </RadioGroup>
                       </FormControl>
                     </Grid>
                   </Grid>
+                </div>
 
-                  {/* Radio Group and Table Layout */}
-                  <div className="border-2 border-[#1A9A87] rounded-lg p-1 mt-3 mb-1">
-                    <Grid container spacing={1} >
-                      <Grid item xs={6} sm={12} md={12}>
-                        <FormControl component="fieldset">
-                          <FormLabel component="legend">
-                            Select Option
-                          </FormLabel>
-                          <RadioGroup
-                            value={selectedOption}
-                            onChange={handleRadioChange}
-                          >
-                            <Grid container>
-                              {radioOptions.map((option, index) => (
-                                <Grid item xs={6} sm={4} md={2} key={index}>
-                                  <FormControlLabel
-                                    control={<Radio size="small" />}
-                                    value={option}
-                                    label={option}
-                                    sx={{
-                                      "& .MuiFormControlLabel-label": {
-                                        // fontSize: "6px",
-                                        fontWeight:"500"
-                                        
-                                      },
-                                    }}
-                                  />
-                                </Grid>
-                              ))}
-                            </Grid>
-                          </RadioGroup>
-                        </FormControl>
-                      </Grid>
-                    </Grid>
-                  </div>
-
-                  <Grid item xs={12} sm={6} md={6}>
-                    <Typography >Selected Data</Typography>
-                    <Divider className="divider"/>
-                    <TableContainer component={Paper}>
-                      <Table>
-                        <TableHead>
+                <Grid item xs={12} sm={6} md={6}>
+                  <Typography>Selected Data</Typography>
+                  <Divider className="divider" />
+                  <TableContainer component={Paper}>
+                    <Table>
+                      <TableHead>
+                        <TableRow
+                          className="project-thim text-white"
+                          sx={{ color: "white" }}
+                        >
+                          <TableCell sx={{ color: "white", padding: "1px" }}>
+                            Sr.No
+                          </TableCell>
+                          <TableCell sx={{ color: "white", padding: "1px" }}>
+                            Type_Name
+                          </TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {selectedOption ? (
                           <TableRow
-                            className="project-thim text-white"
-                            sx={{ color: "white" }}
+                            sx={{
+                              "&:last-child td, &:last-child th": {
+                                border: 0,
+                              },
+                              font: "11px",
+                            }}
                           >
-                            <TableCell sx={{ color: "white", padding: "1px" }}>
-                              Sr.No
-                            </TableCell>
-                            <TableCell sx={{ color: "white", padding: "1px" }}>
-                              Type_Name
+                            <TableCell className="textbold">1</TableCell>
+                            <TableCell className="textbold">
+                              {selectedOption}
                             </TableCell>
                           </TableRow>
-                        </TableHead>
-                        <TableBody>
-                          {selectedOption ? (
-                            <TableRow
-                              sx={{
-                                "&:last-child td, &:last-child th": {
-                                  border: 0,
-                                },
-                                font: "11px",
-                              }}
-                            >
-                              <TableCell className="textbold">1</TableCell>
-                              <TableCell className="textbold">
-                                {selectedOption}
-                              </TableCell>
-                            </TableRow>
-                          ) : (
-                            <TableRow>
-                              <TableCell colSpan={2}>No data</TableCell>
-                            </TableRow>
-                          )}
-                        </TableBody>
-                      </Table>
-                    </TableContainer>
-                  </Grid>
-                  {/* Submit Button */}
+                        ) : (
+                          <TableRow>
+                            <TableCell colSpan={2}>No data</TableCell>
+                          </TableRow>
+                        )}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                </Grid>
+                {/* Submit Button */}
 
-                  <Box className="mt-6 flex items-end gap-4 ml-0 justify-end border-2 rounded-md p-2 border-[#1A9A87]">
-                    <Button
-                      size="small"
-                      type="submit"
-                      color="primary"
-                      variant="contained"
-                      className="p-2"
-                      disabled={isSubmitting}
-                    >
-                      Save
-                    </Button>
+                <Box className="mt-6 flex items-end gap-4 ml-0 justify-end border-2 rounded-md p-2 border-[#1A9A87]">
+                  <Button
+                    size="small"
+                    type="submit"
+                    color="primary"
+                    variant="contained"
+                    className="p-2"
+                    disabled={isSubmitting}
+                  >
+                    Save
+                  </Button>
 
-                    <Button
-                      size="small"
-                      type="button"
-                      color="error"
-                      variant="outlined"
-                      className="p-2"
-                    >
-                      Delete
-                    </Button>
+                  <Button
+                    size="small"
+                    type="button"
+                    color="error"
+                    variant="outlined"
+                    className="p-2"
+                  >
+                    Delete
+                  </Button>
 
-                    <Button
-                      size="small"
-                      type="reset"
-                      color="default"
-                      variant="outlined"
-                      className="p-2"
-                    >
-                      Refresh
-                    </Button>
+                  <Button
+                    size="small"
+                    type="reset"
+                    color="default"
+                    variant="outlined"
+                    className="p-2"
+                  >
+                    Refresh
+                  </Button>
 
-                    <Button
-                      size="small"
-                      color="default"
-                      variant="outlined"
-                      className="p-2"
-                    >
-                      Close
-                    </Button>
-                  </Box>
-                </Form>
-              )}
-            </Formik>
-          </Box>
-        </div>
-     
+                  <Button
+                    size="small"
+                    color="default"
+                    variant="outlined"
+                    className="p-2"
+                  >
+                    Close
+                  </Button>
+                </Box>
+              </Form>
+            )}
+          </Formik>
+        </Box>
+      </div>
     </>
   );
 };

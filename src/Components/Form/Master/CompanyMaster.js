@@ -99,7 +99,7 @@ const CompanyMaster = () => {
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
                         <Grid item xs={4}>
-                          <FormLabel>Company Name</FormLabel>
+                          <FormLabel>Company Name<span style={{ color: 'red' }}> *</span></FormLabel>
                         </Grid>
                         <Grid item xs={8}>
                           <Field

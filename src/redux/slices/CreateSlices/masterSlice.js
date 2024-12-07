@@ -5,6 +5,9 @@ const initialState = {
   masterError: null,
   miscData: [],
   miscFilterData:[],
+  HSNCodeData:[],
+  getHSNCodeData:[],
+  putHSNCodeData:[]
 };
 
 const masterSlice = createSlice({
@@ -14,7 +17,7 @@ const masterSlice = createSlice({
     setMasterLoading: (state) => {
       state.masterLoading = true;
     },
-    setmasterError: (state, action) => {
+    setMasterError: (state, action) => {
       state.masterError = action.payload;
       state.masterLoading = false;
     },
@@ -26,7 +29,18 @@ const masterSlice = createSlice({
       state.miscFilterData = action.payload;
       state.masterLoading = false;
     },
-   
+    setHSNCodeData: (state, action) => {
+      state.HSNCodeData = action.payload;
+      state.masterLoading = false;
+    },
+    setGetHSNCodeData: (state, action) => {
+      state.getHSNCodeData = action.payload;
+      state.masterLoading = false;
+    },
+    setPutHSNCodeData: (state, action) => {
+      state.putHSNCodeData = action.payload;
+      state.masterLoading = false;
+    },
   },
 });
 
@@ -34,7 +48,9 @@ export const {
   setMasterLoading,
   setMasterError,
   setMiscData,
-  setMiscFilterData
-  
+  setMiscFilterData,
+  setHSNCodeData,
+  setGetHSNCodeData,
+  setPutHSNCodeData,
 } = masterSlice.actions;
 export default masterSlice.reducer;

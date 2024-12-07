@@ -22,3 +22,12 @@ export const postData = async (endpoint, data) => {
     throw error;
   }
 };
+
+export const putData = async (endpoint, data) => {
+  try {
+    const response = await axiosInstance.put(`/api/${endpoint}`, data);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

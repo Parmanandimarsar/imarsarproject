@@ -20,7 +20,7 @@ import {
   fetchMiscData,
   fetchMiscFilterData,
   postMiscData,
-} from "../../../redux/slices/actions/master";
+} from "../../../redux/slices/actions/masterAction";
 import { useDispatch, useSelector } from "react-redux";
 
 const MiscMaster = () => {
@@ -34,10 +34,9 @@ const MiscMaster = () => {
     masterError,
     miscData = [],
     miscFilterData,
+    
   } = useSelector((state) => state.master);
-  console.log("miscData", miscData);
-  console.log("masterLoading", masterLoading);
-  console.log("miscFilterData", miscFilterData);
+
   // Radio button options
   const radioOptions = [
     "Title",
@@ -62,7 +61,7 @@ const MiscMaster = () => {
   }, []);
 
   useEffect(() => {
-    console.log("Fetched miscData:", miscData); // Inspect the data structure
+
     if (Array.isArray(miscFilterData)) {
       setRows(
         miscFilterData.map((item) => ({
@@ -125,6 +124,7 @@ const MiscMaster = () => {
       resetForm(); // Reset the form
       setEditRow(null); // Reset editing state
     } catch (error) {
+      
       console.error("Error saving data:", error);
     }
   };

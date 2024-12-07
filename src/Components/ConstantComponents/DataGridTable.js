@@ -26,7 +26,7 @@ const DataGridTable = ({
       rows={rows || []}
       columns={columns || []}
       pageSize={5}
-      rowsPerPageOptions={[5]}
+      rowsPerPageOptions={5}
       disableSelectionOnClick
       columnHeaderHeight={20}
       rowHeight={25}

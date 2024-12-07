@@ -1,41 +1,26 @@
 import { IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit"; 
-export const MasterHSNCodeTable=[
-  { field: "id", headerName: "Sr. No", width: 130 ,
-    sortable: true, 
-    disableColumnMenu: true,
-  },
-  { field: "igst", headerName: "HSN CODE", width: 130 ,
-    sortable: true, 
-    disableColumnMenu: true,
-   
-
-  },
-  { field: "cgst", headerName: "IGST", width: 130 ,
-   sortable: true, 
-    disableColumnMenu: true,
-  },
+export const MasterHSNCodeTable = (handleEdit)=>[
+  { field: "id", headerName: "ID", width: 70 ,disableColumnMenu: true,},
+  { field: "hsn_code", headerName: "HSN Code", flex:1,disableColumnMenu: true,},
+  { field: "hsn_igst", headerName: "IGST (%)",flex:1 ,disableColumnMenu: true,},
+  { field: "hsn_cgst", headerName: "CGST (%)",flex:1 ,disableColumnMenu: true,},
+  { field: "hsn_sgst", headerName: "SGST (%)",flex:1 ,disableColumnMenu: true,},
+  { field: "created_datetime", headerName: "created Datetime",flex:1,disableColumnMenu: true, },
+  // { field: "hsn_sgst", headerName: "SGST (%)",flex:1,disableColumnMenu: true, },
   {
-    field: "sgst",
-    headerName: "CGST",
-    type: "number",
-    width: 130,
-    sortable: true, 
-    disableColumnMenu: true,
-   
+    field: "actions",
+    headerName: "Actions",
+   flex:1,
+   disableColumnMenu: true, 
+    renderCell: (params) => (
+      <IconButton onClick={() => handleEdit(params.row)}>
+        <EditIcon sx={{ fontSize: 16 }} />
+      </IconButton>
+    ),
   },
-  {
-    field: "cess",
-    headerName: "SGST",
-   
-    width: 130,
-    sortable: true, 
-    disableColumnMenu: true,
-   
-  },
- 
-  
 ];
+
 export const MasterLedgerGroupTable=[
   { field: "id", headerName: "Sr. No", width: 130 ,
     sortable: true, 

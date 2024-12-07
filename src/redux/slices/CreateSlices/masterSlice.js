@@ -1,37 +1,40 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  loading: false,
-  error: null,
+  masterLoading: false,
+  masterError: null,
   miscData: [],
-  
+  miscFilterData:[],
 };
 
 const masterSlice = createSlice({
   name: "masterSlice",
   initialState,
   reducers: {
-    setLoading: (state) => {
-      state.loading = true;
+    setMasterLoading: (state) => {
+      state.masterLoading = true;
     },
-    setError: (state, action) => {
-      state.error = action.payload;
-      state.loading = false;
+    setmasterError: (state, action) => {
+      state.masterError = action.payload;
+      state.masterLoading = false;
     },
     setMiscData: (state, action) => {
       state.miscData = action.payload;
-      state.loading = false;
+      state.masterLoading = false;
     },
-    
+    setMiscFilterData: (state, action) => {
+      state.miscFilterData = action.payload;
+      state.masterLoading = false;
+    },
    
   },
 });
 
 export const {
-  setLoading,
-  setError,
+  setMasterLoading,
+  setMasterError,
   setMiscData,
- 
+  setMiscFilterData
   
 } = masterSlice.actions;
 export default masterSlice.reducer;

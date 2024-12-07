@@ -1007,6 +1007,8 @@ export const OpeningStockscolumns = [
       field: "actions",
       headerName: "Actions",
       width: 100,
+      sortable: true, 
+      disableColumnMenu: true,
       renderCell: (params) => (
         <IconButton onClick={() => handleEdit(params.row)}>
           <EditIcon sx={{ fontSize: 16 }} />

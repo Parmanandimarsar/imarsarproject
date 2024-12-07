@@ -18,6 +18,7 @@ import DataGridTable from "../../ConstantComponents/DataGridTable";
 import { miscMasterTable } from "../../TableField/TablefieldsColumns";
 import {
   fetchMiscData,
+  fetchMiscFilterData,
   postMiscData,
 } from "../../../redux/slices/actions/master";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,13 +27,17 @@ const MiscMaster = () => {
   const dispatch = useDispatch();
   const [rows, setRows] = useState([]); // State for table rows
   const [editRow, setEditRow] = useState(null); // Track row being edited
-  const [selectedOption, setSelectedOption] = useState(""); // State for selected radio option
-  const {
-    miscData = [],
-    loading,
-    error,
-  } = useSelector((state) => state.master);
+  const [selectedOption, setSelectedOption] = useState("Title"); // State for selected radio option
 
+  const {
+    masterLoading,
+    masterError,
+    miscData = [],
+    miscFilterData,
+  } = useSelector((state) => state.master);
+  console.log("miscData", miscData);
+  console.log("masterLoading", masterLoading);
+  console.log("miscFilterData", miscFilterData);
   // Radio button options
   const radioOptions = [
     "Title",
@@ -53,12 +58,14 @@ const MiscMaster = () => {
   // Fetch Miscellaneous Data
   useEffect(() => {
     dispatch(fetchMiscData());
-  }, [dispatch]);
+    dispatch(fetchMiscFilterData("Title"));
+  }, []);
 
   useEffect(() => {
-    if (miscData) {
+    console.log("Fetched miscData:", miscData); // Inspect the data structure
+    if (Array.isArray(miscFilterData)) {
       setRows(
-        miscData.map((item) => ({
+        miscFilterData.map((item) => ({
           id: item.misc_id, // Use misc_id as unique identifier
           misc_name: item.misc_name,
           type: item.type,
@@ -67,8 +74,10 @@ const MiscMaster = () => {
           modified_datetime: item.modified_datetime,
         }))
       );
+    } else {
+      console.error("miscData is not an array:", miscData);
     }
-  }, [miscData]);
+  }, [miscFilterData]);
 
   // Form validation schema
   const validationSchema = Yup.object().shape({
@@ -78,35 +87,43 @@ const MiscMaster = () => {
   // Handle radio button change
   const handleRadioChange = (event) => {
     setSelectedOption(event.target.value);
+
+    dispatch(fetchMiscFilterData(event.target.value));
   };
 
   // Handle form submission
+
   const submitForm = async (values, { resetForm }) => {
     const newRow = {
       misc_name: values.misc_name,
       is_active: values.is_active,
       type: selectedOption,
       created_datetime: new Date().toISOString(),
-      modified_datetime: editRow ? new Date().toISOString() : null,
     };
 
     try {
       if (editRow) {
         // Update existing row
-        const updatedRow = { ...editRow, ...newRow };
-        dispatch(postMiscData(updatedRow)); // Update API
-        setRows((prevRows) =>
-          prevRows.map((row) => (row.id === editRow.id ? updatedRow : row))
-        );
+        const updatedRow = {
+          ...editRow,
+          created_by: 0,
+          modified_by: 0,
+          modified_datetime: new Date().toISOString(),
+          misc_id: editRow.id,
+          misc_name: values.misc_name,
+          type: selectedOption,
+        };
+        await dispatch(postMiscData(updatedRow)); // Ensure async completion
       } else {
         // Add new row
-        dispatch(postMiscData(newRow)); // Save API
-        setRows((prevRows) => [...prevRows, { ...newRow, id: Date.now() }]); // Simulate ID
+        await dispatch(postMiscData(newRow)); // Ensure async completion
       }
+
+      // Fetch updated filtered data
+      dispatch(fetchMiscFilterData(selectedOption));
 
       resetForm(); // Reset the form
       setEditRow(null); // Reset editing state
-      setSelectedOption(""); // Reset radio selection
     } catch (error) {
       console.error("Error saving data:", error);
     }
@@ -121,7 +138,7 @@ const MiscMaster = () => {
   // Define dynamic initial values for Formik
   const initialValues = editRow
     ? { misc_name: editRow.misc_name, is_active: editRow.is_active }
-    : { misc_name: "", is_active: false };
+    : { misc_name: "", is_active: true };
 
   return (
     <div className="mb-[50px] pl-2">
@@ -228,8 +245,9 @@ const MiscMaster = () => {
                       type="reset"
                       className="p-2 savebutton project-thim"
                       onClick={() => {
-                        setEditRow(null); // Reset editing state
-                        setSelectedOption(""); // Reset radio selection
+                        setEditRow(null);
+                        setSelectedOption("Title");
+                        dispatch(fetchMiscFilterData('Title'));
                       }}
                     >
                       Refresh
@@ -243,6 +261,7 @@ const MiscMaster = () => {
                 <Divider className="divider" />
                 <DataGridTable
                   rows={rows}
+                  loading={masterLoading}
                   columns={miscMasterTable(handleEdit)}
                 />
               </Grid>

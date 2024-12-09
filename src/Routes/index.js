@@ -36,19 +36,9 @@ import PartsMaster from "../Components/Form/Master/PartsMaster";
 import LocationMaster from "../Components/Form/Master/LocationMaster";
 import LedgerGroup from "../Components/Form/Master/LedgerGroup";
 import DistrictStateMaster from "../Components/Form/Master/DistrictStateMaster";
-import SideNave from "../Pages/MainLayout/SideNav";
 import Layout from "../Pages/MainLayout";
-// const Layout = () => (
-//   <>
-//     <div>
-//       <Navbar />
-//       <SideNave />
-//     </div>
+import VehicleMaster from "../Components/Form/Master/VehiacleMaster/VehicleMaster";
 
-//     <Outlet />
-//     <Footer />
-//   </>
-// );
 const router = createBrowserRouter([
   {
     path: "/",
@@ -63,7 +53,11 @@ const router = createBrowserRouter([
         element: <LetterDetails />,
       },
       {
-        path: "/vehical-master",
+        path: "/vehiacle-master",
+        element: <VehicleMaster />,
+      },
+      {
+        path: "/staff-master",
         element: <SignUp />,
       },
       {

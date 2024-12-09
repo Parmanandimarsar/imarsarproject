@@ -1,94 +1,147 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
-  Button,
   TextField,
   Typography,
-  MenuItem,
-  Select,
   FormControl,
   Box,
   FormLabel,
   Divider,
+  Grid,
+  Checkbox,
+  FormControlLabel,
+  Button,
+  MenuItem,
+  Select,
 } from "@mui/material";
-import Grid from "@mui/material/Grid";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import DataGridTable from "../../../ConstantComponents/DataGridTable";
+import { MasterHSNCodeTable } from "../../../TableField/TablefieldsColumns";
+import { useDispatch, useSelector } from "react-redux";
+import useNotification from "../../../ConstantComponents/Notifications/useNotification";
+import LetterDetails from "./LetterDetails";
+import OpningStock from "./OpningStock";
+// import {
+//   fetchProductData,
+//   postProductData,
+//   putProductData,
+// } from "../../../redux/slices/actions/masterAction";
 
-const CompanyMaster = () => {
-  const validationSchema = Yup.object().shape({
-    companyName: Yup.string().required("company Name is required"),
-    designation: Yup.string().required(" Designation is required"),
-    address: Yup.string().required("Address is required"),
-    city: Yup.string().required("City is required"),
-    district: Yup.string().required("District is required"),
-    state: Yup.string().required("State is required"),
-    pinCode: Yup.string()
-      .matches(/^[0-9]{6}$/, "Invalid pin code")
-      .required("Pin Code is required"),
-    country: Yup.string().required("country is required"),
-    phone: Yup.string().required("Phone Number is require"),
+const VehicleMaster = () => {
+  const notification = useNotification();
+  const dispatch = useDispatch();
+  const [rows, setRows] = useState([]);
+  const [checkBox, setCheckBox] = useState({
+    openingMaster: true,
+    letterDetails: true,
+  });
+  const [editRow, setEditRow] = useState(null);
+  const { masterLoading, getProductData } = useSelector(
+    (state) => state.master
+  );
 
-    mobile: Yup.string()
-      .matches(/^[0-9]{10}$/, "Invalid mobile number")
-      .required("Mobile number is required"),
-    stdCode: Yup.string().required("STD Code is required"),
-    email: Yup.string()
-      .email("Invalid email format")
-      .required("Email is required"),
-    gstNo: Yup.string().required("GST No is required"),
-    tinNo: Yup.string().required("Tin Number is required"),
-    dealerCode: Yup.string().required("dealer Code is required"),
-    jurisDiction: Yup.string().required("jurisDiction is required"),
+  useEffect(() => {
+    // dispatch(fetchProductData());
+  }, []);
+
+  useEffect(() => {
+    setRows(getProductData);
+  }, [getProductData]);
+
+  // Validation schema
+  const validationSchema = Yup.object({
+    model: Yup.string().required("Model is required"),
+    code: Yup.string().required("Code is required"),
+    description: Yup.string().required("Description is required"),
+    group: Yup.string().required("Group is required"),
+    discountLimit: Yup.number()
+      .min(0, "Value must be 0 or greater")
+      .required("Discount Limit is required"),
+    manufacturer: Yup.string().required("Manufacturer is required"),
+    withBattery: Yup.string().required("withBattery is required"),
+    discontinue: Yup.string().required("discontinue is required"),
+    tradeCertNo: Yup.string().required("Trade Cert. No. is required"),
+    fuelCapacity: Yup.number()
+      .min(0, "Fuel capacity must be positive")
+      .required("Fuel capacity is required"),
+    purchasePrice: Yup.number()
+      .min(0, "Purchase price must be positive")
+      .required("Purchase price is required"),
+    exShowroomPrice: Yup.number()
+      .min(0, "Ex-showroom price must be positive")
+      .required("Ex-showroom price is required"),
+    hsnCode: Yup.string().required("HSN Code is required"),
+    effectiveDate: Yup.date().required("Effective date is required"),
   });
 
   const initialValues = {
-    companyName: "",
-    designation: "",
-    address: "",
-    city: "",
-    district: "",
-    state: "",
-    pinCode: "",
-    country: "",
-    phone: "",
-    mobile: "",
-    stdCode: "",
-    email: "",
-    gstNo: "",
-    tinNo: "",
-    dealerCode: "",
-    jurisDiction: "",
+    model: "",
+    code: "",
+    description: "",
+    group: "",
+    discountLimit: "",
+    manufacturer: "",
+    with_battery: "",
+    discontinue: "",
+    tradeCertNo: "",
+    fuelCapacity: "",
+    purchasePrice: "",
+    exShowroomPrice: "",
+    hsnCode: "",
+    effectiveDate: "",
   };
 
-  const handleSubmit = (values, { setSubmitting }) => {
-    setSubmitting(true);
-    console.log(values, "value");
+  const handleSubmit = async (values, { resetForm }) => {
+    console.log("values", values);
 
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, 1000);
+    if (editRow) {
+      const updateData = { ...editRow, ...values };
+      //   await dispatch(putProductData(updateData));
+      setEditRow(null);
+    } else {
+      const newRow = { ...values, id: Date.now() };
+      //   await dispatch(postProductData(newRow));
+    }
+    // dispatch(fetchProductData());
+    resetForm();
+  };
+
+  const handleEdit = (row) => {
+    setEditRow(row);
+  };
+  const handleCheckBoxChange = (event) => {
+    const { name, checked } = event.target;
+    setCheckBox((prev) => ({
+      ...prev,
+      [name]: checked,
+    }));
+    console.log(`${name} changed to ${checked}`);
+  };
+  console.log("checkbox", checkBox);
+
+  const handleReset = (resetForm) => {
+    setEditRow(null);
+    resetForm();
   };
 
   return (
     <div className="mb-[50px] pl-2">
       <Box className="bg-white rounded-lg shadow-lg" autoComplete="off">
         <Box className="flex justify-between items-center mb-1 project-thim text-white p-1 rounded-t-lg">
-          <Typography>Company Master</Typography>
+          <Typography>Vehicle Master</Typography>
         </Box>
         <Divider className="divider" />
         <div className="pl-1 pr-1">
           <Formik
-            initialValues={initialValues}
+            initialValues={initialValues || editRow}
             validationSchema={validationSchema}
-            validateOnChange={false}
-            validateOnBlur={false}
             onSubmit={handleSubmit}
+            enableReinitialize
           >
-            {({ errors, touched, isSubmitting }) => (
-              <Form autoComplete="off" className="company-master-form">
+            {({ resetForm, errors, values }) => (
+              <Form>
                 <Grid container spacing={1}>
-                  {/* Row 1 */}
+                 
                   <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
@@ -98,22 +151,52 @@ const CompanyMaster = () => {
                           className="formlableborder"
                           sx={{ mr: "3px" }}
                         >
-                          <FormLabel>
-                            Company Name<span style={{ color: "red" }}> *</span>
-                          </FormLabel>
+                          <FormLabel>Model</FormLabel>
                         </Grid>
                         <Grid item xs={7}>
-                          <Field
-                            as={TextField}
-                            name="companyName"
-                            placeholder={"Enter Company Name"}
+                          <TextField
+                            
+                            name="model"
+                            placeholder="Enter Model"
                             fullWidth
                             variant="outlined"
                             size="small"
-                            error={touched.companyName && !!errors.companyName}
+                            
                           />
                           <ErrorMessage
-                            name="companyName"
+                            name="model"
+                            component="div"
+                            className="text-red-600 text-[10px]"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+
+                  {/* Code */}
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid
+                          item
+                          xs={4}
+                          className="formlableborder"
+                          sx={{ mr: "3px" }}
+                        >
+                          <FormLabel>Code</FormLabel>
+                        </Grid>
+                        <Grid item xs={7}>
+                          <TextField
+                           
+                            name="code"
+                            placeholder="Enter Code"
+                            fullWidth
+                            variant="outlined"
+                            size="small"
+                            
+                          />
+                          <ErrorMessage
+                            name="code"
                             component="div"
                             className="text-red-600 text-xs"
                           />
@@ -122,6 +205,7 @@ const CompanyMaster = () => {
                     </FormControl>
                   </Grid>
 
+                  {/* Description */}
                   <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
@@ -131,20 +215,20 @@ const CompanyMaster = () => {
                           className="formlableborder"
                           sx={{ mr: "3px" }}
                         >
-                          <FormLabel>Designation</FormLabel>
+                          <FormLabel>Description</FormLabel>
                         </Grid>
                         <Grid item xs={7}>
-                          <Field
-                            as={TextField}
-                            name="designation"
+                          <TextField
+                            
+                            name="description"
+                            placeholder="Enter Description"
                             fullWidth
-                            placeholder={"Enter Designation"}
                             variant="outlined"
                             size="small"
-                            error={touched.designation && !!errors.designation}
+                           
                           />
                           <ErrorMessage
-                            name="designation"
+                            name="description"
                             component="div"
                             className="text-red-600 text-xs"
                           />
@@ -152,6 +236,8 @@ const CompanyMaster = () => {
                       </Grid>
                     </FormControl>
                   </Grid>
+
+                  {/* Group */}
                   <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
@@ -161,54 +247,23 @@ const CompanyMaster = () => {
                           className="formlableborder"
                           sx={{ mr: "3px" }}
                         >
-                          <FormLabel>Address</FormLabel>
-                        </Grid>
-                        <Grid item xs={7}>
-                          <Field
-                            as={TextField}
-                            name="address"
-                            placeholder={"Enter Address"}
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.address && !!errors.address}
-                            // helperText={touched.address && errors.address}
-                          />
-                          <ErrorMessage
-                            name="address"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-                  {/* Row 2 */}
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid
-                          item
-                          xs={4}
-                          className="formlableborder"
-                          sx={{ mr: "3px" }}
-                        >
-                          <FormLabel>City</FormLabel>
+                          <FormLabel>Group</FormLabel>
                         </Grid>
                         <Grid item xs={7}>
                           <Field
                             as={Select}
+                            name="group"
+                            placeholder="Select Group"
                             fullWidth
-                            name="city"
+                            variant="outlined"
                             size="small"
-                            error={touched.city && !!errors.city}
-                            // helperText={touched.city && errors.city}
+                            select
                           >
-                            <MenuItem value="City1">City1</MenuItem>
-                            <MenuItem value="City2">City2</MenuItem>
+                            <MenuItem value="Group1">Group 1</MenuItem>
+                            <MenuItem value="Group2">Group 2</MenuItem>
                           </Field>
                           <ErrorMessage
-                            name="city"
+                            name="group"
                             component="div"
                             className="text-red-600 text-xs"
                           />
@@ -216,6 +271,8 @@ const CompanyMaster = () => {
                       </Grid>
                     </FormControl>
                   </Grid>
+
+                  {/* Discount Limit */}
                   <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
@@ -225,410 +282,383 @@ const CompanyMaster = () => {
                           className="formlableborder"
                           sx={{ mr: "3px" }}
                         >
-                          <FormLabel>District</FormLabel>
+                          <FormLabel>Discount Limit</FormLabel>
+                        </Grid>
+                        <Grid item xs={7}>
+                          <TextField
+                           
+                            name="discount_limit"
+                            type="number"
+                            placeholder="Enter Discount Limit"
+                            fullWidth
+                            variant="outlined"
+                            size="small"
+                            
+                          />
+                          <ErrorMessage
+                            name="discount_limit"
+                            component="div"
+                            className="text-red-600 text-xs"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+
+                  {/* Manufacturer */}
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid
+                          item
+                          xs={4}
+                          className="formlableborder"
+                          sx={{ mr: "3px" }}
+                        >
+                          <FormLabel>Manufacturer</FormLabel>
+                        </Grid>
+                        <Grid item xs={7}>
+                          <TextField
+                           
+                            name="manufacturer"
+                            placeholder="Enter Manufacturer"
+                            fullWidth
+                            variant="outlined"
+                            size="small"
+                           
+                          />
+                          <ErrorMessage
+                            name="manufacturer"
+                            component="div"
+                            className="text-red-600 text-xs"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+
+                  {/* With Battery */}
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid
+                          item
+                          xs={4}
+                          className="formlableborder"
+                          sx={{ mr: "3px" }}
+                        >
+                          <FormLabel>With Battery</FormLabel>
                         </Grid>
                         <Grid item xs={7}>
                           <Field
                             as={Select}
-                            name="district"
+                            name="with_battery"
+                            select
                             fullWidth
                             variant="outlined"
                             size="small"
-                            error={touched.district && !!errors.district}
+                            displayEmpty
                           >
-                            <MenuItem value="City1">district1</MenuItem>
-                            <MenuItem value="City2">district2</MenuItem>
-                          </Field>
-
-                          <ErrorMessage
-                            name="district"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid
-                          item
-                          xs={4}
-                          className="formlableborder"
-                          sx={{ mr: "3px" }}
-                        >
-                          <FormLabel>State</FormLabel>
-                        </Grid>
-                        <Grid item xs={7}>
-                          <Field
-                            as={Select}
-                            name="state"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.state && !!errors.state}
-                            // helperText={touched.state && errors.state}
-                          >
-                            <MenuItem value="state1">district1</MenuItem>
-                            <MenuItem value="state2">district2</MenuItem>
-                          </Field>
-                          <ErrorMessage
-                            name="state"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  {/* Row 3 */}
-
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid
-                          item
-                          xs={4}
-                          className="formlableborder"
-                          sx={{ mr: "3px" }}
-                        >
-                          <FormLabel>Pin Code</FormLabel>
-                        </Grid>
-                        <Grid item xs={7}>
-                          <Field
-                            as={TextField}
-                            name="pinCode"
-                            fullWidth
-                            placeholder={"Enter Pin Code"}
-                            variant="outlined"
-                            size="small"
-                            error={touched.pinCode && !!errors.pinCode}
-                            // helperText={touched.pinCode && errors.pinCode}
-                          />
-                          <ErrorMessage
-                            name="pinCode"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid
-                          item
-                          xs={4}
-                          className="formlableborder"
-                          sx={{ mr: "3px" }}
-                        >
-                          <FormLabel>Country</FormLabel>
-                        </Grid>
-                        <Grid item xs={7}>
-                          <Field
-                            as={TextField}
-                            name="country"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.country && !!errors.country}
-                            // helperText={touched.pinCode && errors.pinCode}
-                          />
-                          <ErrorMessage
-                            name="country"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid
-                          item
-                          xs={4}
-                          className="formlableborder"
-                          sx={{ mr: "3px" }}
-                        >
-                          <FormLabel>Phone No</FormLabel>
-                        </Grid>
-                        <Grid item xs={7}>
-                          <Field
-                            as={TextField}
-                            name="phone"
-                            fullWidth
-                            placeholder={"Enter Phone No"}
-                            variant="outlined"
-                            size="small"
-                            error={touched.phone && !!errors.phone}
-                            // helperText={touched.mobile && errors.mobile}
-                          />
-                          <ErrorMessage
-                            name="phone"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  {/* Row 4 */}
-
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid
-                          item
-                          xs={4}
-                          className="formlableborder"
-                          sx={{ mr: "3px" }}
-                        >
-                          <FormLabel>Mobile No</FormLabel>
-                        </Grid>
-                        <Grid item xs={7}>
-                          <Field
-                            as={TextField}
-                            name="mobile"
-                            fullWidth
-                            placeholder={"Enter Mobile No"}
-                            variant="outlined"
-                            size="small"
-                            error={touched.mobile && !!errors.mobile}
-                            // helperText={touched.mobile && errors.mobile}
-                          />
-                          <ErrorMessage
-                            name="mobile"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid
-                          item
-                          xs={4}
-                          className="formlableborder"
-                          sx={{ mr: "3px" }}
-                        >
-                          <FormLabel>STD Code</FormLabel>
-                        </Grid>
-                        <Grid item xs={7}>
-                          <Field
-                            as={TextField}
-                            name="stdCode"
-                            fullWidth
-                            variant="outlined"
-                            placeholder={"Enter STD Code"}
-                            size="small"
-                            error={touched.stdCode && !!errors.stdCode}
-                            // helperText={touched.stdCode && errors.stdCode}
-                          />
-                          <ErrorMessage
-                            name="stdCode"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid
-                          item
-                          xs={4}
-                          className="formlableborder"
-                          sx={{ mr: "3px" }}
-                        >
-                          <FormLabel>Email</FormLabel>
-                        </Grid>
-                        <Grid item xs={7}>
-                          <Field
-                            as={TextField}
-                            name="email"
-                            type="email"
-                            fullWidth
-                            placeholder={"Enter Email"}
-                            variant="outlined"
-                            size="small"
-                            error={touched.email && !!errors.email}
-                            // helperText={touched.email && errors.email}
-                          />
-                          <ErrorMessage
-                            name="email"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  {/* Row 5*/}
-
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid
-                          item
-                          xs={4}
-                          className="formlableborder"
-                          sx={{ mr: "3px" }}
-                        >
-                          <FormLabel>GST No</FormLabel>
-                        </Grid>
-                        <Grid item xs={7}>
-                          <Field
-                            as={TextField}
-                            name="gstNo"
-                            placeholder={"Enter GST No"}
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.gstNo && !!errors.gstNo}
-                          />
-                          <ErrorMessage
-                            name="gstNo"
-                            component="div"
-                            className="text-red-600  text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid
-                          item
-                          xs={4}
-                          className="formlableborder"
-                          sx={{ mr: "3px" }}
-                        >
-                          <FormLabel>Tin No</FormLabel>
-                        </Grid>
-                        <Grid item xs={7}>
-                          <Field
-                            as={TextField}
-                            name="tinNo"
-                            placeholder={"Enter Tin No"}
-                            fullWidth
-                            size="small"
-                            error={touched.tinNo && !!errors.tinNo}
-                          />
-                          <ErrorMessage
-                            name="tinNo"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid
-                          item
-                          xs={4}
-                          className="formlableborder"
-                          sx={{ mr: "3px" }}
-                        >
-                          <FormLabel>Dealer Code</FormLabel>
-                        </Grid>
-                        <Grid item xs={7}>
-                          <Field
-                            as={TextField}
-                            name="dealerCode"
-                            fullWidth
-                            placeholder={"Enter Dealer Code"}
-                            variant="outlined"
-                            size="small"
-                            error={touched.dealerCode && !!errors.dealerCode}
-                          />
-                          <ErrorMessage
-                            name="dealerCode"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-                  {/* Row 6*/}
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid
-                          item
-                          xs={4}
-                          className="formlableborder"
-                          sx={{ mr: "3px" }}
-                        >
-                          <FormLabel>Juris Diction</FormLabel>
-                        </Grid>
-                        <Grid item xs={7}>
-                          <Field
-                            as={Select}
-                            name="jurisDiction"
-                            fullWidth
-                            size="small"
-                            error={
-                              touched.jurisDiction && !!errors.jurisDiction
-                            }
-                            // helperText={touched.department && errors.department}
-                          >
-                            <MenuItem value="jurisDiction">
-                              Department1
+                            <MenuItem value="" disabled>
+                              Yes
                             </MenuItem>
-                            <MenuItem value="Department2">Department2</MenuItem>
+                            <MenuItem value="Yes">Yes</MenuItem>
+                            <MenuItem value="No">No</MenuItem>
                           </Field>
                           <ErrorMessage
-                            name="jurisDiction"
+                            name="with_battery"
                             component="div"
-                            className="text-red-600 text-xs "
+                            className="text-red-600 text-xs"
                           />
                         </Grid>
                       </Grid>
                     </FormControl>
+                  </Grid>
+
+                  {/* Discontinue */}
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid
+                          item
+                          xs={4}
+                          className="formlableborder"
+                          sx={{ mr: "3px" }}
+                        >
+                          <FormLabel>Discontinue</FormLabel>
+                        </Grid>
+                        <Grid item xs={7}>
+                          <Field
+                            as={Select}
+                            name="discontinue"
+                            select
+                            fullWidth
+                            variant="outlined"
+                            size="small"
+                          >
+                            <MenuItem value="Yes">Yes</MenuItem>
+                            <MenuItem value="No">No</MenuItem>
+                          </Field>
+                          <ErrorMessage
+                            name="discontinue"
+                            component="div"
+                            className="text-red-600 text-xs"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+
+                  {/* Trade Certificate Number */}
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid
+                          item
+                          xs={4}
+                          className="formlableborder"
+                          sx={{ mr: "3px" }}
+                        >
+                          <FormLabel>Trade Cert. No.</FormLabel>
+                        </Grid>
+                        <Grid item xs={7}>
+                          <TextField  
+                            name="trade_cert_no"
+                            placeholder="Enter Trade Cert. No."
+                            fullWidth
+                            variant="outlined"
+                            size="small"
+                           
+                          />
+                          <ErrorMessage
+                            name="trade_cert_no"
+                            component="div"
+                            className="text-red-600 text-xs"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+
+                  {/* Fuel Capacity (Litres) */}
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid
+                          item
+                          xs={4}
+                          className="formlableborder"
+                          sx={{ mr: "3px" }}
+                        >
+                          <FormLabel>Fuel Capacity (L.)</FormLabel>
+                        </Grid>
+                        <Grid item xs={7}>
+                          <TextField
+                            name="fuel_capacity"
+                            type="number"
+                            placeholder="Enter Fuel Capacity"
+                            fullWidth
+                            variant="outlined"
+                            size="small"
+                           
+                          />
+                          <ErrorMessage
+                            name="fuel_capacity"
+                            component="div"
+                            className="text-red-600 text-xs"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+
+                  {/* Purchase Price */}
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid
+                          item
+                          xs={4}
+                          className="formlableborder"
+                          sx={{ mr: "3px" }}
+                        >
+                          <FormLabel>Purchase Price</FormLabel>
+                        </Grid>
+                        <Grid item xs={7}>
+                          <TextField
+                           
+                            name="purchase_price"
+                            type="number"
+                            placeholder="Enter Purchase Price"
+                            fullWidth
+                            variant="outlined"
+                            size="small"
+                            
+                          />
+                          <ErrorMessage
+                            name="purchase_price"
+                            component="div"
+                            className="text-red-600 text-xs"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+
+                  {/* Ex-Showroom Price */}
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid
+                          item
+                          xs={4}
+                          className="formlableborder"
+                          sx={{ mr: "3px" }}
+                        >
+                          <FormLabel>Ex-Showroom Price</FormLabel>
+                        </Grid>
+                        <Grid item xs={7}>
+                          <TextField
+                            name="exShowroomPrice"
+                            type="number"
+                            placeholder="Enter Ex-Showroom Price"
+                            fullWidth
+                            variant="outlined"
+                            size="small"
+                            
+                          />
+                          <ErrorMessage
+                            name="exShowroomPrice"
+                            component="div"
+                            className="text-red-600 text-xs"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+
+                  {/* HSN Code */}
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid
+                          item
+                          xs={4}
+                          className="formlableborder"
+                          sx={{ mr: "3px" }}
+                        >
+                          <FormLabel>HSN Code</FormLabel>
+                        </Grid>
+                        <Grid item xs={7}>
+                          <TextField
+                           
+                            name="hsnCode"
+                            placeholder="Enter HSN Code"
+                            fullWidth
+                            variant="outlined"
+                            size="small"
+                           
+                          />
+                          <ErrorMessage
+                            name="hsnCode"
+                            component="div"
+                            className="text-red-600 text-xs"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+
+                  {/* Effective Date */}
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControl fullWidth>
+                      <Grid container alignItems="center">
+                        <Grid
+                          item
+                          xs={4}
+                          className="formlableborder"
+                          sx={{ mr: "3px" }}
+                        >
+                          <FormLabel>Effective Date</FormLabel>
+                        </Grid>
+                        <Grid item xs={7}>
+                          <TextField
+                            
+                            name="effectiveDate"
+                            type="date"
+                            fullWidth
+                            variant="outlined"
+                            size="small"
+                            InputLabelProps={{
+                              shrink: true,
+                            }}
+                           
+                          />
+                          <ErrorMessage
+                            name="effectiveDate"
+                            component="div"
+                            className="text-red-600 text-xs"
+                          />
+                        </Grid>
+                      </Grid>
+                    </FormControl>
+                  </Grid>
+                  {/* Opening Master Checkbox */}
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          name="letterDetails"
+                          size="small"
+                          checked={checkBox.letterDetails} // Bind to Formik values
+                          onChange={handleCheckBoxChange} // Handle change
+                        />
+                      }
+                      label="Letter Details"
+                    />
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          size="small"
+                          name="openingMaster"
+                          checked={checkBox.openingMaster} // Bind to Formik values
+                          onChange={handleCheckBoxChange} // Handle change
+                        />
+                      }
+                      label="Opening Master"
+                    />
+                  </Grid>
+
+                  {/* Letter Details Checkbox */}
+                  <Grid item xs={12} sm={6} md={4} lg={3}></Grid>
+
+                  {/* Buttons */}
+                  <Grid item xs={12}>
+                    <Box display="flex" justifyContent="flex-end" gap={2}>
+                      <button type="submit" className="project-thim savebutton">
+                        {editRow ? "Update" : "Save"}
+                      </button>
+                      <button
+                        type="reset"
+                        className="project-thim savebutton"
+                        onClick={() => handleReset(resetForm)}
+                      >
+                        Refresh
+                      </button>
+                    </Box>
                   </Grid>
                 </Grid>
-
-                {/* Buttons */}
-                <Box className="mt-3 flex gap-2 justify-end">
-                  <button type="submit" className="project-thim savebutton">
-                    Save
-                  </button>
-
-                  <button type="button" className="project-thim savebutton">
-                    Deactivate
-                  </button>
-                  <button type="reset" className="project-thim savebutton">
-                    Clear
-                  </button>
-                </Box>
               </Form>
             )}
           </Formik>
         </div>
+        <Divider className="divider" />
+        <LetterDetails open={checkBox.letterDetails} />
+        <Divider className="divider" />
+        <OpningStock open={checkBox.openingMaster} />
       </Box>
     </div>
   );
 };
 
-export default CompanyMaster;
+export default VehicleMaster;

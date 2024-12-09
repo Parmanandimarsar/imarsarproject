@@ -6,7 +6,8 @@ export const menuItems = [
       icon: <MailIcon />,
       subItems: [
        
-        { text: "Vehical-Master", link: "/vehical-master", icon: <MailIcon /> },
+        { text: "Staff-Master", link: "/staff-master", icon: <MailIcon /> },
+        { text: "Vehicle-Master", link: "/vehiacle-master", icon: <MailIcon /> },
         { text: "Letter-Details", link: "/letter-details", icon: <MailIcon /> },
         { text: "Opening-Master", link: "/opening-stocks", icon: <MailIcon /> },
         { text: "Ledger-Master", link: "/ledger-master", icon: <MailIcon /> },

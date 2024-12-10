@@ -91,18 +91,13 @@ const LetterDetails = () => {
 
   return (
     <>
-      <div className="bg-gray-100 w-full flex">
-        <div className="w-[15%] sm:w-[5%]">
-          <SideNave />
-        </div>
+      
 
-        <div className="w-[80%] sm:w-[90%] lg:w-[94%] mt-[25px] mb-[50px] mx-auto">
-          <Box className="bg-white p-3 rounded-lg shadow-lg" autoComplete="off">
+        <div className=" mb-[50px] pl-2">
+          <Box className="bg-white p-3 rounded-lg shadow-lg border" autoComplete="off">
             <Box className=" flex justify-between items-center ">
               <Typography
-                variant="h5"
-                component="h1"
-                className="text-center "
+               
               >
                 Letter Details
               </Typography>
@@ -669,7 +664,7 @@ const LetterDetails = () => {
                   className="divider"
                 />
 
-                  <Typography variant="h6" sx={{ marginTop: "20px" }}>
+                  <Typography >
                     Letter Details Table
                   </Typography>
                   <div className="overflow-x-auto  shadow-lg rounded-b-lg mt-2">
@@ -805,7 +800,7 @@ const LetterDetails = () => {
             </Formik>
           </Box>
         </div>
-      </div>
+      
     </>
   );
 };

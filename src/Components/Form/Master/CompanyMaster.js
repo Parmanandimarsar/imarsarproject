@@ -6,14 +6,13 @@ import {
   MenuItem,
   Select,
   FormControl,
- 
   Box,
   FormLabel,
+  Divider,
 } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import SideNave from "../../../Pages/MainLayout/SideNav";
 
 const CompanyMaster = () => {
   const validationSchema = Yup.object().shape({
@@ -72,42 +71,42 @@ const CompanyMaster = () => {
   };
 
   return (
-    <div className="bg-gray-100 w-full flex">
-      <div className="w-[15%] sm:w-[5%]">
-        <SideNave />
-      </div>
-
-      <div className="w-[80%] sm:w-[90%] lg:w-[94%] mt-[25px] mb-[50px] mx-auto">
-        <Box className="bg-white p-6 rounded-lg shadow-lg" autoComplete="off">
-          <Box className="flex justify-between items-center mb-4">
-            <Typography
-              variant="h5"
-              component="h1"
-              className="text-center mb-6"
-            >
-              Company Master
-            </Typography>
-            <Box className="flex gap-2"></Box>
-          </Box>
+    <div className="mb-[50px] pl-2">
+      <Box className="bg-white rounded-lg shadow-lg" autoComplete="off">
+        <Box className="flex justify-between items-center mb-1 project-thim text-white p-1 rounded-t-lg">
+          <Typography>Company Master</Typography>
+        </Box>
+        <Divider className="divider" />
+        <div className="pl-1 pr-1">
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
+            validateOnChange={false}
+            validateOnBlur={false}
             onSubmit={handleSubmit}
           >
             {({ errors, touched, isSubmitting }) => (
               <Form autoComplete="off" className="company-master-form">
-                <Grid container spacing={2}>
+                <Grid container spacing={1}>
                   {/* Row 1 */}
-                  <Grid item xs={12} sm={4}>
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>Company Name</FormLabel>
+                        <Grid
+                          item
+                          xs={4}
+                          className="formlableborder"
+                          sx={{ mr: "3px" }}
+                        >
+                          <FormLabel>
+                            Company Name<span style={{ color: "red" }}> *</span>
+                          </FormLabel>
                         </Grid>
-                        <Grid item xs={8}>
+                        <Grid item xs={7}>
                           <Field
                             as={TextField}
                             name="companyName"
+                            placeholder={"Enter Company Name"}
                             fullWidth
                             variant="outlined"
                             size="small"
@@ -123,17 +122,23 @@ const CompanyMaster = () => {
                     </FormControl>
                   </Grid>
 
-                  <Grid item xs={12} sm={4}>
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
-                        <Grid item xs={4}>
+                        <Grid
+                          item
+                          xs={4}
+                          className="formlableborder"
+                          sx={{ mr: "3px" }}
+                        >
                           <FormLabel>Designation</FormLabel>
                         </Grid>
-                        <Grid item xs={8}>
+                        <Grid item xs={7}>
                           <Field
                             as={TextField}
                             name="designation"
                             fullWidth
+                            placeholder={"Enter Designation"}
                             variant="outlined"
                             size="small"
                             error={touched.designation && !!errors.designation}
@@ -147,16 +152,22 @@ const CompanyMaster = () => {
                       </Grid>
                     </FormControl>
                   </Grid>
-                  <Grid item xs={12} sm={4}>
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
-                        <Grid item xs={4}>
+                        <Grid
+                          item
+                          xs={4}
+                          className="formlableborder"
+                          sx={{ mr: "3px" }}
+                        >
                           <FormLabel>Address</FormLabel>
                         </Grid>
-                        <Grid item xs={8}>
+                        <Grid item xs={7}>
                           <Field
                             as={TextField}
                             name="address"
+                            placeholder={"Enter Address"}
                             fullWidth
                             variant="outlined"
                             size="small"
@@ -173,13 +184,18 @@ const CompanyMaster = () => {
                     </FormControl>
                   </Grid>
                   {/* Row 2 */}
-                  <Grid item xs={12} sm={4}>
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
-                        <Grid item xs={4}>
+                        <Grid
+                          item
+                          xs={4}
+                          className="formlableborder"
+                          sx={{ mr: "3px" }}
+                        >
                           <FormLabel>City</FormLabel>
                         </Grid>
-                        <Grid item xs={8}>
+                        <Grid item xs={7}>
                           <Field
                             as={Select}
                             fullWidth
@@ -200,13 +216,18 @@ const CompanyMaster = () => {
                       </Grid>
                     </FormControl>
                   </Grid>
-                  <Grid item xs={12} sm={4}>
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
-                        <Grid item xs={4}>
+                        <Grid
+                          item
+                          xs={4}
+                          className="formlableborder"
+                          sx={{ mr: "3px" }}
+                        >
                           <FormLabel>District</FormLabel>
                         </Grid>
-                        <Grid item xs={8}>
+                        <Grid item xs={7}>
                           <Field
                             as={Select}
                             name="district"
@@ -229,13 +250,18 @@ const CompanyMaster = () => {
                     </FormControl>
                   </Grid>
 
-                  <Grid item xs={12} sm={4}>
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
-                        <Grid item xs={4}>
+                        <Grid
+                          item
+                          xs={4}
+                          className="formlableborder"
+                          sx={{ mr: "3px" }}
+                        >
                           <FormLabel>State</FormLabel>
                         </Grid>
-                        <Grid item xs={8}>
+                        <Grid item xs={7}>
                           <Field
                             as={Select}
                             name="state"
@@ -260,17 +286,23 @@ const CompanyMaster = () => {
 
                   {/* Row 3 */}
 
-                  <Grid item xs={12} sm={4}>
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
-                        <Grid item xs={4}>
+                        <Grid
+                          item
+                          xs={4}
+                          className="formlableborder"
+                          sx={{ mr: "3px" }}
+                        >
                           <FormLabel>Pin Code</FormLabel>
                         </Grid>
-                        <Grid item xs={8}>
+                        <Grid item xs={7}>
                           <Field
                             as={TextField}
                             name="pinCode"
                             fullWidth
+                            placeholder={"Enter Pin Code"}
                             variant="outlined"
                             size="small"
                             error={touched.pinCode && !!errors.pinCode}
@@ -286,13 +318,18 @@ const CompanyMaster = () => {
                     </FormControl>
                   </Grid>
 
-                  <Grid item xs={12} sm={4}>
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
-                        <Grid item xs={4}>
+                        <Grid
+                          item
+                          xs={4}
+                          className="formlableborder"
+                          sx={{ mr: "3px" }}
+                        >
                           <FormLabel>Country</FormLabel>
                         </Grid>
-                        <Grid item xs={8}>
+                        <Grid item xs={7}>
                           <Field
                             as={TextField}
                             name="country"
@@ -311,17 +348,23 @@ const CompanyMaster = () => {
                       </Grid>
                     </FormControl>
                   </Grid>
-                  <Grid item xs={12} sm={4}>
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
-                        <Grid item xs={4}>
+                        <Grid
+                          item
+                          xs={4}
+                          className="formlableborder"
+                          sx={{ mr: "3px" }}
+                        >
                           <FormLabel>Phone No</FormLabel>
                         </Grid>
-                        <Grid item xs={8}>
+                        <Grid item xs={7}>
                           <Field
                             as={TextField}
                             name="phone"
                             fullWidth
+                            placeholder={"Enter Phone No"}
                             variant="outlined"
                             size="small"
                             error={touched.phone && !!errors.phone}
@@ -339,17 +382,23 @@ const CompanyMaster = () => {
 
                   {/* Row 4 */}
 
-                  <Grid item xs={12} sm={4}>
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
-                        <Grid item xs={4}>
+                        <Grid
+                          item
+                          xs={4}
+                          className="formlableborder"
+                          sx={{ mr: "3px" }}
+                        >
                           <FormLabel>Mobile No</FormLabel>
                         </Grid>
-                        <Grid item xs={8}>
+                        <Grid item xs={7}>
                           <Field
                             as={TextField}
                             name="mobile"
                             fullWidth
+                            placeholder={"Enter Mobile No"}
                             variant="outlined"
                             size="small"
                             error={touched.mobile && !!errors.mobile}
@@ -365,18 +414,24 @@ const CompanyMaster = () => {
                     </FormControl>
                   </Grid>
 
-                  <Grid item xs={12} sm={4}>
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
-                        <Grid item xs={4}>
+                        <Grid
+                          item
+                          xs={4}
+                          className="formlableborder"
+                          sx={{ mr: "3px" }}
+                        >
                           <FormLabel>STD Code</FormLabel>
                         </Grid>
-                        <Grid item xs={8}>
+                        <Grid item xs={7}>
                           <Field
                             as={TextField}
                             name="stdCode"
                             fullWidth
                             variant="outlined"
+                            placeholder={"Enter STD Code"}
                             size="small"
                             error={touched.stdCode && !!errors.stdCode}
                             // helperText={touched.stdCode && errors.stdCode}
@@ -391,18 +446,24 @@ const CompanyMaster = () => {
                     </FormControl>
                   </Grid>
 
-                  <Grid item xs={12} sm={4}>
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
-                        <Grid item xs={4}>
+                        <Grid
+                          item
+                          xs={4}
+                          className="formlableborder"
+                          sx={{ mr: "3px" }}
+                        >
                           <FormLabel>Email</FormLabel>
                         </Grid>
-                        <Grid item xs={8}>
+                        <Grid item xs={7}>
                           <Field
                             as={TextField}
                             name="email"
                             type="email"
                             fullWidth
+                            placeholder={"Enter Email"}
                             variant="outlined"
                             size="small"
                             error={touched.email && !!errors.email}
@@ -420,16 +481,22 @@ const CompanyMaster = () => {
 
                   {/* Row 5*/}
 
-                  <Grid item xs={12} sm={4}>
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
-                        <Grid item xs={4}>
+                        <Grid
+                          item
+                          xs={4}
+                          className="formlableborder"
+                          sx={{ mr: "3px" }}
+                        >
                           <FormLabel>GST No</FormLabel>
                         </Grid>
-                        <Grid item xs={8}>
+                        <Grid item xs={7}>
                           <Field
                             as={TextField}
                             name="gstNo"
+                            placeholder={"Enter GST No"}
                             fullWidth
                             variant="outlined"
                             size="small"
@@ -444,16 +511,22 @@ const CompanyMaster = () => {
                       </Grid>
                     </FormControl>
                   </Grid>
-                  <Grid item xs={12} sm={4}>
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
-                        <Grid item xs={4}>
+                        <Grid
+                          item
+                          xs={4}
+                          className="formlableborder"
+                          sx={{ mr: "3px" }}
+                        >
                           <FormLabel>Tin No</FormLabel>
                         </Grid>
-                        <Grid item xs={8}>
+                        <Grid item xs={7}>
                           <Field
                             as={TextField}
                             name="tinNo"
+                            placeholder={"Enter Tin No"}
                             fullWidth
                             size="small"
                             error={touched.tinNo && !!errors.tinNo}
@@ -467,17 +540,23 @@ const CompanyMaster = () => {
                       </Grid>
                     </FormControl>
                   </Grid>
-                  <Grid item xs={12} sm={4}>
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
-                        <Grid item xs={4}>
+                        <Grid
+                          item
+                          xs={4}
+                          className="formlableborder"
+                          sx={{ mr: "3px" }}
+                        >
                           <FormLabel>Dealer Code</FormLabel>
                         </Grid>
-                        <Grid item xs={8}>
+                        <Grid item xs={7}>
                           <Field
                             as={TextField}
                             name="dealerCode"
                             fullWidth
+                            placeholder={"Enter Dealer Code"}
                             variant="outlined"
                             size="small"
                             error={touched.dealerCode && !!errors.dealerCode}
@@ -492,13 +571,18 @@ const CompanyMaster = () => {
                     </FormControl>
                   </Grid>
                   {/* Row 6*/}
-                  <Grid item xs={12} sm={4}>
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
-                        <Grid item xs={4}>
+                        <Grid
+                          item
+                          xs={4}
+                          className="formlableborder"
+                          sx={{ mr: "3px" }}
+                        >
                           <FormLabel>Juris Diction</FormLabel>
                         </Grid>
-                        <Grid item xs={8}>
+                        <Grid item xs={7}>
                           <Field
                             as={Select}
                             name="jurisDiction"
@@ -526,23 +610,23 @@ const CompanyMaster = () => {
                 </Grid>
 
                 {/* Buttons */}
-                <Box className="mt-6 flex gap-4 justify-end">
-                  <Button type="submit" color="primary" variant="contained">
+                <Box className="mt-3 flex gap-2 justify-end">
+                  <button type="submit" className="project-thim savebutton">
                     Save
-                  </Button>
+                  </button>
 
-                  <Button type="button" color="error" variant="outlined">
+                  <button type="button" className="project-thim savebutton">
                     Deactivate
-                  </Button>
-                  <Button type="reset" color="default" variant="outlined">
+                  </button>
+                  <button type="reset" className="project-thim savebutton">
                     Clear
-                  </Button>
+                  </button>
                 </Box>
               </Form>
             )}
           </Formik>
-        </Box>
-      </div>
+        </div>
+      </Box>
     </div>
   );
 };

@@ -77,538 +77,608 @@ const StaffMaster = () => {
   };
 
   return (
-    <div className="bg-gray-100 w-full flex">
-      <div className="w-[15%] sm:w-[5%]">
-        <SideNave />
-      </div>
+    <div className="  mb-[50px] pl-2">
+      <Box className="bg-white rounded-lg shadow-lg" autoComplete="off">
+        <Box className="flex justify-between items-center mb-1 project-thim text-white p-1 rounded-t-lg">
+          <Typography>Staff Master</Typography>
+        </Box>
 
-      <div className=" w-[80%] sm:w-[90%] lg:w-[94%] mt-[25px] mb-[50px] mx-auto">
-        <Box className="bg-white p-6 rounded-lg shadow-lg" autoComplete="off">
-          <Box className="flex justify-between items-center mb-4">
-            <Typography
-              variant="h5"
-              component="h1"
-              className="text-center mb-6"
-            >
-              Staff Master
-            </Typography>
-            <Box className="flex gap-2 staff-master-form">
-              <TextField placeholder="Search" />
-              <Button variant="contained">Search</Button>
-            </Box>
-          </Box>
-          <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={handleSubmit}
-          >
-            {({ errors, touched, isSubmitting }) => (
-              <Form autoComplete="off" className="staff-master-form">
-                <Grid container spacing={2}>
-                  {/* Row 1 */}
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>Title</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={Select}
-                            name="title"
-                            fullWidth
-                            size="small"
-                            error={touched.title && !!errors.title}
-                            // helperText={touched.title && errors.title}
-                          >
-                            <MenuItem value="Mr">Mr</MenuItem>
-                            <MenuItem value="Mrs">Mrs</MenuItem>
-                            <MenuItem value="Ms">Ms</MenuItem>
-                          </Field>
-                          <ErrorMessage
-                            name="title"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          {({ errors, touched, isSubmitting }) => (
+            <Form autoComplete="off" className="staff-master-form">
+              <Grid container spacing={1}>
+                {/* Row 1 */}
+                <Grid item xs={12} sm={6} md={4} lg={3}>
+                  <FormControl fullWidth>
+                    <Grid container alignItems="center">
+                      <Grid
+                        item
+                        xs={4}
+                        className="formlableborder"
+                        sx={{ mr: "3px" }}
+                      >
+                        <FormLabel>Title</FormLabel>
                       </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>Staff Name</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={TextField}
-                            name="staffName"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.staffName && !!errors.staffName}
-                            // helperText={touched.staffName && errors.staffName}
-                          />
-                          <ErrorMessage
-                            name="staffName"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
+                      <Grid item xs={7}>
+                        <Field
+                          as={Select}
+                          name="title"
+                          fullWidth
+                          size="small"
+                          error={touched.title && !!errors.title}
+                          // helperText={touched.title && errors.title}
+                        >
+                          <MenuItem value="Mr">Mr</MenuItem>
+                          <MenuItem value="Mrs">Mrs</MenuItem>
+                          <MenuItem value="Ms">Ms</MenuItem>
+                        </Field>
+                        <ErrorMessage
+                          name="title"
+                          component="div"
+                          className="text-red-600 text-xs"
+                        />
                       </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>Mobile</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={TextField}
-                            name="mobile"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.mobile && !!errors.mobile}
-                            // helperText={touched.mobile && errors.mobile}
-                          />
-                          <ErrorMessage
-                            name="mobile"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  {/* Row 2 */}
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>Relation</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={Select}
-                            name="relation"
-                            fullWidth
-                            size="small"
-                            error={touched.relation && !!errors.relation}
-                            // helperText={touched.relation && errors.relation}
-                          >
-                            <MenuItem value="S/O">S/O</MenuItem>
-                            <MenuItem value="D/O">D/O</MenuItem>
-                            <MenuItem value="W/O">W/O</MenuItem>
-                          </Field>
-                          <ErrorMessage
-                            name="relation"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>Relation Name</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={TextField}
-                            name="relaionname"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.relaionname && !!errors.relaionname}
-                          />
-                          <ErrorMessage
-                            name="relaionname"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>Email</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={TextField}
-                            name="email"
-                            type="email"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.email && !!errors.email}
-                            // helperText={touched.email && errors.email}
-                          />
-                          <ErrorMessage
-                            name="email"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  {/* Row 3 */}
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>Department</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={Select}
-                            name="department"
-                            fullWidth
-                            size="small"
-                            error={touched.department && !!errors.department}
-                            // helperText={touched.department && errors.department}
-                          >
-                            <MenuItem value="Department1">Department1</MenuItem>
-                            <MenuItem value="Department2">Department2</MenuItem>
-                          </Field>
-                          <ErrorMessage
-                            name="department"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>Designation</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={Select}
-                            name="staffDesignation"
-                            fullWidth
-                            size="small"
-                            error={
-                              touched.staffDesignation &&
-                              !!errors.staffDesignation
-                            }
-                          >
-                            <MenuItem value="Designation1">
-                              Designation1
-                            </MenuItem>
-                            <MenuItem value="Designation2">
-                              Designation2
-                            </MenuItem>
-                          </Field>
-                          <ErrorMessage
-                            name="staffDesignation"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>Address</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={TextField}
-                            name="address"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.address && !!errors.address}
-                          />
-                          <ErrorMessage
-                            name="address"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-                  {/* Row 4 */}
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>State</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={TextField}
-                            name="state"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.state && !!errors.state}
-                            // helperText={touched.state && errors.state}
-                          />
-                          <ErrorMessage
-                            name="state"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>District</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={TextField}
-                            name="district"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.district && !!errors.district}
-                            // helperText={touched.district && errors.district}
-                          />
-                          <ErrorMessage
-                            name="district"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>City</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={Select}
-                            fullWidth
-                            name="city"
-                            size="small"
-                            error={touched.city && !!errors.city}
-                            // helperText={touched.city && errors.city}
-                          >
-                            <MenuItem value="City1">City1</MenuItem>
-                            <MenuItem value="City2">City2</MenuItem>
-                          </Field>
-                          <ErrorMessage
-                            name="city"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  {/* Row 5*/}
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>State Code</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={TextField}
-                            name="stateCode"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.stateCode && !!errors.stateCode}
-                            // helperText={touched.stateCode && errors.stateCode}
-                          />
-                          <ErrorMessage
-                            name="stateCode"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>Pin Code</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={TextField}
-                            name="pinCode"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.pinCode && !!errors.pinCode}
-                            // helperText={touched.pinCode && errors.pinCode}
-                          />
-                          <ErrorMessage
-                            name="pinCode"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>STD Code</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={TextField}
-                            name="stdCode"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.stdCode && !!errors.stdCode}
-                            // helperText={touched.stdCode && errors.stdCode}
-                          />
-                          <ErrorMessage
-                            name="stdCode"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-                  {/* Row 5*/}
-
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>Password</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={TextField}
-                            name="password"
-                            type="password"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={touched.password && !!errors.password}
-                            // helperText={touched.password && errors.password}
-                          />
-                          <ErrorMessage
-                            name="password"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-                  <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <FormControl fullWidth>
-                      <Grid container alignItems="center">
-                        <Grid item xs={4}>
-                          <FormLabel>Confirm Password</FormLabel>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Field
-                            as={TextField}
-                            name="confirmPassword"
-                            type="password"
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            error={
-                              touched.confirmPassword &&
-                              !!errors.confirmPassword
-                            }
-                            // helperText={
-                            //   touched.confirmPassword && errors.confirmPassword
-                            // }
-                          />
-                          <ErrorMessage
-                            name="confirmPassword"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Grid>
-
-                  {/* Additional Rows can be added similarly */}
+                    </Grid>
+                  </FormControl>
                 </Grid>
 
-                {/* Buttons */}
-                <Box className="mt-6 flex gap-4 justify-end ">
-                  <Button
-                    type="submit"
-                    color="primary"
-                    variant="contained"
-                    size="small"
-                  >
-                    Save
-                  </Button>
+                <Grid item xs={12} sm={6} md={4} lg={3}>
+                  <FormControl fullWidth>
+                    <Grid container alignItems="center">
+                      <Grid
+                        item
+                        xs={4}
+                        className="formlableborder"
+                        sx={{ mr: "3px" }}
+                      >
+                        <FormLabel>Staff Name</FormLabel>
+                      </Grid>
+                      <Grid item xs={7}>
+                        <Field
+                          as={TextField}
+                          name="staffName"
+                          fullWidth
+                          placeholder="Enter Staff Name"
+                          variant="outlined"
+                          size="small"
+                          error={touched.staffName && !!errors.staffName}
+                          // helperText={touched.staffName && errors.staffName}
+                        />
+                        <ErrorMessage
+                          name="staffName"
+                          component="div"
+                          className="text-red-600 text-xs"
+                        />
+                      </Grid>
+                    </Grid>
+                  </FormControl>
+                </Grid>
 
-                  <Button
-                    type="button"
-                    color="error"
-                    variant="outlined"
-                    size="small"
-                  >
-                    Deactivate
-                  </Button>
-                  <Button
-                    type="reset"
-                    color="default"
-                    variant="outlined"
-                    size="small"
-                  >
-                    Clear
-                  </Button>
-                </Box>
-              </Form>
-            )}
-          </Formik>
-        </Box>
-      </div>
+                <Grid item xs={12} sm={6} md={4} lg={3}>
+                  <FormControl fullWidth>
+                    <Grid container alignItems="center">
+                      <Grid
+                        item
+                        xs={4}
+                        className="formlableborder"
+                        sx={{ mr: "3px" }}
+                      >
+                        <FormLabel>Mobile</FormLabel>
+                      </Grid>
+                      <Grid item xs={7}>
+                        <Field
+                          as={TextField}
+                          name="mobile"
+                          fullWidth
+                          placeholder="Enter Mobile Number"
+                          variant="outlined"
+                          size="small"
+                          error={touched.mobile && !!errors.mobile}
+                          // helperText={touched.mobile && errors.mobile}
+                        />
+                        <ErrorMessage
+                          name="mobile"
+                          component="div"
+                          className="text-red-600 text-xs"
+                        />
+                      </Grid>
+                    </Grid>
+                  </FormControl>
+                </Grid>
+
+                {/* Row 2 */}
+                <Grid item xs={12} sm={6} md={4} lg={3}>
+                  <FormControl fullWidth>
+                    <Grid container alignItems="center">
+                      <Grid
+                        item
+                        xs={4}
+                        className="formlableborder"
+                        sx={{ mr: "3px" }}
+                      >
+                        <FormLabel>Relation</FormLabel>
+                      </Grid>
+                      <Grid item xs={7}>
+                        <Field
+                          as={Select}
+                          name="relation"
+                          fullWidth
+                          size="small"
+                          error={touched.relation && !!errors.relation}
+                          // helperText={touched.relation && errors.relation}
+                        >
+                          <MenuItem value="" disabled>
+                            Select Relation
+                          </MenuItem>
+                          <MenuItem value="S/O">S/O</MenuItem>
+                          <MenuItem value="D/O">D/O</MenuItem>
+                          <MenuItem value="W/O">W/O</MenuItem>
+                        </Field>
+                        <ErrorMessage
+                          name="relation"
+                          component="div"
+                          className="text-red-600 text-xs"
+                        />
+                      </Grid>
+                    </Grid>
+                  </FormControl>
+                </Grid>
+
+                <Grid item xs={12} sm={6} md={4} lg={3}>
+                  <FormControl fullWidth>
+                    <Grid container alignItems="center">
+                      <Grid
+                        item
+                        xs={4}
+                        className="formlableborder"
+                        sx={{ mr: "3px" }}
+                      >
+                        <FormLabel>Relation Name</FormLabel>
+                      </Grid>
+                      <Grid item xs={7}>
+                        <Field
+                          as={TextField}
+                          name="relaionname"
+                          fullWidth
+                          placeholder="Enter Relation Name"
+                          variant="outlined"
+                          size="small"
+                          error={touched.relaionname && !!errors.relaionname}
+                        />
+                        <ErrorMessage
+                          name="relaionname"
+                          component="div"
+                          className="text-red-600 text-xs"
+                        />
+                      </Grid>
+                    </Grid>
+                  </FormControl>
+                </Grid>
+
+                <Grid item xs={12} sm={6} md={4} lg={3}>
+                  <FormControl fullWidth>
+                    <Grid container alignItems="center">
+                      <Grid
+                        item
+                        xs={4}
+                        className="formlableborder"
+                        sx={{ mr: "3px" }}
+                      >
+                        <FormLabel>Email</FormLabel>
+                      </Grid>
+                      <Grid item xs={7}>
+                        <Field
+                          as={TextField}
+                          name="email"
+                          type="email"
+                          placeholder="Enter Email Address"
+                          fullWidth
+                          variant="outlined"
+                          size="small"
+                          error={touched.email && !!errors.email}
+                          // helperText={touched.email && errors.email}
+                        />
+                        <ErrorMessage
+                          name="email"
+                          component="div"
+                          className="text-red-600 text-xs"
+                        />
+                      </Grid>
+                    </Grid>
+                  </FormControl>
+                </Grid>
+
+                {/* Row 3 */}
+                <Grid item xs={12} sm={6} md={4} lg={3}>
+                  <FormControl fullWidth>
+                    <Grid container alignItems="center">
+                      <Grid
+                        item
+                        xs={4}
+                        className="formlableborder"
+                        sx={{ mr: "3px" }}
+                      >
+                        <FormLabel>Department</FormLabel>
+                      </Grid>
+                      <Grid item xs={7}>
+                        <Field
+                          as={Select}
+                          name="department"
+                          fullWidth
+                          size="small"
+                          error={touched.department && !!errors.department}
+                          // helperText={touched.department && errors.department}
+                        >
+                          <MenuItem value="" disabled>
+                            Select Department
+                          </MenuItem>
+                          <MenuItem value="Department1">Department1</MenuItem>
+                          <MenuItem value="Department2">Department2</MenuItem>
+                        </Field>
+                        <ErrorMessage
+                          name="department"
+                          component="div"
+                          className="text-red-600 text-xs"
+                        />
+                      </Grid>
+                    </Grid>
+                  </FormControl>
+                </Grid>
+
+                <Grid item xs={12} sm={6} md={4} lg={3}>
+                  <FormControl fullWidth>
+                    <Grid container alignItems="center">
+                      <Grid
+                        item
+                        xs={4}
+                        className="formlableborder"
+                        sx={{ mr: "3px" }}
+                      >
+                        <FormLabel>Designation</FormLabel>
+                      </Grid>
+                      <Grid item xs={7}>
+                        <Field
+                          as={Select}
+                          name="staffDesignation"
+                          fullWidth
+                          size="small"
+                          error={
+                            touched.staffDesignation &&
+                            !!errors.staffDesignation
+                          }
+                        >
+                          <MenuItem value="">Select Designation</MenuItem>
+                          <MenuItem value="Designation1">Designation1</MenuItem>
+                          <MenuItem value="Designation2">Designation2</MenuItem>
+                        </Field>
+                        <ErrorMessage
+                          name="staffDesignation"
+                          component="div"
+                          className="text-red-600 text-xs"
+                        />
+                      </Grid>
+                    </Grid>
+                  </FormControl>
+                </Grid>
+
+                <Grid item xs={12} sm={6} md={4} lg={3}>
+                  <FormControl fullWidth>
+                    <Grid container alignItems="center">
+                      <Grid
+                        item
+                        xs={4}
+                        className="formlableborder"
+                        sx={{ mr: "3px" }}
+                      >
+                        <FormLabel>Address</FormLabel>
+                      </Grid>
+                      <Grid item xs={7}>
+                        <Field
+                          as={TextField}
+                          name="address"
+                          fullWidth
+                          placeholder="Enter Address"
+                          variant="outlined"
+                          size="small"
+                          error={touched.address && !!errors.address}
+                        />
+                        <ErrorMessage
+                          name="address"
+                          component="div"
+                          className="text-red-600 text-xs"
+                        />
+                      </Grid>
+                    </Grid>
+                  </FormControl>
+                </Grid>
+                {/* Row 4 */}
+                <Grid item xs={12} sm={6} md={4} lg={3}>
+                  <FormControl fullWidth>
+                    <Grid container alignItems="center">
+                      <Grid
+                        item
+                        xs={4}
+                        className="formlableborder"
+                        sx={{ mr: "3px" }}
+                      >
+                        <FormLabel>State</FormLabel>
+                      </Grid>
+                      <Grid item xs={7}>
+                        <Field
+                          as={TextField}
+                          name="state"
+                          fullWidth
+                          placeholder="Enter State"
+                          variant="outlined"
+                          size="small"
+                          error={touched.state && !!errors.state}
+                          // helperText={touched.state && errors.state}
+                        />
+                        <ErrorMessage
+                          name="state"
+                          component="div"
+                          className="text-red-600 text-xs"
+                        />
+                      </Grid>
+                    </Grid>
+                  </FormControl>
+                </Grid>
+
+                <Grid item xs={12} sm={6} md={4} lg={3}>
+                  <FormControl fullWidth>
+                    <Grid container alignItems="center">
+                      <Grid
+                        item
+                        xs={4}
+                        className="formlableborder"
+                        sx={{ mr: "3px" }}
+                      >
+                        <FormLabel>District</FormLabel>
+                      </Grid>
+                      <Grid item xs={7}>
+                        <Field
+                          as={TextField}
+                          name="district"
+                          fullWidth
+                          placeholder="Enter District"
+                          variant="outlined"
+                          size="small"
+                          error={touched.district && !!errors.district}
+                          // helperText={touched.district && errors.district}
+                        />
+                        <ErrorMessage
+                          name="district"
+                          component="div"
+                          className="text-red-600 text-xs"
+                        />
+                      </Grid>
+                    </Grid>
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12} sm={6} md={4} lg={3}>
+                  <FormControl fullWidth>
+                    <Grid container alignItems="center">
+                      <Grid
+                        item
+                        xs={4}
+                        className="formlableborder"
+                        sx={{ mr: "3px" }}
+                      >
+                        <FormLabel>City</FormLabel>
+                      </Grid>
+                      <Grid item xs={7}>
+                        <Field
+                          as={Select}
+                          fullWidth
+                          name="city"
+                          size="small"
+                          error={touched.city && !!errors.city}
+                          // helperText={touched.city && errors.city}
+                        >
+                          <MenuItem value="">Select City</MenuItem>
+                          <MenuItem value="City1">City1</MenuItem>
+                          <MenuItem value="City2">City2</MenuItem>
+                        </Field>
+                        <ErrorMessage
+                          name="city"
+                          component="div"
+                          className="text-red-600 text-xs"
+                        />
+                      </Grid>
+                    </Grid>
+                  </FormControl>
+                </Grid>
+
+                {/* Row 5*/}
+                <Grid item xs={12} sm={6} md={4} lg={3}>
+                  <FormControl fullWidth>
+                    <Grid container alignItems="center">
+                      <Grid
+                        item
+                        xs={4}
+                        className="formlableborder"
+                        sx={{ mr: "3px" }}
+                      >
+                        <FormLabel>State Code</FormLabel>
+                      </Grid>
+                      <Grid item xs={7}>
+                        <Field
+                          as={TextField}
+                          name="stateCode"
+                          fullWidth
+                          placeholder="Enter State Code"
+                          variant="outlined"
+                          size="small"
+                          error={touched.stateCode && !!errors.stateCode}
+                          // helperText={touched.stateCode && errors.stateCode}
+                        />
+                        <ErrorMessage
+                          name="stateCode"
+                          component="div"
+                          className="text-red-600 text-xs"
+                        />
+                      </Grid>
+                    </Grid>
+                  </FormControl>
+                </Grid>
+
+                <Grid item xs={12} sm={6} md={4} lg={3}>
+                  <FormControl fullWidth>
+                    <Grid container alignItems="center">
+                      <Grid
+                        item
+                        xs={4}
+                        className="formlableborder"
+                        sx={{ mr: "3px" }}
+                      >
+                        <FormLabel>Pin Code</FormLabel>
+                      </Grid>
+                      <Grid item xs={7}>
+                        <Field
+                          as={TextField}
+                          name="pinCode"
+                          fullWidth
+                          placeholder="Enter Pin Code"
+                          variant="outlined"
+                          size="small"
+                          error={touched.pinCode && !!errors.pinCode}
+                          // helperText={touched.pinCode && errors.pinCode}
+                        />
+                        <ErrorMessage
+                          name="pinCode"
+                          component="div"
+                          className="text-red-600 text-xs"
+                        />
+                      </Grid>
+                    </Grid>
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12} sm={6} md={4} lg={3}>
+                  <FormControl fullWidth>
+                    <Grid container alignItems="center">
+                      <Grid
+                        item
+                        xs={4}
+                        className="formlableborder"
+                        sx={{ mr: "3px" }}
+                      >
+                        <FormLabel>STD Code</FormLabel>
+                      </Grid>
+                      <Grid item xs={7}>
+                        <Field
+                          as={TextField}
+                          name="stdCode"
+                          fullWidth
+                          placeholder="Enter STD Code"
+                          variant="outlined"
+                          size="small"
+                          error={touched.stdCode && !!errors.stdCode}
+                          // helperText={touched.stdCode && errors.stdCode}
+                        />
+                        <ErrorMessage
+                          name="stdCode"
+                          component="div"
+                          className="text-red-600 text-xs"
+                        />
+                      </Grid>
+                    </Grid>
+                  </FormControl>
+                </Grid>
+                {/* Row 5*/}
+
+                <Grid item xs={12} sm={6} md={4} lg={3}>
+                  <FormControl fullWidth>
+                    <Grid container alignItems="center">
+                      <Grid
+                        item
+                        xs={4}
+                        className="formlableborder"
+                        sx={{ mr: "3px" }}
+                      >
+                        <FormLabel>Password</FormLabel>
+                      </Grid>
+                      <Grid item xs={7}>
+                        <Field
+                          as={TextField}
+                          name="password"
+                          type="password"
+                          placeholder="Enter Password"
+                          fullWidth
+                          variant="outlined"
+                          size="small"
+                          error={touched.password && !!errors.password}
+                          // helperText={touched.password && errors.password}
+                        />
+                        <ErrorMessage
+                          name="password"
+                          component="div"
+                          className="text-red-600 text-xs"
+                        />
+                      </Grid>
+                    </Grid>
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12} sm={6} md={4} lg={3}>
+                  <FormControl fullWidth>
+                    <Grid container alignItems="center">
+                      <Grid
+                        item
+                        xs={4}
+                        className="formlableborder"
+                        sx={{ mr: "3px" }}
+                      >
+                        <FormLabel>Confirm Password</FormLabel>
+                      </Grid>
+                      <Grid item xs={7}>
+                        <Field
+                          as={TextField}
+                          name="confirmPassword"
+                          type="password"
+                          fullWidth
+                          placeholder="Re-enter Password"
+                          variant="outlined"
+                          size="small"
+                          error={
+                            touched.confirmPassword && !!errors.confirmPassword
+                          }
+                          // helperText={
+                          //   touched.confirmPassword && errors.confirmPassword
+                          // }
+                        />
+                        <ErrorMessage
+                          name="confirmPassword"
+                          component="div"
+                          className="text-red-600 text-xs"
+                        />
+                      </Grid>
+                    </Grid>
+                  </FormControl>
+                </Grid>
+
+                {/* Additional Rows can be added similarly */}
+              </Grid>
+
+              {/* Buttons */}
+              <Box className="mt-6 flex gap-4 justify-end ">
+                <button type="submit" className="project-thim savebutton">
+                  Save
+                </button>
+
+                <button type="button" className="project-thim savebutton">
+                  Deactivate
+                </button>
+                <button type="reset" className="project-thim savebutton">
+                  Clear
+                </button>
+              </Box>
+            </Form>
+          )}
+        </Formik>
+      </Box>
     </div>
   );
 };

@@ -105,8 +105,8 @@ const HSNCODEMaster = () => {
   };
 
   const handleEdit = (row) => {
-    console.log("row",row);
-    
+    console.log("row", row);
+
     setEditRow(row);
   };
 
@@ -130,7 +130,7 @@ const HSNCODEMaster = () => {
             enableReinitialize
           >
             {({ resetForm, errors }) => (
-              console.log("errors", errors),
+             
               (
                 <Form>
                   <Grid container spacing={1}>
@@ -155,13 +155,10 @@ const HSNCODEMaster = () => {
                               fullWidth
                               variant="outlined"
                               size="small"
-                              error={<ErrorMessage name="hsn_code" />}
+                              error={Boolean(<ErrorMessage name="hsn_code" />)}
+                              helperText={<ErrorMessage name="hsn_code" />}
                             />
-                            <ErrorMessage
-                              name="hsn_code"
-                              component="div"
-                              className="text-red-600 text-xs"
-                            />
+                            
                           </Grid>
                         </Grid>
                       </FormControl>
@@ -187,13 +184,10 @@ const HSNCODEMaster = () => {
                               fullWidth
                               variant="outlined"
                               size="small"
-                              error={<ErrorMessage name="hsn_igst" />}
+                              error={Boolean(<ErrorMessage name="hsn_igst" />)}
+                              helperText={<ErrorMessage name="hsn_igst" />}
                             />
-                            <ErrorMessage
-                              name="hsn_igst"
-                              component="div"
-                              className="text-red-600 text-xs"
-                            />
+                           
                           </Grid>
                         </Grid>
                       </FormControl>
@@ -219,13 +213,10 @@ const HSNCODEMaster = () => {
                               fullWidth
                               variant="outlined"
                               size="small"
-                              error={<ErrorMessage name="hsn_cgst" />}
+                              error={Boolean(<ErrorMessage name="hsn_cgst" />)}
+                              helperText={<ErrorMessage name="hsn_cgst" />}
                             />
-                            <ErrorMessage
-                              name="hsn_cgst"
-                              component="div"
-                              className="text-red-600 text-xs"
-                            />
+                           
                           </Grid>
                         </Grid>
                       </FormControl>
@@ -251,13 +242,10 @@ const HSNCODEMaster = () => {
                               fullWidth
                               variant="outlined"
                               size="small"
-                              error={<ErrorMessage name="hsn_sgst" />}
+                              error={Boolean(<ErrorMessage name="hsn_sgst" />)}
+                              helperText={<ErrorMessage name="hsn_sgst" />}
                             />
-                            <ErrorMessage
-                              name="hsn_sgst"
-                              component="div"
-                              className="text-red-600 text-xs"
-                            />
+                            
                           </Grid>
                         </Grid>
                       </FormControl>

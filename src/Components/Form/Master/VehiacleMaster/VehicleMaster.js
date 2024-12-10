@@ -141,7 +141,6 @@ const VehicleMaster = () => {
             {({ resetForm, errors, values }) => (
               <Form>
                 <Grid container spacing={1}>
-                 
                   <Grid item xs={12} sm={6} md={4} lg={3}>
                     <FormControl fullWidth>
                       <Grid container alignItems="center">
@@ -155,18 +154,13 @@ const VehicleMaster = () => {
                         </Grid>
                         <Grid item xs={7}>
                           <TextField
-                            
                             name="model"
                             placeholder="Enter Model"
                             fullWidth
                             variant="outlined"
                             size="small"
-                            
-                          />
-                          <ErrorMessage
-                            name="model"
-                            component="div"
-                            className="text-red-600 text-[10px]"
+                            error={Boolean(<ErrorMessage name="model" />)}
+                            helperText={<ErrorMessage name="model" />}
                           />
                         </Grid>
                       </Grid>
@@ -187,18 +181,13 @@ const VehicleMaster = () => {
                         </Grid>
                         <Grid item xs={7}>
                           <TextField
-                           
                             name="code"
                             placeholder="Enter Code"
                             fullWidth
                             variant="outlined"
                             size="small"
-                            
-                          />
-                          <ErrorMessage
-                            name="code"
-                            component="div"
-                            className="text-red-600 text-xs"
+                            error={Boolean(<ErrorMessage name="code" />)}
+                            helperText={<ErrorMessage name="code" />}
                           />
                         </Grid>
                       </Grid>
@@ -219,18 +208,13 @@ const VehicleMaster = () => {
                         </Grid>
                         <Grid item xs={7}>
                           <TextField
-                            
                             name="description"
                             placeholder="Enter Description"
                             fullWidth
                             variant="outlined"
                             size="small"
-                           
-                          />
-                          <ErrorMessage
-                            name="description"
-                            component="div"
-                            className="text-red-600 text-xs"
+                            error={Boolean(<ErrorMessage name="description" />)}
+                            helperText={<ErrorMessage name="description" />}
                           />
                         </Grid>
                       </Grid>
@@ -257,16 +241,12 @@ const VehicleMaster = () => {
                             fullWidth
                             variant="outlined"
                             size="small"
-                            select
+                            error={Boolean(<ErrorMessage name="group" />)}
+                            // helperText={<ErrorMessage name="group" />}
                           >
                             <MenuItem value="Group1">Group 1</MenuItem>
                             <MenuItem value="Group2">Group 2</MenuItem>
                           </Field>
-                          <ErrorMessage
-                            name="group"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
                         </Grid>
                       </Grid>
                     </FormControl>
@@ -286,19 +266,16 @@ const VehicleMaster = () => {
                         </Grid>
                         <Grid item xs={7}>
                           <TextField
-                           
                             name="discount_limit"
                             type="number"
                             placeholder="Enter Discount Limit"
                             fullWidth
                             variant="outlined"
                             size="small"
-                            
-                          />
-                          <ErrorMessage
-                            name="discount_limit"
-                            component="div"
-                            className="text-red-600 text-xs"
+                            error={Boolean(
+                              <ErrorMessage name="discount_limit" />
+                            )}
+                            helperText={<ErrorMessage name="discount_limit" />}
                           />
                         </Grid>
                       </Grid>
@@ -319,18 +296,15 @@ const VehicleMaster = () => {
                         </Grid>
                         <Grid item xs={7}>
                           <TextField
-                           
                             name="manufacturer"
                             placeholder="Enter Manufacturer"
                             fullWidth
                             variant="outlined"
                             size="small"
-                           
-                          />
-                          <ErrorMessage
-                            name="manufacturer"
-                            component="div"
-                            className="text-red-600 text-xs"
+                            error={Boolean(
+                              <ErrorMessage name="manufacturer" />
+                            )}
+                            helperText={<ErrorMessage name="manufacturer" />}
                           />
                         </Grid>
                       </Grid>
@@ -353,11 +327,14 @@ const VehicleMaster = () => {
                           <Field
                             as={Select}
                             name="with_battery"
-                            select
                             fullWidth
                             variant="outlined"
                             size="small"
                             displayEmpty
+                            error={Boolean(
+                              <ErrorMessage name="with_battery" />
+                            )}
+                            // helperText={<ErrorMessage name="with_battery" />}
                           >
                             <MenuItem value="" disabled>
                               Yes
@@ -365,11 +342,6 @@ const VehicleMaster = () => {
                             <MenuItem value="Yes">Yes</MenuItem>
                             <MenuItem value="No">No</MenuItem>
                           </Field>
-                          <ErrorMessage
-                            name="with_battery"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
                         </Grid>
                       </Grid>
                     </FormControl>
@@ -391,19 +363,15 @@ const VehicleMaster = () => {
                           <Field
                             as={Select}
                             name="discontinue"
-                            select
                             fullWidth
                             variant="outlined"
                             size="small"
+                            error={Boolean(<ErrorMessage name="discontinue" />)}
+                            // helperText={<ErrorMessage name="discontinue" />}
                           >
                             <MenuItem value="Yes">Yes</MenuItem>
                             <MenuItem value="No">No</MenuItem>
                           </Field>
-                          <ErrorMessage
-                            name="discontinue"
-                            component="div"
-                            className="text-red-600 text-xs"
-                          />
                         </Grid>
                       </Grid>
                     </FormControl>
@@ -422,18 +390,16 @@ const VehicleMaster = () => {
                           <FormLabel>Trade Cert. No.</FormLabel>
                         </Grid>
                         <Grid item xs={7}>
-                          <TextField  
+                          <TextField
                             name="trade_cert_no"
                             placeholder="Enter Trade Cert. No."
                             fullWidth
                             variant="outlined"
                             size="small"
-                           
-                          />
-                          <ErrorMessage
-                            name="trade_cert_no"
-                            component="div"
-                            className="text-red-600 text-xs"
+                            error={Boolean(
+                              <ErrorMessage name="trade_cert_no" />
+                            )}
+                            helperText={<ErrorMessage name="trade_cert_no" />}
                           />
                         </Grid>
                       </Grid>
@@ -460,12 +426,10 @@ const VehicleMaster = () => {
                             fullWidth
                             variant="outlined"
                             size="small"
-                           
-                          />
-                          <ErrorMessage
-                            name="fuel_capacity"
-                            component="div"
-                            className="text-red-600 text-xs"
+                            error={Boolean(
+                              <ErrorMessage name="fuel_capacity" />
+                            )}
+                            helperText={<ErrorMessage name="fuel_capacity" />}
                           />
                         </Grid>
                       </Grid>
@@ -486,19 +450,16 @@ const VehicleMaster = () => {
                         </Grid>
                         <Grid item xs={7}>
                           <TextField
-                           
                             name="purchase_price"
                             type="number"
                             placeholder="Enter Purchase Price"
                             fullWidth
                             variant="outlined"
                             size="small"
-                            
-                          />
-                          <ErrorMessage
-                            name="purchase_price"
-                            component="div"
-                            className="text-red-600 text-xs"
+                            error={Boolean(
+                              <ErrorMessage name="purchase_price" />
+                            )}
+                            helperText={<ErrorMessage name="purchase_price" />}
                           />
                         </Grid>
                       </Grid>
@@ -525,12 +486,10 @@ const VehicleMaster = () => {
                             fullWidth
                             variant="outlined"
                             size="small"
-                            
-                          />
-                          <ErrorMessage
-                            name="exShowroomPrice"
-                            component="div"
-                            className="text-red-600 text-xs"
+                            error={Boolean(
+                              <ErrorMessage name="exShowroomPrice" />
+                            )}
+                            helperText={<ErrorMessage name="exShowroomPrice" />}
                           />
                         </Grid>
                       </Grid>
@@ -551,18 +510,13 @@ const VehicleMaster = () => {
                         </Grid>
                         <Grid item xs={7}>
                           <TextField
-                           
                             name="hsnCode"
                             placeholder="Enter HSN Code"
                             fullWidth
                             variant="outlined"
                             size="small"
-                           
-                          />
-                          <ErrorMessage
-                            name="hsnCode"
-                            component="div"
-                            className="text-red-600 text-xs"
+                            error={Boolean(<ErrorMessage name="hsnCode" />)}
+                            helperText={<ErrorMessage name="hsnCode" />}
                           />
                         </Grid>
                       </Grid>
@@ -583,7 +537,6 @@ const VehicleMaster = () => {
                         </Grid>
                         <Grid item xs={7}>
                           <TextField
-                            
                             name="effectiveDate"
                             type="date"
                             fullWidth
@@ -592,12 +545,10 @@ const VehicleMaster = () => {
                             InputLabelProps={{
                               shrink: true,
                             }}
-                           
-                          />
-                          <ErrorMessage
-                            name="effectiveDate"
-                            component="div"
-                            className="text-red-600 text-xs"
+                            error={Boolean(
+                              <ErrorMessage name="effectiveDate" />
+                            )}
+                            helperText={<ErrorMessage name="effectiveDate" />}
                           />
                         </Grid>
                       </Grid>
@@ -630,7 +581,6 @@ const VehicleMaster = () => {
                   </Grid>
 
                   {/* Letter Details Checkbox */}
-                  <Grid item xs={12} sm={6} md={4} lg={3}></Grid>
 
                   {/* Buttons */}
                   <Grid item xs={12}>

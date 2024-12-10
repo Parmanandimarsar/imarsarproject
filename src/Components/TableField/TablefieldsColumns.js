@@ -1005,3 +1005,56 @@ export const OpeningStockscolumns = [
    
     
   ];
+  export const StaffMasterColumns=(handleEdit)=>[
+    { field: "id", headerName: "Id", width: 130 ,
+      sortable: true, 
+      disableColumnMenu: true,
+    },
+    { field: "misc_name", headerName: "Title", flex:1,
+      sortable: true, 
+      disableColumnMenu: true,
+     
+
+    },
+    { field: "type", headerName: "Staff Name", flex:1,
+      sortable: true, 
+      disableColumnMenu: true,
+     
+
+    },
+    { field: "is_active", headerName: "Department", flex:1,
+      sortable: true, 
+      disableColumnMenu: true,
+     
+
+    },
+    { field: "created_datetime", headerName: "Created By", flex:1,
+      sortable: true, 
+      disableColumnMenu: true,
+     
+
+    },
+    { field: "created_datetime", headerName: "Created Date", flex:1,
+      sortable: true, 
+      disableColumnMenu: true,
+     
+
+    },
+    
+    {
+      field: "actions",
+      headerName: "Actions",
+      width: 100,
+      sortable: true, 
+      disableColumnMenu: true,
+      renderCell: (params) => (
+        <IconButton onClick={() => handleEdit(params.row)}>
+          <EditIcon sx={{ fontSize: 16 }} />
+        </IconButton>
+      ),
+    },
+    
+    
+   
+    
+  ];

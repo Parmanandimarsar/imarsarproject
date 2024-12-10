@@ -12,7 +12,8 @@ import {
 import Grid from "@mui/material/Grid";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import SideNave from "../../../Pages/MainLayout/SideNav";
+import DataGridTable from "../../ConstantComponents/DataGridTable";
+import { StaffMasterColumns } from "../../TableField/TablefieldsColumns";
 
 const StaffMaster = () => {
   const validationSchema = Yup.object().shape({
@@ -75,7 +76,9 @@ const StaffMaster = () => {
       setSubmitting(false);
     }, 1000);
   };
-
+const handleEdit=()=>{
+  
+}
   return (
     <div className="  mb-[50px] pl-2">
       <Box className="bg-white rounded-lg shadow-lg" autoComplete="off">
@@ -678,6 +681,8 @@ const StaffMaster = () => {
             </Form>
           )}
         </Formik>
+
+        <DataGridTable rows={""} columns={StaffMasterColumns(handleEdit)}/>
       </Box>
     </div>
   );

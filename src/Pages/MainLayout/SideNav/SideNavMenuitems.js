@@ -8,8 +8,8 @@ export const menuItems = [
        
         { text: "Staff-Master", link: "/staff-master", icon: <MailIcon /> },
         { text: "Vehicle-Master", link: "/vehiacle-master", icon: <MailIcon /> },
-        { text: "Letter-Details", link: "/letter-details", icon: <MailIcon /> },
-        { text: "Opening-Master", link: "/opening-stocks", icon: <MailIcon /> },
+      
+        
         { text: "Ledger-Master", link: "/ledger-master", icon: <MailIcon /> },
         { text: "Temp-Addresh", link: "/ledger-temp-addresh", icon: <MailIcon /> },
         { text: "Labour-Master", link: "/labour-master", icon: <MailIcon /> },

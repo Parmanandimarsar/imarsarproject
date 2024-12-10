@@ -1,15 +1,9 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Login from "../Pages/Login";
-
 import SignUp from "../Components/Form/Master/StaffMaster";
-
 import Home from "../Pages/Header";
 import CompanyMaster from "../Components/Form/Master/CompanyMaster";
-
-import LetterDetails from "../Components/Form/Master/LetterDetails";
-
-import OpeningStocks from "../Components/Form/Master/OpeningStocks";
 import LedgerMaster from "../Components/Form/Master/LedgerMaster";
 import LedgerTempAddresh from "../Components/Form/Master/LedgerTempAddresh";
 import LabourMaster from "../Components/Form/Master/LabourMaster";
@@ -48,10 +42,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <CompanyMaster />,
       },
-      {
-        path: "/letter-details",
-        element: <LetterDetails />,
-      },
+     
       {
         path: "/vehiacle-master",
         element: <VehicleMaster />,
@@ -60,10 +51,7 @@ const router = createBrowserRouter([
         path: "/staff-master",
         element: <SignUp />,
       },
-      {
-        path: "/opening-stocks",
-        element: <OpeningStocks />,
-      },
+      
       {
         path: "/ledger-master",
         element: <LedgerMaster />,
